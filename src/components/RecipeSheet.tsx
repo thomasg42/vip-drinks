@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import type { Drink } from '../types'
+import { buildSteps } from '../data/steps'
 import { youtubeEmbed, youtubeId, youtubeSearchUrl, youtubeWatch } from '../types'
 
 type Props = {
@@ -35,6 +36,7 @@ export function RecipeSheet({ drink, savedVideoId, onClose, onMade, onSaveVideo 
   const embed = youtubeEmbed(drink, savedVideoId)
   const fromWeb = drink.source === 'web'
   const searchUrl = youtubeSearchUrl(drink.name)
+  const steps = buildSteps(drink)
 
   const savePasted = () => {
     const raw = paste.trim()
@@ -140,14 +142,22 @@ export function RecipeSheet({ drink, savedVideoId, onClose, onMade, onSaveVideo 
           ))}
         </ul>
 
-        {fromWeb && drink.instructions ? (
-          <>
-            <h3>Method</h3>
-            <p className="web-instructions">{drink.instructions}</p>
-          </>
-        ) : (
-          <p className="garnish">Garnish · {drink.garnish}</p>
-        )}
+        {/*
+          The build, in order, at the bottom of every drink -- the part the sheet
+          used to leave out. Numbered and one instruction per line so it can be
+          read a step at a time with a bottle in the other hand.
+        */}
+        <section className="how-to">
+          <h3>How to make it</h3>
+          <ol className="steps">
+            {steps.map((step, i) => (
+              <li key={i}>{step}</li>
+            ))}
+          </ol>
+          {fromWeb ? (
+            <p className="how-to-meta">In TheCocktailDB’s own words</p>
+          ) : null}
+        </section>
 
         {fromWeb ? (
           <p className="web-source">From TheCocktailDB · off-menu, no house price set</p>
@@ -157,9 +167,11 @@ export function RecipeSheet({ drink, savedVideoId, onClose, onMade, onSaveVideo 
           <p className="web-source">No house price set · adds $0 to the shift ticket</p>
         ) : null}
 
-        <button type="button" className="made-btn" onClick={() => onMade(drink.id, drink.name)}>
-          Mark ordered &amp; made
-        </button>
+        <div className="recipe-foot">
+          <button type="button" className="made-btn" onClick={() => onMade(drink.id, drink.name)}>
+            Mark ordered &amp; made
+          </button>
+        </div>
       </div>
     </div>
   )

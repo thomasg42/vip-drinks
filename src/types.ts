@@ -57,6 +57,25 @@ export type SavedShift = {
   notes: string
 }
 
+/**
+ * When each mergeable field was last changed, in milliseconds.
+ *
+ * These are what make the shift survive two devices. The cash count is not a
+ * field you can average or add up -- it is one person's reading of one drawer --
+ * so the newest reading wins outright, and the clock is how "newest" is decided
+ * without either device having to know the other exists.
+ *
+ * Times come from the SERVER whenever the app has spoken to it, so a phone whose
+ * clock is ten minutes fast cannot silently outrank a laptop that is right.
+ */
+export type Clocks = {
+  opening: number
+  closing: number
+  notes: number
+  shift: number
+  videos: number
+}
+
 export type AppState = {
   made: MadeEntry[]
   /** drink id -> YouTube video id the bartender saved for it themselves. */
@@ -66,6 +85,21 @@ export type AppState = {
   notes: string
   shiftStartedAt: string | null
   history: SavedShift[]
+  /**
+   * Ids of made-entries deleted somewhere. Without these an undo on the phone
+   * is silently undone again by the laptop's copy on the next merge -- a union
+   * of two lists can only ever grow.
+   */
+  removed: string[]
+  clocks: Clocks
+}
+
+export const EMPTY_CLOCKS: Clocks = {
+  opening: 0,
+  closing: 0,
+  notes: 0,
+  shift: 0,
+  videos: 0,
 }
 
 export const EMPTY_DENOMS: Denoms = {

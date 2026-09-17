@@ -474,8 +474,11 @@ button:focus-visible {
 .recipe {
   position: relative;
   width: 100%;
-  max-height: 88%;
+  /* Taller on a phone: the build steps live at the bottom of this card and a
+     12% gap above it was 12% less of them on screen. */
+  max-height: 94%;
   overflow: auto;
+  overscroll-behavior: contain;
   border: 1px solid var(--line);
   border-top: 0;
   border-radius: 0 0 18px 18px;
@@ -807,19 +810,48 @@ button:focus-visible {
 
 /* ---------- Quick pour rail (wine / beer / mimosa / seltzer) ---------- */
 
+/*
+ * The rail rides the VIEWPORT, not the page.
+ *
+ * It used to be stretched top-to-bottom of .main with four 1fr rows, which on a
+ * real phone meant the bottom tiles sat wherever the browser chrome happened to
+ * leave room -- so you could not count on seeing all four while scrolling the
+ * sheet. Now the tiles are a fixed size, anchored just above the dock where the
+ * thumb already is, and pinned to the visual viewport so they travel with the
+ * scroll instead of drifting off the bottom of it.
+ */
 .quick-rail {
   position: absolute;
-  top: 0;
   right: 0;
-  bottom: 0;
-  width: 58px;
+  bottom: 12px;
+  width: 62px;
   display: grid;
+  /* An EXPLICIT height, because 1fr rows in an auto-height grid collapse to
+     their content -- which sized the tiles off the label text instead of the
+     space available, and made them smaller the moment they were most needed. */
+  height: min(304px, 100%);
   grid-template-rows: repeat(4, 1fr);
-  gap: 6px;
+  gap: 8px;
   padding: 12px 6px;
   background: linear-gradient(to left, var(--bg-2), rgba(26, 21, 17, 0));
   border-left: 1px solid var(--line);
   z-index: 3;
+}
+
+@media (max-width: 519px) {
+  /*
+   * A phone has no 390x844 frame to sit inside, so the rail is fixed to the
+   * visual viewport directly. That is what makes it move WITH the scroll on
+   * iOS -- a fixed element repositions as the toolbar collapses, where an
+   * absolutely-positioned one inside a 100dvh box does not.
+   */
+  .quick-rail {
+    position: fixed;
+    bottom: calc(80px + env(safe-area-inset-bottom, 0px));
+    /* Never taller than the screen: a phone in landscape still shows all four,
+       just shorter. Four smaller boxes beat three boxes and a guess. */
+    height: min(304px, calc(100dvh - 150px));
+  }
 }
 
 .quick-tile {
@@ -1087,4 +1119,174 @@ button:focus-visible {
   margin: 6px 0 0;
   opacity: 0.55;
   font-size: 0.78rem;
+}
+
+
+/* ---------- How to make it: the build, in order, at the bottom of every drink ---------- */
+
+.how-to {
+  margin: 20px 0 16px;
+  padding: 14px 14px 4px;
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--gold);
+  background: var(--tile);
+}
+
+.steps {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: step;
+}
+
+.steps li {
+  counter-increment: step;
+  display: grid;
+  grid-template-columns: 26px 1fr;
+  gap: 10px;
+  align-items: start;
+  padding: 9px 0;
+  font-size: 17px;
+  line-height: 1.35;
+  border-bottom: 1px solid rgba(243, 234, 216, 0.08);
+}
+
+.steps li:last-child {
+  border-bottom: 0;
+}
+
+.steps li::before {
+  content: counter(step);
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-family: var(--font-display);
+  font-size: 14px;
+  line-height: 1;
+  color: var(--gold);
+  background: var(--bg-2);
+}
+
+.how-to-meta {
+  margin: 10px 0 12px;
+  color: var(--muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 11px;
+}
+
+/*
+ * The action stays on screen while the steps scroll under it. Before this it
+ * sat at the natural end of a tall card, which is how the instructions ended up
+ * "underneath everything" -- there was no floor, so there was no bottom to reach.
+ */
+.recipe-foot {
+  position: sticky;
+  bottom: -20px;
+  margin: 0 -20px -20px;
+  padding: 12px 20px calc(12px + env(safe-area-inset-bottom));
+  background: linear-gradient(to top, var(--bg-2) 72%, rgba(26, 21, 17, 0));
+}
+
+.recipe-foot .made-btn {
+  margin: 0;
+}
+
+/* ---------- Shared shift ledger: the state is always named on screen ---------- */
+
+.sync-bar {
+  margin: 0 0 16px;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--muted);
+  background: var(--tile);
+  display: grid;
+  gap: 10px;
+}
+
+.sync-bar.on {
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  border-left-color: var(--ok);
+}
+
+.sync-bar.bad {
+  border-left-color: var(--danger);
+}
+
+.sync-head {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: start;
+  gap: 10px;
+}
+
+.sync-bar b {
+  display: block;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-size: 12px;
+  color: var(--gold);
+}
+
+.sync-bar.on b {
+  color: var(--ok);
+}
+
+.sync-bar.bad b {
+  color: var(--danger);
+}
+
+.sync-bar em {
+  display: block;
+  margin-top: 3px;
+  font-style: normal;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.3;
+}
+
+.sync-form {
+  display: grid;
+  gap: 10px;
+}
+
+.sync-form label {
+  display: grid;
+  gap: 4px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.sync-form input {
+  border: 1px solid var(--line);
+  background: var(--bg-2);
+  color: var(--cream);
+  padding: 11px 12px;
+  font-size: 16px; /* under 16px iOS zooms the whole page on focus */
+  letter-spacing: normal;
+  text-transform: none;
+}
+
+.sync-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.made-btn.slim {
+  margin: 0;
+  padding: 11px 14px;
+  font-size: 13px;
+}
+
+.history-empty {
+  margin: 0;
+  color: var(--muted);
+  font-size: 15px;
 }

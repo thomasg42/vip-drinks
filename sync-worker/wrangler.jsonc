@@ -1,0 +1,17 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "vip-drinks-sync",
+  "main": "index.ts",
+  "compatibility_date": "2026-09-01",
+  "observability": { "enabled": true },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "vip-drinks",
+      // Filled in by deploy-worker.sh from `wrangler d1 create`.
+      "database_id": "0eeade1e-f0c3-4b93-8b42-07b0ab8203bf"
+    }
+  ]
+  // OWNER_PIN is a SECRET, never a var:
+  //   npx wrangler secret put OWNER_PIN --config sync-worker/wrangler.jsonc
+}

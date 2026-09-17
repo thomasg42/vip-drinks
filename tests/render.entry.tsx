@@ -3,6 +3,8 @@ import assert from 'node:assert/strict'
 import { QuickRail } from '../src/components/QuickRail'
 import { RecipeSheet } from '../src/components/RecipeSheet'
 import { CheckSheet } from '../src/components/CheckSheet'
+import { CashDrawer } from '../src/components/CashDrawer'
+import { loadState } from '../src/storage'
 import { DRINKS } from '../src/data/drinks'
 import { MIXED_DRINKS } from '../src/data/mixedDrinks'
 import { SHORTEST_VIDEO } from '../src/data/shortestVideos'
@@ -241,6 +243,118 @@ check('the chips render with real counts and every kind is reachable', () => {
   // Default view is unfiltered, so a shot and a mocktail are both on screen.
   assert.ok(html.includes('J\u00e4gerbomb'), 'shots missing from the default list')
   assert.ok(html.includes('Shirley Temple'), 'no-alcohol drinks missing from the default list')
+})
+
+// ---- The build steps, and the shared shift ledger ----
+
+check('every drink now shows its build, numbered, at the bottom of the card', () => {
+  const html = renderToStaticMarkup(
+    <RecipeSheet drink={DRINKS.find((d) => d.id === 'margarita')!} onClose={() => {}} onMade={() => {}} />,
+  )
+  assert.ok(html.includes('How to make it'), 'the how-to block is missing')
+  assert.ok(html.includes('<ol class="steps">'), 'the steps are not a numbered list')
+  assert.ok(html.includes('Fill the shaker with ice'), 'the shake step is missing')
+  assert.ok(html.includes('roll it in salt'), 'the salt rim step is missing')
+  // It has to come AFTER the ingredients and BEFORE the action -- that is what
+  // "at the bottom of all these" meant.
+  assert.ok(html.indexOf('Ingredients') < html.indexOf('How to make it'))
+  assert.ok(html.indexOf('How to make it') < html.indexOf('Mark ordered'))
+})
+
+check('the action button has a floor to sit on, so nothing ends up underneath it', () => {
+  const html = renderToStaticMarkup(
+    <RecipeSheet drink={DRINKS.find((d) => d.id === 'mojito')!} onClose={() => {}} onMade={() => {}} />,
+  )
+  assert.ok(html.includes('class="recipe-foot"'), 'the sticky footer is missing')
+  assert.ok(html.includes('Muddle 8 mint leaves'), 'the mojito build is missing')
+})
+
+const blankState = (() => {
+  const store = new Map<string, string>()
+  ;(globalThis as unknown as { localStorage: Storage }).localStorage = {
+    getItem: (k: string) => store.get(k) ?? null,
+    setItem: (k: string, v: string) => void store.set(k, v),
+    removeItem: (k: string) => void store.delete(k),
+    clear: () => store.clear(),
+    key: () => null,
+    length: 0,
+  } as unknown as Storage
+  return loadState()
+})()
+
+const offlineSync = {
+  status: { kind: 'off' } as const,
+  connect: async () => {},
+  disconnect: () => {},
+  refresh: () => {},
+}
+
+check('an unsynced device says so instead of implying the laptop has the count', () => {
+  const html = renderToStaticMarkup(
+    <CashDrawer
+      state={blankState}
+      onChangeOpening={() => {}}
+      onChangeClosing={() => {}}
+      onNotes={() => {}}
+      onStartShift={() => {}}
+      onEndShift={() => {}}
+      sync={offlineSync}
+    />,
+  )
+  assert.ok(html.includes('This device only'), 'an unsynced device must say so')
+  assert.ok(html.includes('lives on this device and nowhere else'))
+  assert.ok(html.includes('Connect this device'), 'there is no way to connect it')
+  assert.ok(!html.includes('Saved on every device'), 'it must not claim to be synced')
+})
+
+check('a synced device says when it last saved', () => {
+  const html = renderToStaticMarkup(
+    <CashDrawer
+      state={blankState}
+      onChangeOpening={() => {}}
+      onChangeClosing={() => {}}
+      onNotes={() => {}}
+      onStartShift={() => {}}
+      onEndShift={() => {}}
+      sync={{ ...offlineSync, status: { kind: 'ok', at: Date.now() } }}
+    />,
+  )
+  assert.ok(html.includes('Saved on every device'))
+  assert.ok(html.includes('Last synced just now'))
+})
+
+check('a device that has a token but has not reached the ledger does not claim it has', () => {
+  const html = renderToStaticMarkup(
+    <CashDrawer
+      state={blankState}
+      onChangeOpening={() => {}}
+      onChangeClosing={() => {}}
+      onNotes={() => {}}
+      onStartShift={() => {}}
+      onEndShift={() => {}}
+      sync={{ ...offlineSync, status: { kind: 'ok', at: 0 } }}
+    />,
+  )
+  assert.ok(html.includes('not yet'), 'an unconfirmed sync must not read as "just now"')
+  assert.ok(!html.includes('Last synced just now'))
+})
+
+check('the memory bank is at the bottom even when it is empty', () => {
+  const html = renderToStaticMarkup(
+    <CashDrawer
+      state={blankState}
+      onChangeOpening={() => {}}
+      onChangeClosing={() => {}}
+      onNotes={() => {}}
+      onStartShift={() => {}}
+      onEndShift={() => {}}
+      sync={offlineSync}
+    />,
+  )
+  assert.ok(html.includes('Memory bank'), 'the memory bank heading is missing')
+  assert.ok(html.includes('Nothing closed out yet'), 'an empty bank must say it is empty')
+  // Last thing on the page, under the count and the start button.
+  assert.ok(html.indexOf('Start shift') < html.indexOf('Memory bank'))
 })
 
 console.log(failures === 0 ? '\nALL RENDER CHECKS PASSED' : `\n${failures} RENDER CHECK(S) FAILED`)

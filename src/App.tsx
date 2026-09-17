@@ -7,6 +7,8 @@ import { QuickRail } from './components/QuickRail'
 import { DRINKS } from './data/drinks'
 import { QUICK_POUR_IDS } from './data/quickPours'
 import { loadState, saveState } from './storage'
+import { now } from './sync/client'
+import { useShiftSync } from './sync/useShiftSync'
 import {
   EMPTY_DENOMS,
   denomsTotal,
@@ -20,6 +22,7 @@ type Tab = 'sheet' | 'made' | 'cash'
 
 function App() {
   const [state, setState] = useState<AppState>(() => loadState())
+  const sync = useShiftSync(state, setState)
   const [tab, setTab] = useState<Tab>('sheet')
   const [openDrink, setOpenDrink] = useState<Drink | null>(null)
   const [flashing, setFlashing] = useState<string | null>(null)
@@ -92,7 +95,13 @@ function App() {
         (entry) => entry.drinkId === drinkId && isSameDay(entry.madeAt),
       )
       if (!target) return prev
-      return { ...prev, made: prev.made.filter((entry) => entry.id !== target.id) }
+      return {
+        ...prev,
+        made: prev.made.filter((entry) => entry.id !== target.id),
+        // Without the tombstone the next merge with the laptop unions the pour
+        // straight back in and the minus button looks broken.
+        removed: [...prev.removed, target.id],
+      }
     })
   }
 
@@ -105,7 +114,7 @@ function App() {
       const videos = { ...prev.videos }
       if (videoId) videos[drinkId] = videoId
       else delete videos[drinkId]
-      return { ...prev, videos }
+      return { ...prev, videos, clocks: { ...prev.clocks, videos: now() } }
     })
   }
 
@@ -113,16 +122,22 @@ function App() {
     setState((prev) => ({
       ...prev,
       made: prev.made.filter((entry) => entry.id !== entryId),
+      removed: [...prev.removed, entryId],
     }))
   }
 
-  const updateOpening = (opening: Denoms) => setState((prev) => ({ ...prev, opening }))
-  const updateClosing = (closing: Denoms) => setState((prev) => ({ ...prev, closing }))
+  // Every cash edit carries the moment it was made. That timestamp is the only
+  // thing standing between two devices and a drawer count quietly reverting.
+  const updateOpening = (opening: Denoms) =>
+    setState((prev) => ({ ...prev, opening, clocks: { ...prev.clocks, opening: now() } }))
+  const updateClosing = (closing: Denoms) =>
+    setState((prev) => ({ ...prev, closing, clocks: { ...prev.clocks, closing: now() } }))
 
   const startShift = () => {
     setState((prev) => ({
       ...prev,
       shiftStartedAt: new Date().toISOString(),
+      clocks: { ...prev.clocks, shift: now() },
     }))
     setTab('sheet')
   }
@@ -135,6 +150,7 @@ function App() {
         const drink = DRINKS.find((d) => d.id === entry.drinkId)
         return sum + (drink?.price ?? 0)
       }, 0)
+      const stamp = now()
       return {
         ...prev,
         shiftStartedAt: null,
@@ -142,6 +158,11 @@ function App() {
         closing: { ...EMPTY_DENOMS },
         notes: '',
         made: [],
+        // Clearing the sheet has to be said out loud, or the other device's copy
+        // of tonight's drinks floods back in on the next merge and the new shift
+        // starts with the old shift's tally.
+        removed: [...prev.removed, ...prev.made.map((entry) => entry.id)],
+        clocks: { ...prev.clocks, shift: stamp, opening: stamp, closing: stamp, notes: stamp },
         history: [
           {
             id: crypto.randomUUID(),
@@ -187,9 +208,12 @@ function App() {
             state={state}
             onChangeOpening={updateOpening}
             onChangeClosing={updateClosing}
-            onNotes={(notes) => setState((prev) => ({ ...prev, notes }))}
+            onNotes={(notes) =>
+              setState((prev) => ({ ...prev, notes, clocks: { ...prev.clocks, notes: now() } }))
+            }
             onStartShift={startShift}
             onEndShift={endShift}
+            sync={sync}
           />
         ) : null}
         {tab === 'sheet' ? (
