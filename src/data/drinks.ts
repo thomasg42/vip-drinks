@@ -35,7 +35,7 @@ export const DRINKS: Drink[] = [
   drink('negroni', 'Negroni', 'Rocks', 'Stir, strain over ice', 'Orange peel', shorts('H5D4l2JcCUs'), [
     I('1 oz', 'Gin'), I('1 oz', 'Campari'), I('1 oz', 'Sweet vermouth'),
   ], 16),
-  drink('manhattan', 'Manhattan', 'Coupe', 'Stir, strain', 'Brandied cherry', shorts('67KtCRC8uD4'), [
+  drink('manhattan', 'Manhattan', 'Coupe', 'Stir, strain', 'Brandied cherry', shorts('EFFu0YZ_r-8'), [
     I('2 oz', 'Rye whiskey'), I('1 oz', 'Sweet vermouth'), I('2 dashes', 'Angostura bitters'),
   ], 16),
   drink('martini', 'Martini', 'Nick & Nora', 'Stir, strain', 'Olive or lemon twist', shorts('Z5Tgxxr-gFY'), [
@@ -68,7 +68,7 @@ export const DRINKS: Drink[] = [
   drink('aperol-spritz', 'Aperol Spritz', 'Wine glass', 'Build on ice', 'Orange slice', shorts('YVJ8V5eT60Y'), [
     I('3 oz', 'Prosecco'), I('2 oz', 'Aperol'), I('1 oz', 'Soda water'),
   ], 14),
-  drink('lemon-drop', 'Lemon Drop', 'Coupe, sugar rim', 'Shake, fine strain', 'Lemon twist', shorts('IUFQN54mAfw'), [
+  drink('lemon-drop', 'Lemon Drop', 'Coupe, sugar rim', 'Shake, fine strain', 'Lemon twist', shorts('uk6UqEF6aG8'), [
     I('2 oz', 'Vodka'), I('¾ oz', 'Triple sec'), I('¾ oz', 'Lemon juice'), I('½ oz', 'Simple syrup'),
   ]),
   drink('mai-tai', 'Mai Tai', 'Rocks', 'Shake, dump', 'Mint sprig', shorts('rREoCTfCKGY'), [
@@ -110,7 +110,7 @@ export const DRINKS: Drink[] = [
   drink('paper-plane', 'Paper Plane', 'Coupe', 'Shake, strain', 'None', shorts('9ZrnQ1sDcdc'), [
     I('¾ oz', 'Bourbon'), I('¾ oz', 'Aperol'), I('¾ oz', 'Amaro Nonino'), I('¾ oz', 'Lemon juice'),
   ], 16),
-  drink('penicillin', 'Penicillin', 'Rocks', 'Shake, strain over ice', 'Candied ginger', shorts('PjQJR6V-3CA'), [
+  drink('penicillin', 'Penicillin', 'Rocks', 'Shake, strain over ice', 'Candied ginger', shorts('8LgbwxrYmFc'), [
     I('2 oz', 'Blended Scotch'), I('¾ oz', 'Lemon juice'), I('¾ oz', 'Honey-ginger syrup'), I('¼ oz', 'Islay Scotch float'),
   ], 16),
   drink('last-word', 'Last Word', 'Coupe', 'Shake, fine strain', 'None', shorts('jdVk2-HkiZI'), [
@@ -146,7 +146,7 @@ export const DRINKS: Drink[] = [
   drink('french-martini', 'French Martini', 'Coupe', 'Shake, fine strain', 'Raspberry', shorts('1BW0gthppEI'), [
     I('2 oz', 'Vodka'), I('1 oz', 'Pineapple juice'), I('½ oz', 'Chambord'),
   ]),
-  drink('amaretto-sour', 'Amaretto Sour', 'Rocks', 'Shake dry then wet', 'Lemon and cherry', shorts('VuK1L9AalCM'), [
+  drink('amaretto-sour', 'Amaretto Sour', 'Rocks', 'Shake dry then wet', 'Lemon and cherry', shorts('Ju80Ihaz-Bc'), [
     I('1½ oz', 'Amaretto'), I('¾ oz', 'Cask-strength bourbon'), I('1 oz', 'Lemon juice'), I('1', 'Egg white'),
   ], 14),
   drink('gold-rush', 'Gold Rush', 'Rocks', 'Shake, strain over ice', 'None', shorts('YEA6aN6dzVE'), [
@@ -161,7 +161,7 @@ export const DRINKS: Drink[] = [
   drink('caipirinha', 'Caipirinha', 'Rocks', 'Muddle, build', 'Lime', shorts('C4ucGMb8Zyg'), [
     I('½', 'Lime, wedges'), I('2 tsp', 'Sugar'), I('2 oz', 'Cachaça'),
   ], 14),
-  drink('jungle-bird', 'Jungle Bird', 'Rocks', 'Shake, strain over ice', 'Pineapple', shorts('mAR-E0JZY9w'), [
+  drink('jungle-bird', 'Jungle Bird', 'Rocks', 'Shake, strain over ice', 'Pineapple', shorts('EfWoKctmrYk'), [
     I('1½ oz', 'Black rum'), I('¾ oz', 'Campari'), I('1½ oz', 'Pineapple juice'), I('½ oz', 'Lime juice'), I('½ oz', 'Demerara syrup'),
   ], 16),
   drink('painkiller', 'Painkiller', 'Hurricane', 'Shake or blend', 'Nutmeg and pineapple', shorts('cgWqOkCsxKM'), [
@@ -185,7 +185,7 @@ export const DRINKS: Drink[] = [
   drink('negroni-sbagliato', 'Negroni Sbagliato', 'Rocks', 'Build', 'Orange slice', shorts('Dg50w4CVLIQ'), [
     I('1 oz', 'Campari'), I('1 oz', 'Sweet vermouth'), I('1 oz', 'Prosecco'),
   ], 14),
-  drink('hugo-spritz', 'Hugo Spritz', 'Wine glass', 'Build on ice', 'Mint and lime', shorts('UIRVTFgFmbE'), [
+  drink('hugo-spritz', 'Hugo Spritz', 'Wine glass', 'Build on ice', 'Mint and lime', shorts('_ERc88lP4UE'), [
     I('2 oz', 'Prosecco'), I('1 oz', 'Elderflower liqueur'), I('1 oz', 'Soda water'), I('6', 'Mint leaves'),
   ], 14),
   drink('bellini', 'Bellini', 'Flute', 'Build, no ice', 'None', shorts('Ng4Xl2Vkcg8'), [
@@ -206,7 +206,7 @@ export const DRINKS: Drink[] = [
   drink('grasshopper', 'Grasshopper', 'Coupe', 'Shake, fine strain', 'Mint', shorts('AGRgVlQNTms'), [
     I('1 oz', 'Crème de menthe'), I('1 oz', 'White crème de cacao'), I('1 oz', 'Cream'),
   ], 13),
-  drink('mudslide', 'Mudslide', 'Rocks or blended', 'Shake or blend', 'Chocolate', shorts('lc7x6bejOPU'), [
+  drink('mudslide', 'Mudslide', 'Rocks or blended', 'Shake or blend', 'Chocolate', shorts('Qf2aQVTSiPA'), [
     I('1 oz', 'Vodka'), I('1 oz', 'Coffee liqueur'), I('1 oz', 'Irish cream'), I('1 oz', 'Cream'),
   ], 14),
   drink('sex-on-the-beach', 'Sex on the Beach', 'Highball', 'Build', 'Orange slice', shorts('U5iAJ6zSaG0'), [
@@ -221,7 +221,7 @@ export const DRINKS: Drink[] = [
   drink('zombie', 'Zombie', 'Tiki mug', 'Shake or flash blend', 'Mint', shorts('gN2lAKfTipc'), [
     I('1½ oz', 'Puerto Rican rum'), I('1½ oz', 'Gold rum'), I('1 oz', '151 rum'), I('¾ oz', 'Lime juice'), I('½ oz', 'Grapefruit juice'), I('½ oz', 'Cinnamon syrup'), I('½ oz', 'Falernum'),
   ], 16),
-  drink('godfather', 'Godfather', 'Rocks', 'Build, stir', 'None', shorts('6FMZ9FPTHYs'), [
+  drink('godfather', 'Godfather', 'Rocks', 'Build, stir', 'None', shorts('I46xSB4ePq0'), [
     I('2 oz', 'Scotch'), I('1 oz', 'Amaretto'),
   ], 14),
   drink('rusty-nail', 'Rusty Nail', 'Rocks', 'Build, stir', 'Lemon peel', shorts('s4trJtXeogQ'), [
@@ -230,7 +230,7 @@ export const DRINKS: Drink[] = [
   drink('rob-roy', 'Rob Roy', 'Coupe', 'Stir, strain', 'Cherry', shorts('p6iJjxmF85M'), [
     I('2 oz', 'Scotch'), I('1 oz', 'Sweet vermouth'), I('2 dashes', 'Angostura bitters'),
   ], 16),
-  drink('vieux-carre', 'Vieux Carre', 'Rocks', 'Stir, strain over ice', 'Lemon peel', shorts('-txy3Zb589U'), [
+  drink('vieux-carre', 'Vieux Carre', 'Rocks', 'Stir, strain over ice', 'Lemon peel', shorts('Fml8XFzY0ik'), [
     I('1 oz', 'Rye'), I('1 oz', 'Cognac'), I('1 oz', 'Sweet vermouth'), I('1 tsp', 'Bénédictine'), I('2 dashes', 'Peychaud bitters'), I('2 dashes', 'Angostura bitters'),
   ], 16),
   drink('new-york-sour', 'New York Sour', 'Rocks', 'Shake, red wine float', 'None', shorts('bEjG83TyNrs'), [

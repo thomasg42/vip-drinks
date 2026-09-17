@@ -3,7 +3,9 @@ import { CheckSheet } from './components/CheckSheet'
 import { CashDrawer } from './components/CashDrawer'
 import { MadeLog } from './components/MadeLog'
 import { RecipeSheet } from './components/RecipeSheet'
+import { QuickRail } from './components/QuickRail'
 import { DRINKS } from './data/drinks'
+import { QUICK_POUR_IDS } from './data/quickPours'
 import { loadState, saveState } from './storage'
 import {
   EMPTY_DENOMS,
@@ -11,6 +13,7 @@ import {
   isSameDay,
   type AppState,
   type Denoms,
+  type Drink,
 } from './types'
 
 type Tab = 'sheet' | 'made' | 'cash'
@@ -18,7 +21,7 @@ type Tab = 'sheet' | 'made' | 'cash'
 function App() {
   const [state, setState] = useState<AppState>(() => loadState())
   const [tab, setTab] = useState<Tab>('sheet')
-  const [openId, setOpenId] = useState<string | null>(null)
+  const [openDrink, setOpenDrink] = useState<Drink | null>(null)
   const [flashing, setFlashing] = useState<string | null>(null)
 
   useEffect(() => {
@@ -40,6 +43,7 @@ function App() {
     const counts = new Map<string, number>()
     const lastMade = new Map<string, number>()
     todayMade.forEach((entry, index) => {
+      if (QUICK_POUR_IDS.has(entry.drinkId)) return
       counts.set(entry.drinkId, (counts.get(entry.drinkId) ?? 0) + 1)
       if (!lastMade.has(entry.drinkId)) lastMade.set(entry.drinkId, index)
     })
@@ -53,11 +57,19 @@ function App() {
       .map(([id]) => id)
   }, [todayMade])
 
-  const openDrink = DRINKS.find((d) => d.id === openId) ?? null
+  // Today's running count per rail pour, straight off the same log everything else uses.
+  const quickCounts = useMemo(() => {
+    const counts: Record<string, number> = {}
+    for (const entry of todayMade) {
+      if (!QUICK_POUR_IDS.has(entry.drinkId)) continue
+      counts[entry.drinkId] = (counts[entry.drinkId] ?? 0) + 1
+    }
+    return counts
+  }, [todayMade])
 
-  const markMade = (drinkId: string) => {
-    const drink = DRINKS.find((d) => d.id === drinkId)
-    if (!drink) return
+  const markMade = (drinkId: string, name?: string) => {
+    const label = name ?? DRINKS.find((d) => d.id === drinkId)?.name
+    if (!label) return
     setFlashing(drinkId)
     setState((prev) => ({
       ...prev,
@@ -65,12 +77,23 @@ function App() {
         {
           id: crypto.randomUUID(),
           drinkId,
-          name: drink.name,
+          name: label,
           madeAt: new Date().toISOString(),
         },
         ...prev.made,
       ],
     }))
+  }
+
+  /** Rail minus button: drop the most recent pour of that kind from today. */
+  const undoQuick = (drinkId: string) => {
+    setState((prev) => {
+      const target = prev.made.find(
+        (entry) => entry.drinkId === drinkId && isSameDay(entry.madeAt),
+      )
+      if (!target) return prev
+      return { ...prev, made: prev.made.filter((entry) => entry.id !== target.id) }
+    })
   }
 
   const unmake = (entryId: string) => {
@@ -141,7 +164,7 @@ function App() {
             drinks={DRINKS}
             topMadeIds={topMadeIds}
             flashing={flashing}
-            onOpen={setOpenId}
+            onOpen={setOpenDrink}
             onMake={markMade}
           />
         ) : null}
@@ -155,6 +178,9 @@ function App() {
             onStartShift={startShift}
             onEndShift={endShift}
           />
+        ) : null}
+        {tab === 'sheet' ? (
+          <QuickRail counts={quickCounts} onPour={markMade} onUndo={undoQuick} />
         ) : null}
       </main>
 
@@ -182,7 +208,7 @@ function App() {
         </button>
       </nav>
 
-      <RecipeSheet drink={openDrink} onClose={() => setOpenId(null)} onMade={markMade} />
+      <RecipeSheet drink={openDrink} onClose={() => setOpenDrink(null)} onMade={markMade} />
     </div>
   )
 }

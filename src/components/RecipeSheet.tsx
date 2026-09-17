@@ -1,11 +1,11 @@
 import { useEffect } from 'react'
 import type { Drink } from '../types'
-import { youtubeEmbed, youtubeWatch } from '../types'
+import { youtubeEmbed, youtubeSearchUrl, youtubeWatch } from '../types'
 
 type Props = {
   drink: Drink | null
   onClose: () => void
-  onMade: (id: string) => void
+  onMade: (id: string, name: string) => void
 }
 
 export function RecipeSheet({ drink, onClose, onMade }: Props) {
@@ -19,6 +19,9 @@ export function RecipeSheet({ drink, onClose, onMade }: Props) {
   }, [drink, onClose])
 
   if (!drink) return null
+
+  const embed = youtubeEmbed(drink)
+  const fromWeb = drink.source === 'web'
 
   return (
     <div className="recipe-overlay" onClick={onClose}>
@@ -37,31 +40,70 @@ export function RecipeSheet({ drink, onClose, onMade }: Props) {
           {drink.glass} · {drink.method}
         </p>
 
-        <div className="video-embed">
-          <iframe
-            title={`How to make ${drink.name}`}
-            src={youtubeEmbed(drink)}
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowFullScreen
-          />
-        </div>
-        <a className="video-open" href={youtubeWatch(drink)} target="_blank" rel="noreferrer">
-          Open short
-        </a>
+        {embed ? (
+          <>
+            <div className="video-embed">
+              <iframe
+                title={`How to make ${drink.name}`}
+                src={embed}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+              />
+            </div>
+            <a className="video-open" href={youtubeWatch(drink)} target="_blank" rel="noreferrer">
+              Open short
+            </a>
+          </>
+        ) : (
+          // No verified video id for this drink. A YouTube search link is honest;
+          // an embed that renders "Video unavailable" is not.
+          <a
+            className="video-card"
+            href={youtubeSearchUrl(drink.name)}
+            target="_blank"
+            rel="noreferrer"
+          >
+            {drink.thumb ? (
+              <img src={drink.thumb} alt="" loading="lazy" />
+            ) : (
+              <span className="video-fallback" aria-hidden="true">
+                ▶
+              </span>
+            )}
+            <span>
+              <strong>Watch how</strong>
+              <em>Opens a YouTube search</em>
+            </span>
+          </a>
+        )}
 
         <h3>Ingredients</h3>
         <ul className="ingredients">
-          {drink.ingredients.map((ing) => (
-            <li key={`${ing.amount}-${ing.item}`}>
+          {drink.ingredients.map((ing, i) => (
+            <li key={`${i}-${ing.item}`}>
               <span>{ing.amount}</span>
               <b>{ing.item}</b>
             </li>
           ))}
         </ul>
-        <p className="garnish">Garnish · {drink.garnish}</p>
 
-        <button type="button" className="made-btn" onClick={() => onMade(drink.id)}>
-          Mark ordered & made
+        {fromWeb && drink.instructions ? (
+          <>
+            <h3>Method</h3>
+            <p className="web-instructions">{drink.instructions}</p>
+          </>
+        ) : (
+          <p className="garnish">Garnish · {drink.garnish}</p>
+        )}
+
+        {fromWeb ? (
+          <p className="web-source">
+            From TheCocktailDB · off-menu, no house price set
+          </p>
+        ) : null}
+
+        <button type="button" className="made-btn" onClick={() => onMade(drink.id, drink.name)}>
+          Mark ordered &amp; made
         </button>
       </div>
     </div>

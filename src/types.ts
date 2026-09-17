@@ -12,6 +12,12 @@ export type Drink = {
   garnish: string
   ingredients: Ingredient[]
   videoUrl: string
+  /** 'web' drinks come from the online search, not the curated 81. */
+  source?: 'local' | 'web'
+  /** Photo from the online source, when there is one. */
+  thumb?: string
+  /** Full method text from the online source. */
+  instructions?: string
 }
 
 export type MadeEntry = {
@@ -83,17 +89,22 @@ export function youtubeId(url: string): string | null {
   return null
 }
 
-export function youtubeEmbed(drink: Drink): string {
+/** Embeddable player URL, or null when we have no real video id to play. */
+export function youtubeEmbed(drink: Drink): string | null {
   const id = youtubeId(drink.videoUrl)
-  if (id) return `https://www.youtube-nocookie.com/embed/${id}?rel=0&modestbranding=1`
-  const q = encodeURIComponent(`how to make a ${drink.name} cocktail short`)
-  return `https://www.youtube-nocookie.com/embed?listType=search&list=${q}`
+  if (!id) return null
+  return `https://www.youtube-nocookie.com/embed/${id}?rel=0&modestbranding=1`
+}
+
+export function youtubeSearchUrl(name: string): string {
+  const q = `how to make a ${name} cocktail`
+  return `https://www.youtube.com/results?search_query=${encodeURIComponent(q)}`
 }
 
 export function youtubeWatch(drink: Drink): string {
   const id = youtubeId(drink.videoUrl)
   if (id) return drink.videoUrl
-  return `https://www.youtube.com/results?search_query=${encodeURIComponent(`how to make a ${drink.name} cocktail shorts`)}`
+  return youtubeSearchUrl(drink.name)
 }
 
 export function isSameDay(iso: string, now = new Date()): boolean {

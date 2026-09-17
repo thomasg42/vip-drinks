@@ -1,17 +1,22 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import type { Drink } from '../types'
 import { DrinkList } from './DrinkList'
+import { ingredientLine, searchTheInternet, type WebSearchResult } from '../data/webSearch'
 
 type Props = {
   drinks: Drink[]
   topMadeIds: string[]
   flashing: string | null
-  onOpen: (id: string) => void
-  onMake: (id: string) => void
+  onOpen: (drink: Drink) => void
+  onMake: (id: string, name: string) => void
 }
+
+const DEBOUNCE_MS = 350
 
 export function CheckSheet({ drinks, topMadeIds, flashing, onOpen, onMake }: Props) {
   const [query, setQuery] = useState('')
+  const [web, setWeb] = useState<WebSearchResult>({ status: 'idle' })
+  const runId = useRef(0)
 
   const visible = useMemo(() => {
     const q = query.trim().toLowerCase()
@@ -25,15 +30,45 @@ export function CheckSheet({ drinks, topMadeIds, flashing, onOpen, onMake }: Pro
     return { top, rest }
   }, [drinks, query, topMadeIds])
 
+  const localCount = visible.top.length + visible.rest.length
+
+  // Search the internet for anything the curated sheet does not already cover.
+  useEffect(() => {
+    const q = query.trim()
+    if (q.length < 2) {
+      // Bump the run id here too, or an in-flight search from the longer query
+      // resolves after the box is cleared and repopulates the results.
+      runId.current += 1
+      setWeb({ status: 'idle' })
+      return
+    }
+    const id = (runId.current += 1)
+    setWeb({ status: 'searching' })
+    const timer = window.setTimeout(() => {
+      searchTheInternet(q).then((result) => {
+        // A slow earlier request must never overwrite a newer one.
+        if (runId.current === id) setWeb(result)
+      })
+    }, DEBOUNCE_MS)
+    return () => window.clearTimeout(timer)
+  }, [query])
+
+  // Anything already on the sheet is not "from the internet".
+  const webDrinks = useMemo(() => {
+    if (web.status !== 'ok') return []
+    const known = new Set(drinks.map((d) => d.name.toLowerCase()))
+    return web.drinks.filter((d) => !known.has(d.name.toLowerCase()))
+  }, [web, drinks])
+
   return (
     <div className="sheet">
       <label className="search">
-        <span>Search drinks</span>
+        <span>Search any drink</span>
         <input
           type="search"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          placeholder="Search every drink"
+          placeholder="The sheet, then the internet"
           autoCapitalize="off"
           autoCorrect="off"
         />
@@ -53,9 +88,66 @@ export function CheckSheet({ drinks, topMadeIds, flashing, onOpen, onMake }: Pro
         </>
       ) : null}
 
-      {visible.top.length === 0 && visible.rest.length === 0 ? (
-        <p className="empty">No drinks match that search.</p>
+      {localCount === 0 && query.trim().length > 0 ? (
+        <p className="empty">Nothing on the sheet matches “{query.trim()}”.</p>
+      ) : null}
+
+      {query.trim().length >= 2 ? (
+        <section className="web-results">
+          <p className="list-label web-label">
+            From the internet
+            {web.status === 'searching' ? <em className="web-spin">searching…</em> : null}
+          </p>
+
+          {web.status === 'offline' ? (
+            <p className="empty">Couldn’t reach the drink database. The sheet above still works.</p>
+          ) : null}
+
+          {(web.status === 'empty' || (web.status === 'ok' && webDrinks.length === 0)) ? (
+            <p className="empty">No online match for “{query.trim()}”.</p>
+          ) : null}
+
+          {webDrinks.length > 0 ? (
+            <ul className="web-list">
+              {webDrinks.map((drink) => (
+                <li key={drink.id} className="web-box">
+                  <button
+                    type="button"
+                    className="checkbox"
+                    aria-label={`Mark ${drink.name} made`}
+                    onClick={() => onMake(drink.id, drink.name)}
+                  >
+                    {flashing === drink.id ? <CheckIcon /> : null}
+                  </button>
+                  <button type="button" className="web-open" onClick={() => onOpen(drink)}>
+                    <span className="drink-name">{drink.name}</span>
+                    <span className="web-ingredients">{ingredientLine(drink)}</span>
+                    <span className="web-meta">
+                      {drink.glass}
+                      {drink.videoUrl ? ' · video' : ''}
+                    </span>
+                  </button>
+                </li>
+              ))}
+            </ul>
+          ) : null}
+        </section>
       ) : null}
     </div>
+  )
+}
+
+function CheckIcon() {
+  return (
+    <svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true">
+      <path
+        d="M4.5 10.5 8 14l7.5-8.5"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2.4"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
   )
 }

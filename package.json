@@ -7,7 +7,10 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "oxlint",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "node --test tests/webSearch.test.ts",
+    "test:render": "vite build --ssr tests/render.entry.tsx --outDir tests/out && node tests/out/render.entry.js",
+    "test:all": "npm run test && npm run test:render"
   },
   "dependencies": {
     "react": "^19.2.8",

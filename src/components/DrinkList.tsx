@@ -3,8 +3,8 @@ import type { Drink } from '../types'
 type Props = {
   drinks: Drink[]
   flashing: string | null
-  onMake: (id: string) => void
-  onOpen: (id: string) => void
+  onMake: (id: string, name: string) => void
+  onOpen: (drink: Drink) => void
 }
 
 export function DrinkList({ drinks, flashing, onMake, onOpen }: Props) {
@@ -19,14 +19,14 @@ export function DrinkList({ drinks, flashing, onMake, onOpen }: Props) {
               className="checkbox"
               aria-pressed={checked}
               aria-label={`Mark ${drink.name} made`}
-              onClick={() => onMake(drink.id)}
+              onClick={() => onMake(drink.id, drink.name)}
             >
               {checked ? <CheckIcon /> : null}
             </button>
             <button
               type="button"
               className="drink-open"
-              onClick={() => onOpen(drink.id)}
+              onClick={() => onOpen(drink)}
               aria-label={`How to make ${drink.name}`}
             >
               <span className="drink-name">{drink.name}</span>
