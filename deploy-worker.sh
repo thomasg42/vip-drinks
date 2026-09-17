@@ -43,14 +43,13 @@ echo "==> applying the schema to the REMOTE database"
 "${WRANGLER[@]}" d1 execute vip-drinks --remote --config "$CONFIG" \
   --file "$SRC/sync-worker/migrations/0001_shift_ledger.sql"
 
-# -------------------------------------------------------------------- PIN
-# Every authenticated route 401s until this is set, on purpose: a ledger
-# deployed without its secret should be broken, not open.
-echo
-echo "==> the bar PIN"
-echo "    Six digits or more. You will type it once here and once on each device."
-echo "    It is never written to this repo, the wiki, or any log."
-"${WRANGLER[@]}" secret put OWNER_PIN --config "$CONFIG"
+# ------------------------------------------------------------------- no PIN
+# THE LEDGER IS OPEN, BY THOMAS'S EXPLICIT DECISION. Anyone who has the app
+# syncs, with nothing to type. If an OWNER_PIN was set by an earlier version of
+# this script it is now ignored, so clear it rather than leave a secret lying
+# around that suggests a door where there is none.
+echo "==> clearing the old PIN secret if one exists (harmless if there is none)"
+"${WRANGLER[@]}" secret delete OWNER_PIN --config "$CONFIG" 2>/dev/null <<< "y" || true
 
 # ----------------------------------------------------------------- deploy
 echo "==> deploying"
@@ -70,11 +69,19 @@ echo
 echo "==> ledger live at: $URL"
 echo "==> written to sync-url.txt — deploy.sh bakes it into the app from there."
 
-echo "==> proving it answers"
-curl -s "$URL/api/health" && echo
-echo "==> proving it is NOT open without the PIN (expect 401):"
-curl -s -o /dev/null -w '%{http_code}\n' "$URL/api/state"
+# Cloudflare needs a moment to publish the route. Curling instantly returns
+# 1042/404 and looks exactly like a broken deploy, which it is not.
+echo "==> waiting for the route to publish, then proving it works"
+sleep 15
+echo -n "  health:            "; curl -s -o /dev/null -w '%{http_code}\n' "$URL/api/health"
+echo -n "  read the shift:    "; curl -s -o /dev/null -w '%{http_code}\n' "$URL/api/state"
+echo -n "  another website:   "; curl -s -o /dev/null -w '%{http_code}\n' -H 'Origin: https://somewhere-else.example' "$URL/api/state"
+echo "  (expect 200, 200, 403)"
 
 echo
+echo "THE LEDGER IS OPEN ON PURPOSE. No PIN, nothing to type: every device that"
+echo "opens the app is on the same shift. The address is inside the app's public"
+echo "JavaScript, so anyone who views source can read and change the count."
+echo
 echo "Next:  bash $SRC/deploy.sh"
-echo "Then on each device: Cash tab -> Connect this device -> type the PIN."
+echo "Then just open the app on each device. There is nothing to connect."

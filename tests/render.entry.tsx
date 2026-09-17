@@ -284,12 +284,34 @@ const blankState = (() => {
 
 const offlineSync = {
   status: { kind: 'off' } as const,
-  connect: async () => {},
-  disconnect: () => {},
+  setAddress: () => {},
   refresh: () => {},
 }
 
-check('an unsynced device says so instead of implying the laptop has the count', () => {
+check('there is nothing to connect — no PIN field, no pairing button anywhere', () => {
+  // Thomas asked for this twice. A disabled "Connect this device" button that
+  // does nothing until a PIN is typed is exactly what was removed.
+  for (const status of [
+    { kind: 'off' } as const,
+    { kind: 'ok', at: Date.now() } as const,
+    { kind: 'error', message: 'offline' } as const,
+  ]) {
+    const html = renderToStaticMarkup(
+      <CashDrawer
+        state={blankState}
+        onChangeOpening={() => {}}
+        onChangeClosing={() => {}}
+        onNotes={() => {}}
+        onStartShift={() => {}}
+        onEndShift={() => {}}
+        sync={{ ...offlineSync, status }}
+      />,
+    )
+    assert.ok(!/PIN|Connect this device|one-time-code/i.test(html), `${status.kind} still asks to pair`)
+  }
+})
+
+check('a build with no ledger says so instead of implying the laptop has the count', () => {
   const html = renderToStaticMarkup(
     <CashDrawer
       state={blankState}
@@ -301,9 +323,8 @@ check('an unsynced device says so instead of implying the laptop has the count',
       sync={offlineSync}
     />,
   )
-  assert.ok(html.includes('This device only'), 'an unsynced device must say so')
-  assert.ok(html.includes('lives on this device and nowhere else'))
-  assert.ok(html.includes('Connect this device'), 'there is no way to connect it')
+  assert.ok(html.includes('This device only'), 'an unsynced build must say so')
+  assert.ok(html.includes('lives here and nowhere else'))
   assert.ok(!html.includes('Saved on every device'), 'it must not claim to be synced')
 })
 

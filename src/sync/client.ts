@@ -2,24 +2,24 @@ import type { AppState } from '../types.ts'
 import { mergeState, normalizeState } from './merge.ts'
 
 /**
- * Talks to the shift ledger.
+ * Talks to the shared shift ledger.
  *
- * The app works with none of this: no Worker URL, or no PIN entered, and it
- * falls straight back to the phone's own storage exactly as before. What it
- * must never do is look synced when it is not -- a bartender who believes the
- * laptop already has tonight's drawer count, and is wrong, finds out at close.
- * So every state here is named on screen.
+ * There is nothing to connect, no PIN and no button: if the app was built with
+ * a ledger address, every device that opens it is already on the same shift.
+ * Thomas's call, and it is why the whole pairing layer is gone.
+ *
+ * The app still works with no address at all -- it falls back to this device's
+ * own storage exactly as before. What it must never do is look synced when it
+ * is not, so every state here is named on screen.
  */
 
-const DEVICE_KEY = 'vip-drinks-device-id'
-const TOKEN_KEY = 'vip-drinks-sync-token'
 const URL_KEY = 'vip-drinks-sync-url'
 
 /**
- * Where the ledger lives. Set at build time by deploy-worker.sh, which is the
- * same script that names the Worker -- so the two cannot drift apart. A phone
- * can still be pointed somewhere else at runtime without a rebuild, which is
- * the escape hatch if the Worker is ever deployed under another name.
+ * Where the ledger lives. Set at build time by deploy.sh from the address
+ * deploy-worker.sh wrote, so the two cannot drift apart. A device can still be
+ * pointed elsewhere at runtime without a rebuild, which is the escape hatch if
+ * the Worker is ever redeployed under another name.
  */
 const BUILD_URL = (import.meta.env?.VITE_SYNC_URL as string | undefined) ?? ''
 
@@ -31,41 +31,17 @@ function safeGet(key: string): string | null {
   }
 }
 
-function safeSet(key: string, value: string) {
-  try {
-    localStorage.setItem(key, value)
-  } catch {
-    /* private mode; sync just stays off */
-  }
-}
-
 export function syncUrl(): string {
   return (safeGet(URL_KEY) || BUILD_URL).replace(/\/+$/, '')
 }
 
 export function setSyncUrl(url: string) {
   const clean = url.trim().replace(/\/+$/, '')
-  if (clean) safeSet(URL_KEY, clean)
-  else try { localStorage.removeItem(URL_KEY) } catch { /* ignore */ }
-}
-
-export function deviceId(): string {
-  const existing = safeGet(DEVICE_KEY)
-  if (existing) return existing
-  const fresh = `dev-${crypto.randomUUID()}`
-  safeSet(DEVICE_KEY, fresh)
-  return fresh
-}
-
-export function token(): string | null {
-  return safeGet(TOKEN_KEY)
-}
-
-export function forgetToken() {
   try {
-    localStorage.removeItem(TOKEN_KEY)
+    if (clean) localStorage.setItem(URL_KEY, clean)
+    else localStorage.removeItem(URL_KEY)
   } catch {
-    /* ignore */
+    /* private mode; the build-time address still applies */
   }
 }
 
@@ -91,29 +67,8 @@ function noteServerTime(serverTime: unknown) {
 
 export type SyncStatus =
   | { kind: 'off' }
-  | { kind: 'unpaired' }
   | { kind: 'ok'; at: number }
   | { kind: 'error'; message: string }
-
-async function call(path: string, init: RequestInit): Promise<Response> {
-  const base = syncUrl()
-  if (!base) throw new Error('No sync address set yet.')
-  return fetch(`${base}${path}`, init)
-}
-
-/** Trades the bar's PIN for this device's own token, once per device. */
-export async function pair(pin: string): Promise<void> {
-  const res = await call('/api/pair', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ pin: pin.trim(), deviceId: deviceId() }),
-  })
-  const body = (await res.json().catch(() => ({}))) as { token?: string; error?: string }
-  if (!res.ok || !body.token) {
-    throw new Error(body.error || 'That PIN did not work.')
-  }
-  safeSet(TOKEN_KEY, body.token)
-}
 
 type Envelope = { state?: unknown; serverTime?: unknown; error?: string }
 
@@ -132,23 +87,15 @@ async function exchange(
   state?: AppState,
   closing = false,
 ): Promise<AppState> {
-  const auth = token()
-  if (!auth) throw new Error('This device is not connected yet.')
+  const base = syncUrl()
+  if (!base) throw new Error('No ledger address in this build.')
   const payload = state ? JSON.stringify({ state }) : undefined
-  const res = await call('/api/state', {
+  const res = await fetch(`${base}/api/state`, {
     method,
-    headers: {
-      Authorization: `Bearer ${auth}`,
-      ...(state ? { 'Content-Type': 'application/json' } : {}),
-    },
+    headers: state ? { 'Content-Type': 'application/json' } : undefined,
     body: payload,
     keepalive: closing && !!payload && payload.length < KEEPALIVE_LIMIT_BYTES,
   })
-  if (res.status === 401) {
-    // The PIN was rotated, or this token was issued by a different Worker.
-    forgetToken()
-    throw new Error('This device was disconnected. Enter the PIN again.')
-  }
   const body = (await res.json().catch(() => ({}))) as Envelope
   if (!res.ok) throw new Error(body.error || `Sync failed (${res.status}).`)
   noteServerTime(body.serverTime)

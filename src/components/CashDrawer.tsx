@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { DRINKS } from '../data/drinks'
-import { syncUrl, type SyncStatus } from '../sync/client'
+import type { SyncStatus } from '../sync/client'
 import {
   denomsTotal,
   EMPTY_DENOMS,
@@ -10,8 +10,8 @@ import {
 
 export type SyncControls = {
   status: SyncStatus
-  connect: (pin: string, url?: string) => Promise<void>
-  disconnect: () => void
+  /** Recovery only: point this device at a different Worker, no rebuild. */
+  setAddress: (url: string) => void
   refresh: () => void
 }
 
@@ -174,41 +174,24 @@ function when(at: number): string {
 /**
  * Says which of the two worlds this device is in, in words, every time.
  *
- * "This phone only" is not a warning label for the sake of it: a bartender who
- * assumes the laptop already has tonight's opening count, and is wrong, only
- * finds out at close when there is nothing to compare against.
+ * There is nothing to connect and nothing to type -- the app syncs on its own.
+ * So this is not a control, it is a status light, and the only thing it owes
+ * anybody is the truth. A bartender who assumes the laptop already has
+ * tonight's opening count, and is wrong, only finds out at close.
  */
 function SyncBanner({ sync }: { sync: SyncControls }) {
-  const [open, setOpen] = useState(false)
-  const [pin, setPin] = useState('')
-  const [address, setAddress] = useState(syncUrl())
-  const [busy, setBusy] = useState(false)
-  const [error, setError] = useState<string | null>(null)
+  const [address, setAddress] = useState('')
   const { status } = sync
 
-  const submit = async () => {
-    setBusy(true)
-    setError(null)
-    try {
-      await sync.connect(pin, address)
-      setPin('')
-      setOpen(false)
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'That did not work.')
-    } finally {
-      setBusy(false)
-    }
-  }
-
-  if (status.kind === 'ok' && !open) {
+  if (status.kind === 'ok') {
     return (
       <div className="sync-bar on">
         <span>
           <b>Saved on every device</b>
           <em>Last synced {when(status.at)}</em>
         </span>
-        <button type="button" className="ghost-btn slim" onClick={() => setOpen(true)}>
-          Sync
+        <button type="button" className="ghost-btn slim" onClick={sync.refresh}>
+          Check now
         </button>
       </div>
     )
@@ -218,32 +201,23 @@ function SyncBanner({ sync }: { sync: SyncControls }) {
     <div className={`sync-bar ${status.kind === 'error' ? 'bad' : ''}`}>
       <div className="sync-head">
         <span>
-          <b>
-            {status.kind === 'ok'
-              ? 'Saved on every device'
-              : status.kind === 'error'
-                ? 'Not saving to the other devices'
-                : 'This device only'}
-          </b>
+          <b>{status.kind === 'error' ? 'Not reaching the other devices' : 'This device only'}</b>
           <em>
             {status.kind === 'error'
-              ? status.message
-              : status.kind === 'off'
-                ? 'No shared ledger set up yet — the count lives on this device and nowhere else.'
-                : status.kind === 'ok'
-                  ? `Last synced ${when(status.at)}`
-                  : 'Enter the bar PIN once and this device joins the shared count.'}
+              ? `${status.message} The count is safe on this device and will send itself when it can.`
+              : 'This build has no shared ledger, so the count lives here and nowhere else.'}
           </em>
         </span>
-        {open ? (
-          <button type="button" className="ghost-btn slim" onClick={() => setOpen(false)}>
-            Close
+        {status.kind === 'error' ? (
+          <button type="button" className="ghost-btn slim" onClick={sync.refresh}>
+            Retry
           </button>
         ) : null}
       </div>
 
-      {open || status.kind !== 'ok' ? (
-        <div className="sync-form">
+      {status.kind === 'off' ? (
+        <details className="sync-form">
+          <summary>Have a ledger address?</summary>
           <label>
             Sync address
             <input
@@ -257,38 +231,18 @@ function SyncBanner({ sync }: { sync: SyncControls }) {
               spellCheck={false}
             />
           </label>
-          <label>
-            Bar PIN
-            <input
-              type="password"
-              inputMode="numeric"
-              value={pin}
-              placeholder="••••••"
-              onChange={(e) => setPin(e.target.value)}
-              autoComplete="one-time-code"
-            />
-          </label>
-          <div className="sync-actions">
-            <button
-              type="button"
-              className="made-btn slim"
-              onClick={submit}
-              disabled={busy || pin.trim().length === 0 || address.trim().length === 0}
-            >
-              {busy ? 'Connecting…' : 'Connect this device'}
-            </button>
-            {status.kind === 'ok' ? (
-              <button type="button" className="ghost-btn slim" onClick={sync.disconnect}>
-                Disconnect
-              </button>
-            ) : null}
-          </div>
-          {error ? <p className="pin-error">{error}</p> : null}
-          <p className="pin-note">
-            The PIN is the bar’s, not this phone’s. It is exchanged once for a token and never
-            stored here.
+          <button
+            type="button"
+            className="made-btn slim"
+            onClick={() => sync.setAddress(address)}
+            disabled={address.trim().length === 0}
+          >
+            Use this address
+          </button>
+          <p className="sync-note">
+            Only needed if this build shipped without one. Normally it is already set.
           </p>
-        </div>
+        </details>
       ) : null}
     </div>
   )

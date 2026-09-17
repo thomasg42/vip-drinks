@@ -93,7 +93,8 @@ button:focus-visible {
   min-height: 100dvh;
   overflow: hidden;
   display: grid;
-  grid-template-rows: auto 1fr auto;
+  /* Two rows now: the dock is pinned, not stacked. */
+  grid-template-rows: auto 1fr;
   background:
     radial-gradient(800px 320px at 50% -80px, rgba(224, 180, 92, 0.12), transparent 60%),
     var(--bg);
@@ -152,7 +153,9 @@ button:focus-visible {
 .made-page {
   height: 100%;
   overflow: auto;
-  padding: 12px 16px 24px;
+  /* The bottom padding clears the pinned dock -- without it the last drink on
+     the sheet sits underneath Sheet/Made/Cash and cannot be tapped. */
+  padding: 12px 16px calc(96px + env(safe-area-inset-bottom));
   scrollbar-width: none;
 }
 
@@ -436,6 +439,15 @@ button:focus-visible {
   font-size: 14px;
 }
 
+/*
+ * Sheet / Made / Cash never leave the bottom of the screen.
+ *
+ * It was the last row of a 100dvh grid, which is only "the bottom" if the
+ * browser agrees with you about where the bottom is -- and on a phone, with a
+ * toolbar that appears and disappears as you scroll, it does not. Pinned to the
+ * visual viewport instead, so it is under the thumb in every tab no matter how
+ * far the list has been scrolled.
+ */
 .dock {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -443,6 +455,18 @@ button:focus-visible {
   padding: 10px 16px calc(12px + env(safe-area-inset-bottom));
   border-top: 1px solid var(--line);
   background: var(--bg-2);
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+}
+
+@media (max-width: 519px) {
+  /* A phone has no 390x844 frame to sit inside, so it pins to the viewport itself. */
+  .dock {
+    position: fixed;
+  }
 }
 
 .dock button {
@@ -653,7 +677,7 @@ button:focus-visible {
 .cash {
   height: 100%;
   overflow: auto;
-  padding: 14px 16px 28px;
+  padding: 14px 16px calc(100px + env(safe-area-inset-bottom));
   scrollbar-width: none;
 }
 
@@ -823,7 +847,9 @@ button:focus-visible {
 .quick-rail {
   position: absolute;
   right: 0;
-  bottom: 12px;
+  /* Clears the pinned dock. .main now runs the full height of .app, so a bare
+     `bottom: 12px` would tuck the bottom tile behind Sheet/Made/Cash. */
+  bottom: calc(80px + env(safe-area-inset-bottom, 0px));
   width: 62px;
   display: grid;
   /* An EXPLICIT height, because 1fr rows in an auto-height grid collapse to
@@ -847,7 +873,6 @@ button:focus-visible {
    */
   .quick-rail {
     position: fixed;
-    bottom: calc(80px + env(safe-area-inset-bottom, 0px));
     /* Never taller than the screen: a phone in landscape still shows all four,
        just shorter. Four smaller boxes beat three boxes and a guess. */
     height: min(304px, calc(100dvh - 150px));
@@ -1283,6 +1308,21 @@ button:focus-visible {
   margin: 0;
   padding: 11px 14px;
   font-size: 13px;
+}
+
+.sync-note {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+.sync-form summary {
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-size: 11px;
+  color: var(--muted);
+  cursor: pointer;
 }
 
 .history-empty {

@@ -8,34 +8,28 @@ import { mergeState, normalizeState } from '../src/sync/merge.ts'
  * still come out agreeing. It imports the SAME merge function the app uses
  * rather than reimplementing it, because a server that merges slightly
  * differently from the client is a bug that only shows up on a busy night.
+ *
+ * IT IS OPEN ON PURPOSE. Thomas's call, made twice and deliberately: anyone
+ * who has the app syncs, with nothing to type. There is no PIN, no token and no
+ * account. The address is published inside the app's JavaScript and the repo is
+ * public, so anyone who views source can read tonight's drawer count and
+ * overwrite it. The Origin check and the rate limit below are speed bumps
+ * against other websites and against hammering -- they are NOT protection from
+ * a person who means it. Closing it later is a small change to this file.
  */
 
 interface Env {
   DB: D1Database
-  /**
-   * The bar's PIN, set with
-   *   npx wrangler secret put OWNER_PIN --config sync-worker/wrangler.jsonc
-   *
-   * Unset, every authenticated route returns 401 rather than falling open. A
-   * Worker deployed without its secret should be loudly broken, not quietly a
-   * public read-write ledger of somebody's till.
-   */
-  OWNER_PIN?: string
 }
 
 const STATE_ID = 'shift'
 const PAGES_ORIGIN = 'https://thomasg42.github.io'
 const MAX_BODY_BYTES = 400_000
 
-/** Bumping this invalidates every device token that was ever issued. */
-const DEVICE_TOKEN_VERSION = 'v1'
-
-// Pairing is the only place a guessable secret is accepted, so it is the only
-// place brute force buys anything. Eight tries an hour per caller leaves room
-// for a mistyped thumb and turns a six-digit PIN into years of guessing. Every
-// later request carries a full HMAC instead, which is not guessable at all.
-const PAIR_RATE_LIMIT = 8
-const PAIR_RATE_WINDOW_SECONDS = 3600
+// One bartender's phone is a few hundred writes a shift. Anything past this is
+// a stuck loop or somebody's script, and either way it should stop.
+const WRITE_LIMIT = 600
+const WRITE_WINDOW_SECONDS = 300
 
 function allowedOrigin(request: Request): string | null {
   const origin = request.headers.get('Origin')
@@ -47,7 +41,7 @@ function allowedOrigin(request: Request): string | null {
 
 function corsHeaders(request: Request): Headers {
   const headers = new Headers({
-    'Access-Control-Allow-Headers': 'Authorization, Content-Type',
+    'Access-Control-Allow-Headers': 'Content-Type',
     'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
     'Access-Control-Max-Age': '86400',
     Vary: 'Origin',
@@ -64,115 +58,41 @@ function json(request: Request, payload: unknown, status = 200): Response {
   return new Response(JSON.stringify(payload), { status, headers })
 }
 
-/** Compares without leaking, through timing, how much of a value matched. */
-function constantTimeEqual(a: string, b: string): boolean {
-  const left = new TextEncoder().encode(a)
-  const right = new TextEncoder().encode(b)
-  let diff = left.length ^ right.length
-  const max = Math.max(left.length, right.length)
-  for (let index = 0; index < max; index += 1) {
-    diff |= (left[index] ?? 0) ^ (right[index] ?? 0)
-  }
-  return diff === 0
-}
-
-function base64Url(buffer: ArrayBuffer): string {
-  const bytes = new Uint8Array(buffer)
-  let binary = ''
-  for (const byte of bytes) binary += String.fromCharCode(byte)
-  return btoa(binary).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '')
-}
-
 /**
- * This device's half of the credential: an HMAC of its random id under the PIN.
- * Nothing is stored, so there is no device table to keep, and rotating the PIN
- * revokes every device at once -- which is what you want the morning a phone
- * goes missing.
+ * A write from a browser must come from the app itself.
+ *
+ * A browser sets Origin and will not let a page lie about it, so this stops
+ * any OTHER website scripting against this ledger in a visitor's browser. It
+ * does nothing against curl, where Origin is just a header somebody typed --
+ * and that is the honest limit of an endpoint with no secret.
  */
-async function signDevice(pin: string, deviceId: string): Promise<string> {
-  const key = await crypto.subtle.importKey(
-    'raw',
-    new TextEncoder().encode(pin),
-    { name: 'HMAC', hash: 'SHA-256' },
-    false,
-    ['sign'],
-  )
-  const signature = await crypto.subtle.sign(
-    'HMAC',
-    key,
-    new TextEncoder().encode(`vip-drinks|${DEVICE_TOKEN_VERSION}|${deviceId}`),
-  )
-  return base64Url(signature)
+function fromSomewhereElse(request: Request): boolean {
+  return request.headers.has('Origin') && allowedOrigin(request) === null
 }
 
-async function authorized(request: Request, env: Env): Promise<boolean> {
-  if (!env.OWNER_PIN) return false
-  const match = /^Bearer\s+(.+)$/i.exec(request.headers.get('Authorization') || '')
-  if (!match) return false
-  const separator = match[1].lastIndexOf('.')
-  if (separator <= 0) return false
-  const deviceId = match[1].slice(0, separator)
-  const signature = match[1].slice(separator + 1)
-  if (!deviceId || !signature) return false
-  return constantTimeEqual(signature, await signDevice(env.OWNER_PIN, deviceId))
-}
-
-/**
- * Per-caller cap on the PIN endpoint. Fails CLOSED: if the counter cannot be
- * read there is no cap, and an uncapped PIN endpoint is a six-digit secret
- * being enumerated at leisure.
- */
-async function withinPairLimit(request: Request, env: Env): Promise<boolean> {
+/** Per-caller cap on writes, so nobody can hammer the ledger flat. */
+async function withinWriteLimit(request: Request, env: Env): Promise<boolean> {
   const caller = request.headers.get('CF-Connecting-IP') || 'unknown'
   const nowSeconds = Math.floor(Date.now() / 1000)
-  const window = Math.floor(nowSeconds / PAIR_RATE_WINDOW_SECONDS)
-  const bucket = `pair|${caller}|${window}`
+  const window = Math.floor(nowSeconds / WRITE_WINDOW_SECONDS)
+  const bucket = `write|${caller}|${window}`
   try {
     const row = await env.DB.prepare(
       `INSERT INTO rate_usage (bucket, count, expires_at) VALUES (?1, 1, ?2)
        ON CONFLICT(bucket) DO UPDATE SET count = count + 1
        RETURNING count`,
     )
-      .bind(bucket, (window + 1) * PAIR_RATE_WINDOW_SECONDS)
+      .bind(bucket, (window + 1) * WRITE_WINDOW_SECONDS)
       .first<{ count: number }>()
     if ((row?.count ?? 0) === 1) {
       await env.DB.prepare(`DELETE FROM rate_usage WHERE expires_at < ?1`).bind(nowSeconds).run()
     }
-    return (row?.count ?? 0) <= PAIR_RATE_LIMIT
+    return (row?.count ?? 0) <= WRITE_LIMIT
   } catch {
-    return false
+    // The limiter is a courtesy, not the security boundary. Losing it must not
+    // take a bartender's shift down mid-count.
+    return true
   }
-}
-
-async function pairDevice(request: Request, env: Env): Promise<Response> {
-  if (!env.OWNER_PIN) {
-    return json(request, { error: 'This ledger has no PIN set yet.' }, 503)
-  }
-  if (!(await withinPairLimit(request, env))) {
-    return json(request, { error: 'Too many PIN attempts. Try again later.' }, 429)
-  }
-
-  let payload: { pin?: unknown; deviceId?: unknown }
-  try {
-    payload = (await request.json()) as { pin?: unknown; deviceId?: unknown }
-  } catch {
-    return json(request, { error: 'Bad request.' }, 400)
-  }
-
-  const deviceId = String(payload?.deviceId ?? '').trim()
-  // The id only names a device, but it is signed material -- keep it to a
-  // charset that cannot smuggle the '.' separator into the token.
-  if (!deviceId || deviceId.length > 100 || !/^[A-Za-z0-9-]+$/.test(deviceId)) {
-    return json(request, { error: 'Bad request.' }, 400)
-  }
-  if (!constantTimeEqual(String(payload?.pin ?? ''), env.OWNER_PIN)) {
-    return json(request, { error: 'That PIN did not work.' }, 401)
-  }
-
-  return json(request, {
-    token: `${deviceId}.${await signDevice(env.OWNER_PIN, deviceId)}`,
-    serverTime: Date.now(),
-  })
 }
 
 async function readState(env: Env) {
@@ -221,19 +141,13 @@ export default {
       return new Response(null, { status: 204, headers: corsHeaders(request) })
     }
 
-    // Deliberately says nothing about whether a PIN is set: a health check that
-    // reports "no PIN" tells an anonymous caller exactly when to come back.
     if (url.pathname === '/api/health') {
       return json(request, { ok: true, serverTime: Date.now() })
     }
 
-    if (url.pathname === '/api/pair' && request.method === 'POST') {
-      return pairDevice(request, env)
-    }
-
     if (url.pathname === '/api/state') {
-      if (!(await authorized(request, env))) {
-        return json(request, { error: 'Not connected.' }, 401)
+      if (fromSomewhereElse(request)) {
+        return json(request, { error: 'Not this ledger.' }, 403)
       }
 
       if (request.method === 'GET') {
@@ -245,6 +159,9 @@ export default {
         const raw = await request.text()
         if (raw.length > MAX_BODY_BYTES) {
           return json(request, { error: 'That shift is too big to store.' }, 413)
+        }
+        if (!(await withinWriteLimit(request, env))) {
+          return json(request, { error: 'Too many writes. Try again shortly.' }, 429)
         }
         let payload: { state?: unknown }
         try {

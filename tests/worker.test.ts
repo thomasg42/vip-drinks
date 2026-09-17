@@ -13,7 +13,6 @@ import { EMPTY_CLOCKS, EMPTY_DENOMS } from '../src/types.ts'
  * race below be a genuine test instead of a hopeful one.
  */
 
-const PIN = '481516'
 const ORIGIN = 'https://thomasg42.github.io'
 
 class FakeDB {
@@ -59,11 +58,8 @@ class FakeDB {
   }
 }
 
-// `null` means "deployed without its secret". An optional param defaulting to
-// PIN would swallow an explicit `undefined` and quietly test the wrong thing --
-// which it did, and the failure looked like a Worker bug.
-function env(db: FakeDB, pin: string | null = PIN) {
-  return { DB: db as unknown as D1Database, OWNER_PIN: pin ?? undefined }
+function env(db: FakeDB) {
+  return { DB: db as unknown as D1Database }
 }
 
 function req(path: string, init: RequestInit = {}) {
@@ -94,69 +90,59 @@ const shift = (over: Record<string, unknown> = {}) =>
     ...over,
   })
 
-async function pairUp(db: FakeDB, deviceId: string, pin = PIN) {
-  const res = await worker.fetch(
-    req('/api/pair', { method: 'POST', body: JSON.stringify({ pin, deviceId }) }),
-    env(db),
-  )
-  return { res, body: (await res.json()) as { token?: string; error?: string } }
-}
-
-test('health says nothing about whether a PIN is set', async () => {
-  const res = await worker.fetch(req('/api/health'), env(new FakeDB(), undefined))
+test('health answers, and says nothing it does not need to', async () => {
+  const res = await worker.fetch(req('/api/health'), env(new FakeDB()))
   assert.equal(res.status, 200)
   const body = (await res.json()) as Record<string, unknown>
   assert.equal(body.ok, true)
-  assert.ok(!('pin' in body) && !('configured' in body))
+  assert.equal(typeof body.serverTime, 'number')
 })
 
-test('a wrong PIN gets a token from nobody', async () => {
+test('the ledger is OPEN — no PIN, no token, nothing to type', async () => {
+  // Thomas's explicit decision, made twice: every device that has the app is on
+  // the same shift. This test exists so nobody "fixes" it back into a login.
   const db = new FakeDB()
-  const { res, body } = await pairUp(db, 'dev-1', '000000')
-  assert.equal(res.status, 401)
-  assert.equal(body.token, undefined)
-})
+  const read = await worker.fetch(req('/api/state'), env(db))
+  assert.equal(read.status, 200)
 
-test('the right PIN pairs a device, and that token opens the ledger', async () => {
-  const db = new FakeDB()
-  const { res, body } = await pairUp(db, 'dev-1')
-  assert.equal(res.status, 200)
-  assert.match(body.token!, /^dev-1\./)
-
-  const read = await worker.fetch(
-    req('/api/state', { headers: { Authorization: `Bearer ${body.token}` } }),
+  const write = await worker.fetch(
+    req('/api/state', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ state: shift({ made: [pour('a', 'Beer')] }) }),
+    }),
     env(db),
   )
-  assert.equal(read.status, 200)
+  assert.equal(write.status, 200)
+  const body = (await write.json()) as { state: ReturnType<typeof shift> }
+  assert.deepEqual(body.state.made.map((m) => m.id), ['a'])
 })
 
-test('no token, no ledger', async () => {
+test('another website cannot script against it in somebody’s browser', async () => {
+  // Not real security -- Origin is just a header to curl -- but it does stop a
+  // page on another domain reading or rewriting the till through a visitor.
   const db = new FakeDB()
-  for (const headers of [{}, { Authorization: 'Bearer nonsense' }, { Authorization: 'Bearer dev-1.forged' }]) {
-    const res = await worker.fetch(req('/api/state', { headers }), env(db))
-    assert.equal(res.status, 401)
-  }
+  const res = await worker.fetch(
+    new Request('https://vip-drinks-sync.workers.dev/api/state', {
+      headers: { Origin: 'https://not-the-app.example' },
+    }),
+    env(db),
+  )
+  assert.equal(res.status, 403)
 })
 
-test('a Worker deployed with no PIN is loudly broken, never quietly public', async () => {
-  const db = new FakeDB()
-  const pair = await worker.fetch(
-    req('/api/pair', { method: 'POST', body: JSON.stringify({ pin: '', deviceId: 'dev-1' }) }),
-    env(db, null),
-  )
-  assert.equal(pair.status, 503)
-  const read = await worker.fetch(
-    req('/api/state', { headers: { Authorization: 'Bearer dev-1.anything' } }),
-    env(db, null),
-  )
-  assert.equal(read.status, 401)
-})
-
-test('brute-forcing the PIN runs out of attempts', async () => {
+test('nobody can hammer the ledger flat', async () => {
   const db = new FakeDB()
   let last = 200
-  for (let i = 0; i < 9; i += 1) {
-    const { res } = await pairUp(db, `dev-${i}`, '999999')
+  for (let i = 0; i < 602; i += 1) {
+    const res = await worker.fetch(
+      req('/api/state', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ state: shift() }),
+      }),
+      env(db),
+    )
     last = res.status
   }
   assert.equal(last, 429)
@@ -164,8 +150,7 @@ test('brute-forcing the PIN runs out of attempts', async () => {
 
 test('a push MERGES with what the other device left, it does not replace it', async () => {
   const db = new FakeDB()
-  const { body } = await pairUp(db, 'laptop')
-  const auth = { Authorization: `Bearer ${body.token}`, 'Content-Type': 'application/json' }
+  const auth = { 'Content-Type': 'application/json' }
 
   await worker.fetch(
     req('/api/state', {
@@ -195,8 +180,7 @@ test('two devices pushing at the same instant — neither count is lost', async 
   // request's read and its write, so the conditional UPDATE must fail and the
   // Worker must re-read, re-merge and try again.
   const db = new FakeDB()
-  const { body } = await pairUp(db, 'laptop')
-  const auth = { Authorization: `Bearer ${body.token}`, 'Content-Type': 'application/json' }
+  const auth = { 'Content-Type': 'application/json' }
 
   await worker.fetch(
     req('/api/state', {
@@ -238,8 +222,7 @@ test('two devices pushing at the same instant — neither count is lost', async 
 
 test('garbage on the wire cannot corrupt the ledger', async () => {
   const db = new FakeDB()
-  const { body } = await pairUp(db, 'laptop')
-  const auth = { Authorization: `Bearer ${body.token}`, 'Content-Type': 'application/json' }
+  const auth = { 'Content-Type': 'application/json' }
 
   const bad = await worker.fetch(
     req('/api/state', { method: 'POST', headers: auth, body: 'not json' }),
