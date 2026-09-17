@@ -96,6 +96,19 @@ function App() {
     })
   }
 
+  /**
+   * Save a video the bartender found onto a drink, so the next tap plays it
+   * in the app instead of re-opening a YouTube search. null clears it.
+   */
+  const saveVideo = (drinkId: string, videoId: string | null) => {
+    setState((prev) => {
+      const videos = { ...prev.videos }
+      if (videoId) videos[drinkId] = videoId
+      else delete videos[drinkId]
+      return { ...prev, videos }
+    })
+  }
+
   const unmake = (entryId: string) => {
     setState((prev) => ({
       ...prev,
@@ -208,7 +221,13 @@ function App() {
         </button>
       </nav>
 
-      <RecipeSheet drink={openDrink} onClose={() => setOpenDrink(null)} onMade={markMade} />
+      <RecipeSheet
+        drink={openDrink}
+        savedVideoId={openDrink ? (state.videos[openDrink.id] ?? null) : null}
+        onClose={() => setOpenDrink(null)}
+        onMade={markMade}
+        onSaveVideo={saveVideo}
+      />
     </div>
   )
 }

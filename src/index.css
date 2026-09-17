@@ -969,3 +969,122 @@ button:focus-visible {
   text-transform: uppercase;
   font-size: 10px;
 }
+
+/* ---- Category chips: 131 drinks is too many to thumb past mid-rush ---- */
+.chips {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  margin: 0 0 10px;
+  padding-bottom: 2px;
+  -webkit-overflow-scrolling: touch;
+}
+.chips::-webkit-scrollbar {
+  display: none;
+}
+.chip {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 38px;
+  padding: 0 13px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.05);
+  color: inherit;
+  font: inherit;
+  font-size: 0.86rem;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.chip.on {
+  background: rgba(255, 255, 255, 0.92);
+  border-color: transparent;
+  color: #14100c;
+  font-weight: 600;
+}
+.chip-count {
+  font-size: 0.74rem;
+  opacity: 0.6;
+  font-variant-numeric: tabular-nums;
+}
+.chip.on .chip-count {
+  opacity: 0.55;
+}
+
+/* ---- Not fully integrated: the find-the-quickest-how-to prompt ---- */
+.no-video {
+  display: grid;
+  gap: 8px;
+}
+.video-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 8px 0 2px;
+  font-size: 0.86rem;
+}
+.video-actions a,
+.video-actions button {
+  background: none;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  opacity: 0.72;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.pin-video {
+  font-size: 0.84rem;
+  opacity: 0.85;
+}
+.pin-video > summary {
+  cursor: pointer;
+  padding: 6px 0;
+  opacity: 0.7;
+}
+.pin-row {
+  display: flex;
+  gap: 8px;
+  margin-top: 6px;
+}
+.pin-row input {
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: 42px;
+  padding: 0 10px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  color: inherit;
+  font: inherit;
+  font-size: 0.9rem;
+}
+.pin-row button {
+  flex: 0 0 auto;
+  min-height: 42px;
+  padding: 0 16px;
+  border: 0;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.9);
+  color: #14100c;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+.pin-row button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+.pin-error {
+  margin: 6px 0 0;
+  color: #e88a7a;
+}
+.pin-note {
+  margin: 6px 0 0;
+  opacity: 0.55;
+  font-size: 0.78rem;
+}

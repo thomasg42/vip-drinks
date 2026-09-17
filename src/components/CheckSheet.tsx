@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
-import type { Drink } from '../types'
+import type { Category, Drink } from '../types'
 import { DrinkList } from './DrinkList'
 import { ingredientLine, searchTheInternet, type WebSearchResult } from '../data/webSearch'
 
@@ -13,14 +13,37 @@ type Props = {
 
 const DEBOUNCE_MS = 350
 
+/**
+ * 131 drinks is too many to thumb past mid-rush, so the sheet filters by what
+ * was actually ordered. 'all' first because that is the default reach.
+ */
+const CHIPS: { key: Category | 'all'; label: string }[] = [
+  { key: 'all', label: 'All' },
+  { key: 'cocktail', label: 'Cocktails' },
+  { key: 'highball', label: 'Highballs' },
+  { key: 'shot', label: 'Shots' },
+  { key: 'na', label: 'No alcohol' },
+]
+
 export function CheckSheet({ drinks, topMadeIds, flashing, onOpen, onMake }: Props) {
   const [query, setQuery] = useState('')
+  const [chip, setChip] = useState<Category | 'all'>('all')
   const [web, setWeb] = useState<WebSearchResult>({ status: 'idle' })
   const runId = useRef(0)
 
+  const counts = useMemo(() => {
+    const out = new Map<Category | 'all', number>([['all', drinks.length]])
+    for (const d of drinks) {
+      const key = d.category ?? 'cocktail'
+      out.set(key, (out.get(key) ?? 0) + 1)
+    }
+    return out
+  }, [drinks])
+
   const visible = useMemo(() => {
     const q = query.trim().toLowerCase()
-    const match = (d: Drink) => !q || d.name.toLowerCase().includes(q)
+    const inChip = (d: Drink) => chip === 'all' || (d.category ?? 'cocktail') === chip
+    const match = (d: Drink) => inChip(d) && (!q || d.name.toLowerCase().includes(q))
     const top = topMadeIds
       .map((id) => drinks.find((d) => d.id === id))
       .filter((d): d is Drink => Boolean(d && match(d)))
@@ -28,7 +51,7 @@ export function CheckSheet({ drinks, topMadeIds, flashing, onOpen, onMake }: Pro
     const topSet = new Set(top.map((d) => d.id))
     const rest = drinks.filter((d) => match(d) && !topSet.has(d.id))
     return { top, rest }
-  }, [drinks, query, topMadeIds])
+  }, [chip, drinks, query, topMadeIds])
 
   const localCount = visible.top.length + visible.rest.length
 
@@ -74,6 +97,21 @@ export function CheckSheet({ drinks, topMadeIds, flashing, onOpen, onMake }: Pro
         />
       </label>
 
+      <div className="chips" role="group" aria-label="Filter by kind of drink">
+        {CHIPS.map(({ key, label }) => (
+          <button
+            key={key}
+            type="button"
+            aria-pressed={chip === key}
+            className={`chip${chip === key ? ' on' : ''}`}
+            onClick={() => setChip(key)}
+          >
+            {label}
+            <span className="chip-count">{counts.get(key) ?? 0}</span>
+          </button>
+        ))}
+      </div>
+
       {visible.top.length > 0 ? (
         <>
           <p className="list-label">Most made</p>
@@ -88,8 +126,12 @@ export function CheckSheet({ drinks, topMadeIds, flashing, onOpen, onMake }: Pro
         </>
       ) : null}
 
-      {localCount === 0 && query.trim().length > 0 ? (
-        <p className="empty">Nothing on the sheet matches “{query.trim()}”.</p>
+      {localCount === 0 ? (
+        <p className="empty">
+          {query.trim().length > 0
+            ? `Nothing on the sheet matches “${query.trim()}”.`
+            : 'Nothing on the sheet under this filter.'}
+        </p>
       ) : null}
 
       {query.trim().length >= 2 ? (

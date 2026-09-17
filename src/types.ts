@@ -3,9 +3,18 @@ export type Ingredient = {
   item: string
 }
 
+/**
+ * 'highball' is the two-things-in-a-glass half of a real shift, 'shot' covers
+ * shots and bombs, 'na' is for the people who are not drinking. Drinks from the
+ * internet search have no category -- they land under "From the internet".
+ */
+export type Category = 'cocktail' | 'highball' | 'shot' | 'na'
+
 export type Drink = {
   id: string
   name: string
+  /** Defaults to 'cocktail' when absent. */
+  category?: Category
   price: number
   glass: string
   method: string
@@ -50,6 +59,8 @@ export type SavedShift = {
 
 export type AppState = {
   made: MadeEntry[]
+  /** drink id -> YouTube video id the bartender saved for it themselves. */
+  videos: Record<string, string>
   opening: Denoms
   closing: Denoms
   notes: string
@@ -89,23 +100,39 @@ export function youtubeId(url: string): string | null {
   return null
 }
 
-/** Embeddable player URL, or null when we have no real video id to play. */
-export function youtubeEmbed(drink: Drink): string | null {
-  const id = youtubeId(drink.videoUrl)
-  if (!id) return null
+export function embedUrl(id: string): string {
   return `https://www.youtube-nocookie.com/embed/${id}?rel=0&modestbranding=1`
 }
 
-export function youtubeSearchUrl(name: string): string {
-  const q = `how to make a ${name} cocktail`
-  return `https://www.youtube.com/results?search_query=${encodeURIComponent(q)}`
+/**
+ * Embeddable player URL, or null when we have no real video id to play.
+ * `override` is a video the bartender saved onto this drink themselves.
+ */
+export function youtubeEmbed(drink: Drink, override?: string | null): string | null {
+  const id = override || youtubeId(drink.videoUrl)
+  return id ? embedUrl(id) : null
 }
 
-export function youtubeWatch(drink: Drink): string {
+/**
+ * YouTube's "under 4 minutes" duration filter. The same one the build-time
+ * finder uses, so a drink with no baked-in video still lands the viewer on the
+ * quickest clips rather than a 20-minute cocktail vlog.
+ */
+export const SHORT_FILTER = 'EgIYAQ%3D%3D'
+
+/** Search YouTube for the quickest how-to for a drink, shortest clips first. */
+export function youtubeSearchUrl(name: string): string {
+  const q = `how to make a ${name} drink`
+  return `https://www.youtube.com/results?search_query=${encodeURIComponent(q)}&sp=${SHORT_FILTER}`
+}
+
+export function youtubeWatch(drink: Drink, override?: string | null): string {
+  if (override) return `https://www.youtube.com/watch?v=${override}`
   const id = youtubeId(drink.videoUrl)
   if (id) return drink.videoUrl
   return youtubeSearchUrl(drink.name)
 }
+
 
 export function isSameDay(iso: string, now = new Date()): boolean {
   const d = new Date(iso)

@@ -4,6 +4,7 @@ const KEY = 'vip-drinks-state-v3'
 
 const INITIAL: AppState = {
   made: [],
+  videos: {},
   opening: { ...EMPTY_DENOMS },
   closing: { ...EMPTY_DENOMS },
   notes: '',
@@ -19,6 +20,8 @@ export function loadState(): AppState {
     const made: MadeEntry[] = parsed.made ?? []
     return {
       made,
+      // Absent on state saved before saved videos existed -- not a reason to reset a shift.
+      videos: parsed.videos ?? {},
       opening: { ...EMPTY_DENOMS, ...parsed.opening },
       closing: { ...EMPTY_DENOMS, ...parsed.closing },
       notes: parsed.notes ?? '',
@@ -37,6 +40,7 @@ export function saveState(state: AppState) {
 function blank(): AppState {
   return {
     ...INITIAL,
+    videos: {},
     opening: { ...EMPTY_DENOMS },
     closing: { ...EMPTY_DENOMS },
   }

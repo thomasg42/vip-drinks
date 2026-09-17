@@ -1,4 +1,5 @@
-import type { Drink, Ingredient } from '../types'
+import type { Category, Drink, Ingredient } from '../types'
+import { MIXED_DRINKS } from './mixedDrinks.ts'
 
 function shorts(id: string) {
   return `https://www.youtube.com/shorts/${id}`
@@ -19,7 +20,7 @@ function drink(
 
 const I = (amount: string, item: string): Ingredient => ({ amount, item })
 
-export const DRINKS: Drink[] = [
+const COCKTAILS: Drink[] = [
   drink('margarita', 'Margarita', 'Rocks, salt rim', 'Shake, strain over ice', 'Lime wheel', shorts('Ckp4SUYlBRU'), [
     I('2 oz', 'Blanco tequila'), I('1 oz', 'Lime juice'), I('¾ oz', 'Cointreau'),
   ]),
@@ -263,4 +264,30 @@ export const DRINKS: Drink[] = [
   drink('appletini', 'Appletini', 'Coupe', 'Shake, strain', 'Apple slice', shorts('BekipXERIg4'), [
     I('2 oz', 'Vodka'), I('1 oz', 'Apple schnapps'), I('½ oz', 'Lemon juice'),
   ], 14),
+]
+
+/**
+ * These shipped in the original 81 as "cocktails", but a bartender reaching for
+ * the Highballs chip expects to find them there. Listed once, here, rather than
+ * threaded through eighty call sites.
+ */
+const RECLASSIFIED: Record<string, Category> = {
+  'gin-tonic': 'highball',
+  'jack-and-coke': 'highball',
+  'rum-and-coke': 'highball',
+  'cuba-libre': 'highball',
+  'vodka-soda': 'highball',
+  'vodka-cranberry': 'highball',
+  'screwdriver': 'highball',
+  'whiskey-ginger': 'highball',
+  'seven-and-seven': 'highball',
+  'ranch-water': 'highball',
+  'dark-n-stormy': 'highball',
+  'black-russian': 'highball',
+  'kamikaze': 'shot',
+}
+
+export const DRINKS: Drink[] = [
+  ...COCKTAILS.map((d) => ({ ...d, category: RECLASSIFIED[d.id] ?? ('cocktail' as Category) })),
+  ...MIXED_DRINKS,
 ]
