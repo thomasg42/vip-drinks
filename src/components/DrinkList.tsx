@@ -1,4 +1,5 @@
 import type { Drink } from '../types'
+import { tapOnly } from '../tapOnly'
 
 type Props = {
   drinks: Drink[]
@@ -19,14 +20,14 @@ export function DrinkList({ drinks, flashing, onMake, onOpen }: Props) {
               className="checkbox"
               aria-pressed={checked}
               aria-label={`Mark ${drink.name} made`}
-              onClick={() => onMake(drink.id, drink.name)}
+              {...tapOnly(() => onMake(drink.id, drink.name))}
             >
               {checked ? <CheckIcon /> : null}
             </button>
             <button
               type="button"
               className="drink-open"
-              onClick={() => onOpen(drink)}
+              {...tapOnly(() => onOpen(drink))}
               aria-label={`How to make ${drink.name}`}
             >
               <span className="drink-name">{drink.name}</span>

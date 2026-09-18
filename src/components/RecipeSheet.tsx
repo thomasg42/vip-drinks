@@ -63,114 +63,119 @@ export function RecipeSheet({ drink, savedVideoId, onClose, onMade, onSaveVideo 
         <button type="button" className="recipe-close" onClick={onClose} aria-label="Close recipe">
           ✕
         </button>
-        <h2 id="recipe-title">{drink.name}</h2>
-        <p className="recipe-meta">
-          {drink.glass} · {drink.method}
-        </p>
-
-        {embed ? (
-          <>
-            <div className="video-embed">
-              <iframe
-                title={`How to make ${drink.name}`}
-                src={embed}
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-              />
-            </div>
-            <div className="video-actions">
-              <a href={youtubeWatch(drink, savedVideoId)} target="_blank" rel="noreferrer">
-                Open on YouTube
-              </a>
-              {savedVideoId ? (
-                <button type="button" onClick={() => onSaveVideo?.(drink.id, null)}>
-                  Remove saved video
-                </button>
-              ) : null}
-            </div>
-          </>
-        ) : (
-          // Not fully integrated: no verified video for this drink. Send the
-          // bartender straight at the shortest clips rather than a dead player
-          // or a 20-minute vlog -- the link carries YouTube's under-4-minutes filter.
-          <div className="no-video">
-            <a className="video-card" href={searchUrl} target="_blank" rel="noreferrer">
-              {drink.thumb ? (
-                <img src={drink.thumb} alt="" loading="lazy" />
-              ) : (
-                <span className="video-fallback" aria-hidden="true">
-                  ▶
-                </span>
-              )}
-              <span>
-                <strong>Find the quickest how-to</strong>
-                <em>Opens YouTube, shortest clips first</em>
-              </span>
-            </a>
-            <details className="pin-video">
-              <summary>Found a good one? Save it to this drink</summary>
-              <div className="pin-row">
-                <input
-                  type="url"
-                  inputMode="url"
-                  value={paste}
-                  placeholder="Paste the YouTube link"
-                  onChange={(e) => {
-                    setPaste(e.target.value)
-                    setPasteError(null)
-                  }}
-                  autoCapitalize="off"
-                  autoCorrect="off"
-                />
-                <button type="button" onClick={savePasted} disabled={paste.trim().length === 0}>
-                  Save
-                </button>
-              </div>
-              {pasteError ? <p className="pin-error">{pasteError}</p> : null}
-              <p className="pin-note">Saved on this phone. It plays in the app from then on.</p>
-            </details>
-          </div>
-        )}
-
-        <h3>Ingredients</h3>
-        <ul className="ingredients">
-          {drink.ingredients.map((ing, i) => (
-            <li key={`${i}-${ing.item}`}>
-              <span>{ing.amount}</span>
-              <b>{ing.item}</b>
-            </li>
-          ))}
-        </ul>
-
         {/*
-          The build, in order, at the bottom of every drink -- the part the sheet
-          used to leave out. Numbered and one instruction per line so it can be
-          read a step at a time with a bottle in the other hand.
+          The card is the frame; only this scrolls inside it. That keeps ✕ on screen
+          at the bottom of a long build instead of stranding you with no way out but
+          scrolling all the way back up.
         */}
-        <section className="how-to">
-          <h3>How to make it</h3>
-          <ol className="steps">
-            {steps.map((step, i) => (
-              <li key={i}>{step}</li>
+        <div className="recipe-scroll">
+          <h2 id="recipe-title">{drink.name}</h2>
+          <p className="recipe-meta">
+            {drink.glass} · {drink.method}
+          </p>
+
+          {embed ? (
+            <>
+              <div className="video-embed">
+                <iframe
+                  title={`How to make ${drink.name}`}
+                  src={embed}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                />
+              </div>
+              <div className="video-actions">
+                <a href={youtubeWatch(drink, savedVideoId)} target="_blank" rel="noreferrer">
+                  Open on YouTube
+                </a>
+                {savedVideoId ? (
+                  <button type="button" onClick={() => onSaveVideo?.(drink.id, null)}>
+                    Remove saved video
+                  </button>
+                ) : null}
+              </div>
+            </>
+          ) : (
+            // Not fully integrated: no verified video for this drink. Send the
+            // bartender straight at the shortest clips rather than a dead player
+            // or a 20-minute vlog -- the link carries YouTube's under-4-minutes filter.
+            <div className="no-video">
+              <a className="video-card" href={searchUrl} target="_blank" rel="noreferrer">
+                {drink.thumb ? (
+                  <img src={drink.thumb} alt="" loading="lazy" />
+                ) : (
+                  <span className="video-fallback" aria-hidden="true">
+                    ▶
+                  </span>
+                )}
+                <span>
+                  <strong>Find the quickest how-to</strong>
+                  <em>Opens YouTube, shortest clips first</em>
+                </span>
+              </a>
+              <details className="pin-video">
+                <summary>Found a good one? Save it to this drink</summary>
+                <div className="pin-row">
+                  <input
+                    type="url"
+                    inputMode="url"
+                    value={paste}
+                    placeholder="Paste the YouTube link"
+                    onChange={(e) => {
+                      setPaste(e.target.value)
+                      setPasteError(null)
+                    }}
+                    autoCapitalize="off"
+                    autoCorrect="off"
+                  />
+                  <button type="button" onClick={savePasted} disabled={paste.trim().length === 0}>
+                    Save
+                  </button>
+                </div>
+                {pasteError ? <p className="pin-error">{pasteError}</p> : null}
+                <p className="pin-note">Saved on this phone. It plays in the app from then on.</p>
+              </details>
+            </div>
+          )}
+
+          <h3>Ingredients</h3>
+          <ul className="ingredients">
+            {drink.ingredients.map((ing, i) => (
+              <li key={`${i}-${ing.item}`}>
+                <span>{ing.amount}</span>
+                <b>{ing.item}</b>
+              </li>
             ))}
-          </ol>
+          </ul>
+
+          {/*
+            The build, in order, at the bottom of every drink -- the part the sheet
+            used to leave out. Numbered and one instruction per line so it can be
+            read a step at a time with a bottle in the other hand.
+          */}
+          <section className="how-to">
+            <h3>How to make it</h3>
+            <ol className="steps">
+              {steps.map((step, i) => (
+                <li key={i}>{step}</li>
+              ))}
+            </ol>
+            {fromWeb ? <p className="how-to-meta">In TheCocktailDB’s own words</p> : null}
+          </section>
+
           {fromWeb ? (
-            <p className="how-to-meta">In TheCocktailDB’s own words</p>
+            <p className="web-source">From TheCocktailDB · off-menu, no house price set</p>
+          ) : drink.price === 0 ? (
+            // Not a bug: the price is Thomas's to set. Saying so beats a silent $0
+            // disappearing into the shift ticket total.
+            <p className="web-source">No house price set · adds $0 to the shift ticket</p>
           ) : null}
-        </section>
 
-        {fromWeb ? (
-          <p className="web-source">From TheCocktailDB · off-menu, no house price set</p>
-        ) : drink.price === 0 ? (
-          // Not a bug: the price is Thomas's to set. Saying so beats a silent $0
-          // disappearing into the shift ticket total.
-          <p className="web-source">No house price set · adds $0 to the shift ticket</p>
-        ) : null}
-
-        <div className="recipe-foot">
-          <button type="button" className="made-btn" onClick={() => onMade(drink.id, drink.name)}>
-            Mark ordered &amp; made
-          </button>
+          <div className="recipe-foot">
+            <button type="button" className="made-btn" onClick={() => onMade(drink.id, drink.name)}>
+              Mark ordered &amp; made
+            </button>
+          </div>
         </div>
       </div>
     </div>

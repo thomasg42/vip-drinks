@@ -486,6 +486,16 @@ button:focus-visible {
   background: var(--tile);
 }
 
+/*
+ * The open drink lands where the thumb already is.
+ *
+ * This was absolutely positioned inside .app, which anchors it to the TOP of the
+ * page -- fine at the top of the sheet, useless once you have scrolled. Open a
+ * drink 40 rows down and the card rendered above the screen; it then "just popped
+ * up" on the way back past it, looking like a drink opening itself. Same fix the
+ * dock and the rail already carry: on a phone it pins to the visual viewport, so
+ * there is no "top of the page" for it to run away to.
+ */
 .recipe-overlay {
   position: absolute;
   inset: 0;
@@ -497,23 +507,54 @@ button:focus-visible {
 
 .recipe {
   position: relative;
+  display: flex;
+  flex-direction: column;
   width: 100%;
   /* Taller on a phone: the build steps live at the bottom of this card and a
      12% gap above it was 12% less of them on screen. */
   max-height: 94%;
-  overflow: auto;
-  overscroll-behavior: contain;
   border: 1px solid var(--line);
   border-top: 0;
   border-radius: 0 0 18px 18px;
   background: var(--bg-2);
   color: var(--cream);
+}
+
+/* The card is a fixed frame; the build scrolls inside it, under the sticky footer. */
+.recipe-scroll {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  overscroll-behavior: contain;
   padding: 22px 20px 20px;
   scrollbar-width: none;
 }
 
-.recipe::-webkit-scrollbar {
+.recipe-scroll::-webkit-scrollbar {
   display: none;
+}
+
+@media (max-width: 519px) {
+  /*
+   * A phone has no 390x844 frame to sit inside, so it pins to the viewport
+   * itself -- and once pinned there, it may as well use the whole of it. The
+   * point of opening a drink is reading the build, and the build is the part
+   * that was getting cut off.
+   */
+  .recipe-overlay {
+    position: fixed;
+  }
+
+  .recipe {
+    max-height: 100%;
+    height: 100%;
+    border: 0;
+    border-radius: 0;
+  }
+
+  .recipe-scroll {
+    padding-top: calc(22px + env(safe-area-inset-top, 0px));
+  }
 }
 
 .video-embed {
@@ -533,20 +574,27 @@ button:focus-visible {
   border: 0;
 }
 
+/* Anchored to the card rather than the scrolling build, so it never scrolls away. */
 .recipe-close {
   position: absolute;
-  top: 14px;
+  top: calc(14px + env(safe-area-inset-top, 0px));
   right: 14px;
+  z-index: 2;
   width: 36px;
   height: 36px;
   border: 1px solid var(--line);
-  background: transparent;
+  background: var(--bg-2);
   border-radius: 99px;
 }
 
 .rail-tag {
   display: inline-block;
   color: var(--rail, var(--gold));
+}
+
+/* ✕ no longer scrolls away, so it is permanently over this corner. Keep out of it. */
+#recipe-title {
+  padding-right: 46px;
 }
 
 .recipe-meta {

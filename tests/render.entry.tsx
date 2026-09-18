@@ -269,6 +269,32 @@ check('the action button has a floor to sit on, so nothing ends up underneath it
   assert.ok(html.includes('Muddle 8 mint leaves'), 'the mojito build is missing')
 })
 
+/*
+ * An open drink has to land where the bartender already is. The card used to be
+ * absolutely positioned inside .app -- anchored to the top of the PAGE -- so
+ * opening a drink partway down the sheet rendered it off-screen above, and it
+ * then appeared to pop up by itself on the way back. CSS is what fixes that, so
+ * what is pinned here is the structure the CSS needs: a card that does not
+ * scroll, wrapped round a build that does, with the close button outside the
+ * scroller so it cannot ride away at the bottom of a long recipe.
+ */
+check('the card is a fixed frame with only the build scrolling inside it', () => {
+  const html = renderToStaticMarkup(
+    <RecipeSheet drink={DRINKS.find((d) => d.id === 'mojito')!} onClose={() => {}} onMade={() => {}} />,
+  )
+  assert.ok(html.includes('class="recipe-scroll"'), 'the build has no scroll container of its own')
+  // Close comes first and sits OUTSIDE the scroller, or it scrolls off with the steps.
+  assert.ok(
+    html.indexOf('class="recipe-close"') < html.indexOf('class="recipe-scroll"'),
+    'the close button is inside the scrolling area',
+  )
+  // The sticky footer still belongs to the scroller -- that is what it sticks to.
+  assert.ok(
+    html.indexOf('class="recipe-scroll"') < html.indexOf('class="recipe-foot"'),
+    'the sticky footer escaped the scroll container',
+  )
+})
+
 const blankState = (() => {
   const store = new Map<string, string>()
   ;(globalThis as unknown as { localStorage: Storage }).localStorage = {

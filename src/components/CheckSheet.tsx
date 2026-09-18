@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import type { Category, Drink } from '../types'
 import { DrinkList } from './DrinkList'
+import { tapOnly } from '../tapOnly'
 import { ingredientLine, searchTheInternet, type WebSearchResult } from '../data/webSearch'
 
 type Props = {
@@ -157,11 +158,11 @@ export function CheckSheet({ drinks, topMadeIds, flashing, onOpen, onMake }: Pro
                     type="button"
                     className="checkbox"
                     aria-label={`Mark ${drink.name} made`}
-                    onClick={() => onMake(drink.id, drink.name)}
+                    {...tapOnly(() => onMake(drink.id, drink.name))}
                   >
                     {flashing === drink.id ? <CheckIcon /> : null}
                   </button>
-                  <button type="button" className="web-open" onClick={() => onOpen(drink)}>
+                  <button type="button" className="web-open" {...tapOnly(() => onOpen(drink))}>
                     <span className="drink-name">{drink.name}</span>
                     <span className="web-ingredients">{ingredientLine(drink)}</span>
                     <span className="web-meta">
