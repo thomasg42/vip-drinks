@@ -1,0 +1,169 @@
+/* Visual layer only. Preserve the existing viewport pinning and interaction logic. */
+:root {
+  --bg: #0b1214;
+  --bg-2: #101b1e;
+  --tile: #182326;
+  --line: rgba(222, 192, 130, .24);
+  --gold: #e9c984;
+  --cream: #fcf6e9;
+  --muted: #b4b8b1;
+}
+body { background: #05090a; }
+.app {
+  background: radial-gradient(ellipse at 5% 0%, #233a38 0, transparent 40%), var(--bg);
+}
+.top {
+  padding-top: 20px;
+  padding-bottom: 16px;
+  background: linear-gradient(130deg, rgba(43,63,57,.7), rgba(9,16,19,.95));
+  box-shadow: inset 0 1px rgba(255,239,201,.12), 0 8px 24px #0003;
+}
+.brand { font-size: 17px; letter-spacing: .18em; color: #f8e4bb; text-shadow: 0 2px 1px #000; }
+.sub { margin-top: 5px; font-size: 10px; }
+.made-pill {
+  border-radius: 8px;
+  background: linear-gradient(140deg, #32413a, #172422);
+  box-shadow: inset 0 1px #fff2, 0 3px 0 #050c0c, 0 8px 16px #0004;
+  min-height: 40px;
+}
+.search input {
+  border: 1px solid #a99464;
+  border-radius: 10px;
+  background: linear-gradient(120deg, #1b2a2d, #101a1d);
+  box-shadow: inset 0 2px 6px #0007, 0 1px #fff1;
+}
+.search input:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+.chip { border-radius: 7px; box-shadow: inset 0 1px #ffffff0a; }
+.chip.on { background: linear-gradient(145deg, #ecce92, #a5874b); color: #111b1b; border-color: #ebd29e; }
+.chip.on .chip-count { color: #26332a; }
+.drink-list { gap: 13px; }
+.drink-box, .web-box {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border: 1px solid #ad915666;
+  border-radius: 13px;
+  min-height: 132px;
+  background: linear-gradient(145deg, #263b38, #10191d);
+  box-shadow: inset 0 1px 0 #fff4, inset 0 -1px 0 #0009, 0 4px 0 #020708, 0 10px 20px #0006;
+}
+.drink-art {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 65% 48%;
+  pointer-events: none;
+  user-select: none;
+  z-index: -2;
+}
+.drink-box::before, .web-box::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(90deg, #031012dc, #08141570 60%, #0a161b1f), linear-gradient(0deg, #000a, transparent 90%);
+}
+.drink-box::after, .quick-tile::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  box-shadow: inset 0 1px #ffedc95c, inset 1px 0 #ffffff12;
+}
+.drink-open {
+  min-height: 132px;
+  padding: 22px 14px 20px 62px;
+  place-items: center start;
+  text-align: left;
+}
+.drink-name {
+  color: #fffaf0;
+  font-size: clamp(25px, 6.7vw, 31px);
+  line-height: 1.05;
+  font-weight: 600;
+  text-wrap: balance;
+  text-shadow: 0 2px 3px #000, 0 0 15px #000b;
+}
+.drink-box .checkbox, .web-box .checkbox {
+  width: 42px;
+  height: 44px;
+  left: 9px;
+  border: 1px solid #ead198b3;
+  border-radius: 8px;
+  background: linear-gradient(150deg, #e7ce9433, #081818e6);
+  box-shadow: inset 0 1px #fff4, 0 3px 8px #0008;
+  color: #14221b;
+}
+.drink-box.is-checked { border-color: #f9e3a3; }
+.drink-box.is-checked .checkbox { background: linear-gradient(135deg, #fff0bc, #bc974d); }
+.drink-box .drink-open:focus-visible, .web-box .web-open:focus-visible { outline-offset: -4px; border-radius: 12px; }
+.web-box { padding-left: 62px; }
+.web-box .checkbox { position: absolute; top: 50%; transform: translateY(-50%); }
+.web-open { position: relative; padding: 16px 10px 16px 0; }
+.web-ingredients, .web-meta { color: #f0eee4; text-shadow: 0 1px 4px #000; }
+.quick-rail { border-left: 0; background: linear-gradient(90deg, transparent, #071114dc 30%); }
+.quick-tile {
+  isolation: isolate;
+  border: 1px solid color-mix(in srgb, var(--rail) 60%, #dfc48a);
+  border-radius: 10px;
+  box-shadow: 0 3px 0 #020809, 0 6px 14px #0009;
+  overflow: hidden;
+}
+.quick-tile .drink-art { object-position: center 44%; }
+.quick-tile::before {
+  content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background: linear-gradient(0deg, #030c10f5, #03101222 85%);
+}
+.quick-count { text-shadow: 0 1px 5px #000, 0 0 6px #000; font-weight: 600; }
+.quick-name { color: #fff3d7; font-weight: 600; letter-spacing: .06em; text-shadow: 0 1px 4px #000; }
+.quick-minus { background: #071012cc; color: #fff2cf; }
+.quick-minus:disabled { opacity: .5; }
+.quick-add:focus-visible { outline-offset: -3px; border-radius: 9px; }
+.dock {
+  background: linear-gradient(180deg, #23302d, #0c1719 22%, #091114);
+  border-top: 1px solid #cbb37a77;
+  box-shadow: 0 -8px 28px #0007, inset 0 1px #fff1;
+}
+.dock button {
+  display: flex; align-items: center; justify-content: center; gap: 7px;
+  border-radius: 9px; letter-spacing: .1em; min-height: 44px;
+}
+.dock button.on {
+  color: #f8e6bb;
+  background: linear-gradient(140deg, #475043, #202e2d 75%);
+  border-color: #c1a76899;
+  box-shadow: inset 0 1px #fff3, 0 3px 0 #02090a, 0 6px 10px #0005;
+}
+.dock svg { flex-shrink: 0; width: 18px; height: 18px; }
+.cash .checks-head {
+  min-height: 124px;
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 20px 18px;
+  border: 1px solid #cbb27c66;
+  border-radius: 15px;
+  background: url('./assets/money.svg') right 8px center / 138px auto no-repeat, linear-gradient(125deg, #29483a, #0c2323);
+  box-shadow: inset 0 1px #fff3, 0 5px 0 #071212, 0 15px 25px #0005;
+}
+.cash .checks-head h2 { font-size: 33px; max-width: 68%; text-shadow: 0 2px 3px #000; }
+.cash .eyebrow { max-width: 62%; color: #eed4a1; }
+.count-block { padding: 14px; border: 1px solid var(--line); border-radius: 12px; background: linear-gradient(130deg, #1b2c28, #101e20); box-shadow: inset 0 1px #fff1, 0 4px 14px #0004; }
+.count-head { gap: 8px; }
+.count-head h3 { font-size: 19px; }
+.bill { padding: 8px 0; }
+.bill > span { color: #edd6a5; }
+.cash-summary div { border-radius: 9px; box-shadow: inset 0 1px #fff1, 0 3px 8px #0005; }
+.made-btn { border-radius: 9px; background: linear-gradient(140deg, #f4dd9f, #c39c50); box-shadow: inset 0 1px #fff8, 0 3px 0 #5f4a2b; font-weight: 600; }
+.ghost-btn, .made-row, .made-tally { border-radius: 9px; }
+.art-credit { color: #acb5b2; font-size: 11px; line-height: 1.5; margin: 24px 4px; }
+.art-credit a { color: #e9c984; }
+@media (min-width: 520px) {
+  body { background: radial-gradient(ellipse at 30% 15%, #20352e, transparent 50%), radial-gradient(ellipse at 80% 90%, #28301f, transparent 50%), #060b0d; }
+  #root { box-shadow: 0 0 0 1px #dab97b80, 0 0 0 7px #11201e, 0 0 0 8px #96794755, 0 35px 100px #000b; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .drink-box, .quick-tile, .dock button { transition: none; animation: none; }
+}

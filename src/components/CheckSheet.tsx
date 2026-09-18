@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import type { Category, Drink } from '../types'
 import { DrinkList } from './DrinkList'
+import { DrinkArtwork } from './DrinkArtwork'
 import { tapOnly } from '../tapOnly'
 import { ingredientLine, searchTheInternet, type WebSearchResult } from '../data/webSearch'
 
@@ -154,6 +155,7 @@ export function CheckSheet({ drinks, topMadeIds, flashing, onOpen, onMake }: Pro
             <ul className="web-list">
               {webDrinks.map((drink) => (
                 <li key={drink.id} className="web-box">
+                  <DrinkArtwork id={drink.id} thumb={drink.thumb} />
                   <button
                     type="button"
                     className="checkbox"
@@ -176,6 +178,10 @@ export function CheckSheet({ drinks, topMadeIds, flashing, onOpen, onMake }: Pro
           ) : null}
         </section>
       ) : null}
+      <p className="art-credit">
+        Drink photography: <a href="https://www.thecocktaildb.com/" target="_blank" rel="noreferrer">TheCocktailDB</a>.
+        Some images illustrate a drink family. Rail artwork includes AI imagery.
+      </p>
     </div>
   )
 }

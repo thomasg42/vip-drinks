@@ -227,6 +227,7 @@ function App() {
           className={tab === 'sheet' ? 'on' : ''}
           onClick={() => setTab('sheet')}
         >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden="true"><path d="m4 4 8 9 8-9H4Zm8 9v7m-5 0h10M7 7h10" /></svg>
           Sheet
         </button>
         <button
@@ -234,6 +235,7 @@ function App() {
           className={tab === 'made' ? 'on' : ''}
           onClick={() => setTab('made')}
         >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden="true"><path d="M5 4h14v17H5zM9 4V2h6v2M8 12l3 3 5-6" /></svg>
           Made
         </button>
         <button
@@ -241,6 +243,7 @@ function App() {
           className={tab === 'cash' ? 'on' : ''}
           onClick={() => setTab('cash')}
         >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="3" /><path d="M14 9c-5-3-7 3-2 3s3 6-2 3m2-8v10M5 11v2m14-2v2" /></svg>
           Cash
         </button>
       </nav>

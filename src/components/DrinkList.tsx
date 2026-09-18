@@ -1,5 +1,6 @@
 import type { Drink } from '../types'
 import { tapOnly } from '../tapOnly'
+import { DrinkArtwork } from './DrinkArtwork'
 
 type Props = {
   drinks: Drink[]
@@ -15,6 +16,7 @@ export function DrinkList({ drinks, flashing, onMake, onOpen }: Props) {
         const checked = flashing === drink.id
         return (
           <li key={drink.id} className={`drink-box${checked ? ' is-checked' : ''}`}>
+            <DrinkArtwork id={drink.id} thumb={drink.thumb} />
             <button
               type="button"
               className="checkbox"

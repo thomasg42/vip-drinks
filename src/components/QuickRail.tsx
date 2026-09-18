@@ -1,4 +1,5 @@
 import { QUICK_POURS } from '../data/quickPours'
+import { DrinkArtwork } from './DrinkArtwork'
 
 type Props = {
   counts: Record<string, number>
@@ -19,6 +20,7 @@ export function QuickRail({ counts, onPour, onUndo }: Props) {
         const count = counts[pour.id] ?? 0
         return (
           <div key={pour.id} className="quick-tile" style={{ ['--rail' as string]: pour.tint }}>
+            <DrinkArtwork id={pour.id} />
             <button
               type="button"
               className="quick-add"

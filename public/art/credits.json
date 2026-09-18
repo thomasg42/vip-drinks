@@ -1,0 +1,919 @@
+{
+  "margarita": {
+    "file": "art/drink-11007.jpg",
+    "sourceName": "Margarita",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/5noda61589575158.jpg",
+    "credit": "Cocktailmarler",
+    "kind": "exact-name"
+  },
+  "old-fashioned": {
+    "file": "art/drink-11001.jpg",
+    "sourceName": "Old Fashioned",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/vrwquq1478252802.jpg",
+    "credit": "Dave M",
+    "kind": "exact-name"
+  },
+  "espresso-martini": {
+    "file": "art/drink-17212.jpg",
+    "sourceName": "Espresso Martini",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/n0sx531504372951.jpg",
+    "credit": "TheCocktailDB",
+    "kind": "exact-name"
+  },
+  "mojito": {
+    "file": "art/drink-11000.jpg",
+    "sourceName": "Mojito",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/metwgh1606770327.jpg",
+    "credit": "anilaha https://pixabay.com/users/anilaha-16242978/",
+    "kind": "exact-name"
+  },
+  "negroni": {
+    "file": "art/drink-11003.jpg",
+    "sourceName": "Negroni",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/qgdu971561574065.jpg",
+    "credit": "TheCocktailDB.com",
+    "kind": "exact-name"
+  },
+  "manhattan": {
+    "file": "art/drink-11008.jpg",
+    "sourceName": "Manhattan",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/yk70e31606771240.jpg",
+    "credit": "Sarah Stierch (CC BY 4.0)",
+    "kind": "exact-name"
+  },
+  "martini": {
+    "file": "art/drink-11728.jpg",
+    "sourceName": "Martini",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/71t8581504353095.jpg",
+    "credit": "TheCocktailDB",
+    "kind": "exact-name"
+  },
+  "daiquiri": {
+    "file": "art/drink-11006.jpg",
+    "sourceName": "Daiquiri",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/mrz9091589574515.jpg",
+    "credit": "Will Shenton",
+    "kind": "exact-name"
+  },
+  "whiskey-sour": {
+    "file": "art/drink-11004.jpg",
+    "sourceName": "Whiskey Sour",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/hbkfsh1589574990.jpg",
+    "credit": "Ralf Roletschek https://www.wikidata.org/wiki/Q15080600",
+    "kind": "exact-name"
+  },
+  "moscow-mule": {
+    "file": "art/drink-11009.jpg",
+    "sourceName": "Moscow Mule",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/3pylqc1504370988.jpg",
+    "credit": "Will Shenton\r\n",
+    "kind": "exact-name"
+  },
+  "cosmo": {
+    "file": "art/drink-17196.jpg",
+    "sourceName": "Cosmopolitan",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/kpsajh1504368362.jpg",
+    "credit": "TheCocktailDB",
+    "kind": "exact-name"
+  },
+  "gin-tonic": {
+    "file": "art/drink-11403.jpg",
+    "sourceName": "Gin And Tonic",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/k0508k1668422436.jpg",
+    "credit": "pxhere.com",
+    "kind": "exact-name"
+  },
+  "french-75": {
+    "file": "art/drink-17197.jpg",
+    "sourceName": "French 75",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/hrxfbl1606773109.jpg",
+    "credit": "robert84ak https://pixabay.com/de/users/robert84ak-16722616/",
+    "kind": "exact-name"
+  },
+  "mimosa": {
+    "file": "art/drink-17205.jpg",
+    "sourceName": "Mimosa",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/juhcuu1504370685.jpg",
+    "credit": "TheCocktailDB",
+    "kind": "exact-name"
+  },
+  "paloma": {
+    "file": "art/drink-17253.jpg",
+    "sourceName": "Paloma",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/samm5j1513706393.jpg",
+    "credit": "TheCocktailDB",
+    "kind": "exact-name"
+  },
+  "aperol-spritz": {
+    "file": "art/drink-178325.jpg",
+    "sourceName": "Aperol Spritz",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/iloasq1587661955.jpg",
+    "credit": "TheCocktailDB",
+    "kind": "exact-name"
+  },
+  "lemon-drop": {
+    "file": "art/drink-14366.jpg",
+    "sourceName": "Lemon Drop",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/mtpxgk1504373297.jpg",
+    "credit": "TheCocktailDB",
+    "kind": "exact-name"
+  },
+  "mai-tai": {
+    "file": "art/drink-11690.jpg",
+    "sourceName": "Mai Tai",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/twyrrp1439907470.jpg",
+    "credit": "Johnny Silvercloud https://www.flickr.com/people/116193477@N08",
+    "kind": "exact-name"
+  },
+  "pina-colada": {
+    "file": "art/drink-17207.jpg",
+    "sourceName": "Pina Colada",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/upgsue1668419912.jpg",
+    "credit": "TheCocktailDB",
+    "kind": "exact-name"
+  },
+  "long-island": {
+    "file": "art/drink-17204.jpg",
+    "sourceName": "Long Island Iced Tea",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/wx7hsg1504370510.jpg",
+    "credit": "TheCocktailDB",
+    "kind": "exact-name"
+  },
+  "tequila-sunrise": {
+    "file": "art/drink-13621.jpg",
+    "sourceName": "Tequila Sunrise",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/quqyqp1480879103.jpg",
+    "credit": "TheCocktailDB",
+    "kind": "exact-name"
+  },
+  "bloody-mary": {
+    "file": "art/drink-11113.jpg",
+    "sourceName": "Bloody Mary",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/t6caa21582485702.jpg",
+    "credit": "TheCocktialDB.com",
+    "kind": "exact-name"
+  },
+  "screwdriver": {
+    "file": "art/drink-12162.jpg",
+    "sourceName": "Screwdriver",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/8xnyke1504352207.jpg",
+    "credit": "TheCocktailDB",
+    "kind": "exact-name"
+  },
+  "white-russian": {
+    "file": "art/drink-12528.jpg",
+    "sourceName": "White Russian",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/vsrupw1472405732.jpg",
+    "credit": "TheCocktailDB",
+    "kind": "exact-name"
+  },
+  "black-russian": {
+    "file": "art/drink-11102.jpg",
+    "sourceName": "Black Russian",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/8oxlqf1606772765.jpg",
+    "credit": "Will Shenton",
+    "kind": "exact-name"
+  },
+  "irish-coffee": {
+    "file": "art/drink-13971.jpg",
+    "sourceName": "Irish Coffee",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/sywsqw1439906999.jpg",
+    "credit": "TheCocktailDB",
+    "kind": "exact-name"
+  },
+  "mint-julep": {
+    "file": "art/drink-17206.jpg",
+    "sourceName": "Mint Julep",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/squyyq1439907312.jpg",
+    "credit": "TheCocktailDB",
+    "kind": "exact-name"
+  },
+  "sazerac": {
+    "file": "art/drink-12127.jpg",
+    "sourceName": "Sazerac",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/vvpxwy1439907208.jpg",
+    "credit": "TheCocktailDB",
+    "kind": "exact-name"
+  },
+  "boulevardier": {
+    "file": "art/drink-17251.jpg",
+    "sourceName": "Boulevardier",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/km84qi1513705868.jpg",
+    "credit": "TheCocktailDB",
+    "kind": "exact-name"
+  },
+  "paper-plane": {
+    "file": "art/drink-12196.jpg",
+    "sourceName": "Sidecar",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/x72sik1606854964.jpg",
+    "credit": "Michael Styne https://www.flickr.com/photos/mstyne/",
+    "kind": "representative"
+  },
+  "penicillin": {
+    "file": "art/drink-17829.jpg",
+    "sourceName": "Penicillin",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/hc9b1a1521853096.jpg",
+    "credit": "TheCocktailDB",
+    "kind": "exact-name"
+  },
+  "last-word": {
+    "file": "art/drink-17247.jpg",
+    "sourceName": "The Last Word",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/91oule1513702624.jpg",
+    "credit": "TheCocktailDB",
+    "kind": "name-alias"
+  },
+  "aviation": {
+    "file": "art/drink-17180.jpg",
+    "sourceName": "Aviation",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/trbplb1606855233.jpg",
+    "credit": "Michael Styne https://www.flickr.com/photos/mstyne/",
+    "kind": "exact-name"
+  },
+  "gimlet": {
+    "file": "art/drink-17255.jpg",
+    "sourceName": "Gimlet",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/3xgldt1513707271.jpg",
+    "credit": "TheCocktailDB",
+    "kind": "exact-name"
+  },
+  "tom-collins": {
+    "file": "art/drink-12402.jpg",
+    "sourceName": "Tom Collins",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/7cll921606854636.jpg",
+    "credit": "Will Shenton",
+    "kind": "exact-name"
+  },
+  "sidecar": {
+    "file": "art/drink-12196.jpg",
+    "sourceName": "Sidecar",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/x72sik1606854964.jpg",
+    "credit": "Michael Styne https://www.flickr.com/photos/mstyne/",
+    "kind": "exact-name"
+  },
+  "bee-knees": {
+    "file": "art/drink-17255.jpg",
+    "sourceName": "Gimlet",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/3xgldt1513707271.jpg",
+    "credit": "TheCocktailDB",
+    "kind": "representative"
+  },
+  "corpse-reviver": {
+    "file": "art/drink-17250.jpg",
+    "sourceName": "Corpse Reviver",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/gifgao1513704334.jpg",
+    "credit": "TheCocktailDB",
+    "kind": "name-alias"
+  },
+  "vesper": {
+    "file": "art/drink-17218.jpg",
+    "sourceName": "Vesper",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/mtdxpa1504374514.jpg",
+    "credit": "TheCocktailDB",
+    "kind": "exact-name"
+  },
+  "dirty-martini": {
+    "file": "art/drink-17181.jpg",
+    "sourceName": "Dirty Martini",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/vcyvpq1485083300.jpg",
+    "credit": "TheCocktailDB",
+    "kind": "exact-name"
+  },
+  "pornstar-martini": {
+    "file": "art/drink-178357.jpg",
+    "sourceName": "Pornstar Martini",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/xjhjdf1630406071.jpg",
+    "credit": "TheCocktailDB",
+    "kind": "exact-name"
+  },
+  "french-martini": {
+    "file": "art/drink-17213.jpg",
+    "sourceName": "French Martini",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/clth721504373134.jpg",
+    "credit": "TheCocktailDB",
+    "kind": "exact-name"
+  },
+  "amaretto-sour": {
+    "file": "art/drink-13731.jpg",
+    "sourceName": "Amaretto Sour",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/xnzc541493070211.jpg",
+    "credit": "TheCocktailDB",
+    "kind": "exact-name"
+  },
+  "gold-rush": {
+    "file": "art/drink-11004.jpg",
+    "sourceName": "Whiskey Sour",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/hbkfsh1589574990.jpg",
+    "credit": "Ralf Roletschek https://www.wikidata.org/wiki/Q15080600",
+    "kind": "representative"
+  },
+  "dark-n-stormy": {
+    "file": "art/drink-17211.jpg",
+    "sourceName": "Dark and Stormy",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/t1tn0s1504374905.jpg",
+    "credit": "TheCocktailDB",
+    "kind": "name-alias"
+  },
+  "cuba-libre": {
+    "file": "art/drink-11288.jpg",
+    "sourceName": "Cuba Libre",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/wmkbfj1606853905.jpg",
+    "credit": "Martin Belam (currybet)",
+    "kind": "exact-name"
+  },
+  "caipirinha": {
+    "file": "art/drink-11202.jpg",
+    "sourceName": "Caipirinha",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/jgvn7p1582484435.jpg",
+    "credit": "TheCocktailDB.com",
+    "kind": "exact-name"
+  },
+  "jungle-bird": {
+    "file": "art/drink-14978.jpg",
+    "sourceName": "Rum Punch",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/wyrsxu1441554538.jpg",
+    "credit": "TheCocktailDB",
+    "kind": "representative"
+  },
+  "painkiller": {
+    "file": "art/drink-17207.jpg",
+    "sourceName": "Pina Colada",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/upgsue1668419912.jpg",
+    "credit": "TheCocktailDB",
+    "kind": "representative"
+  },
+  "hemingway": {
+    "file": "art/drink-17201.jpg",
+    "sourceName": "Hemingway Special",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/jfcvps1504369888.jpg",
+    "credit": "TheCocktailDB",
+    "kind": "name-alias"
+  },
+  "ranch-water": {
+    "file": "art/drink-11403.jpg",
+    "sourceName": "Gin And Tonic",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/k0508k1668422436.jpg",
+    "credit": "pxhere.com",
+    "kind": "representative"
+  },
+  "spicy-margarita": {
+    "file": "art/drink-11007.jpg",
+    "sourceName": "Margarita",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/5noda61589575158.jpg",
+    "credit": "Cocktailmarler",
+    "kind": "representative"
+  },
+  "mezcal-margarita": {
+    "file": "art/drink-11007.jpg",
+    "sourceName": "Margarita",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/5noda61589575158.jpg",
+    "credit": "Cocktailmarler",
+    "kind": "representative"
+  },
+  "americano": {
+    "file": "art/drink-15941.jpg",
+    "sourceName": "Americano",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/709s6m1613655124.jpg",
+    "credit": "Author - Cher37 https://commons.wikimedia.org/wiki/File:Martini_Americano.jpg",
+    "kind": "exact-name"
+  },
+  "negroni-sbagliato": {
+    "file": "art/drink-11003.jpg",
+    "sourceName": "Negroni",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/qgdu971561574065.jpg",
+    "credit": "TheCocktailDB.com",
+    "kind": "representative"
+  },
+  "hugo-spritz": {
+    "file": "art/drink-178325.jpg",
+    "sourceName": "Aperol Spritz",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/iloasq1587661955.jpg",
+    "credit": "TheCocktailDB",
+    "kind": "representative"
+  },
+  "bellini": {
+    "file": "art/drink-17195.jpg",
+    "sourceName": "Bellini",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/eaag491504367543.jpg",
+    "credit": "TheCocktailDB",
+    "kind": "exact-name"
+  },
+  "kir-royale": {
+    "file": "art/drink-13837.jpg",
+    "sourceName": "Kir Royale",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/yt9i7n1504370388.jpg",
+    "credit": "TheCocktailDB",
+    "kind": "exact-name"
+  },
+  "southside": {
+    "file": "art/drink-17255.jpg",
+    "sourceName": "Gimlet",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/3xgldt1513707271.jpg",
+    "credit": "TheCocktailDB",
+    "kind": "representative"
+  },
+  "clover-club": {
+    "file": "art/drink-17186.jpg",
+    "sourceName": "Clover Club",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/t0aja61504348715.jpg",
+    "credit": "TheCocktailDB",
+    "kind": "exact-name"
+  },
+  "brandy-alexander": {
+    "file": "art/drink-11016.jpg",
+    "sourceName": "Brandy Alexander",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/mlyk1i1606772340.jpg",
+    "credit": "Will Shenton",
+    "kind": "exact-name"
+  },
+  "grasshopper": {
+    "file": "art/drink-17200.jpg",
+    "sourceName": "Grasshopper",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/aqm9el1504369613.jpg",
+    "credit": "TheCocktailDB",
+    "kind": "exact-name"
+  },
+  "mudslide": {
+    "file": "art/drink-12528.jpg",
+    "sourceName": "White Russian",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/vsrupw1472405732.jpg",
+    "credit": "TheCocktailDB",
+    "kind": "representative"
+  },
+  "sex-on-the-beach": {
+    "file": "art/drink-12754.jpg",
+    "sourceName": "Sex on the Beach",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/fi67641668420787.jpg",
+    "credit": "TheCocktailDB",
+    "kind": "exact-name"
+  },
+  "blue-hawaiian": {
+    "file": "art/drink-11117.jpg",
+    "sourceName": "Blue Lagoon",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/5wm4zo1582579154.jpg",
+    "credit": "TheCocktailDB",
+    "kind": "representative"
+  },
+  "hurricane": {
+    "file": "art/drink-14978.jpg",
+    "sourceName": "Rum Punch",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/wyrsxu1441554538.jpg",
+    "credit": "TheCocktailDB",
+    "kind": "representative"
+  },
+  "zombie": {
+    "file": "art/drink-17241.jpg",
+    "sourceName": "Zombie",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/2en3jk1509557725.jpg",
+    "credit": "TheCocktailDB",
+    "kind": "exact-name"
+  },
+  "godfather": {
+    "file": "art/drink-11423.jpg",
+    "sourceName": "Godfather",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/e5zgao1582582378.jpg",
+    "credit": "TheCocktailDB.com",
+    "kind": "exact-name"
+  },
+  "rusty-nail": {
+    "file": "art/drink-12101.jpg",
+    "sourceName": "Rusty Nail",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/yqsvtw1478252982.jpg",
+    "credit": "TheCocktailDB",
+    "kind": "exact-name"
+  },
+  "rob-roy": {
+    "file": "art/drink-11008.jpg",
+    "sourceName": "Manhattan",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/yk70e31606771240.jpg",
+    "credit": "Sarah Stierch (CC BY 4.0)",
+    "kind": "representative"
+  },
+  "vieux-carre": {
+    "file": "art/drink-11001.jpg",
+    "sourceName": "Old Fashioned",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/vrwquq1478252802.jpg",
+    "credit": "Dave M",
+    "kind": "representative"
+  },
+  "new-york-sour": {
+    "file": "art/drink-11844.jpg",
+    "sourceName": "New York Sour",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/61wgch1504882795.jpg",
+    "credit": "TheCocktailDB",
+    "kind": "exact-name"
+  },
+  "irish-maid": {
+    "file": "art/drink-11004.jpg",
+    "sourceName": "Whiskey Sour",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/hbkfsh1589574990.jpg",
+    "credit": "Ralf Roletschek https://www.wikidata.org/wiki/Q15080600",
+    "kind": "representative"
+  },
+  "whiskey-ginger": {
+    "file": "art/drink-17204.jpg",
+    "sourceName": "Long Island Iced Tea",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/wx7hsg1504370510.jpg",
+    "credit": "TheCocktailDB",
+    "kind": "representative"
+  },
+  "vodka-soda": {
+    "file": "art/drink-11403.jpg",
+    "sourceName": "Gin And Tonic",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/k0508k1668422436.jpg",
+    "credit": "pxhere.com",
+    "kind": "representative"
+  },
+  "vodka-cranberry": {
+    "file": "art/drink-13377.jpg",
+    "sourceName": "Sea breeze",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/7rfuks1504371562.jpg",
+    "credit": "TheCocktailDB",
+    "kind": "representative"
+  },
+  "rum-and-coke": {
+    "file": "art/drink-11288.jpg",
+    "sourceName": "Cuba Libre",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/wmkbfj1606853905.jpg",
+    "credit": "Martin Belam (currybet)",
+    "kind": "representative"
+  },
+  "jack-and-coke": {
+    "file": "art/drink-11288.jpg",
+    "sourceName": "Cuba Libre",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/wmkbfj1606853905.jpg",
+    "credit": "Martin Belam (currybet)",
+    "kind": "representative"
+  },
+  "seven-and-seven": {
+    "file": "art/drink-11403.jpg",
+    "sourceName": "Gin And Tonic",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/k0508k1668422436.jpg",
+    "credit": "pxhere.com",
+    "kind": "representative"
+  },
+  "kamikaze": {
+    "file": "art/drink-11600.jpg",
+    "sourceName": "Kamikaze",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/d7ff7u1606855412.jpg",
+    "credit": "Bevvy",
+    "kind": "exact-name"
+  },
+  "appletini": {
+    "file": "art/drink-17255.jpg",
+    "sourceName": "Gimlet",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/3xgldt1513707271.jpg",
+    "credit": "TheCocktailDB",
+    "kind": "representative"
+  },
+  "vodka-redbull": {
+    "file": "art/drink-12162.jpg",
+    "sourceName": "Screwdriver",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/8xnyke1504352207.jpg",
+    "credit": "TheCocktailDB",
+    "kind": "representative"
+  },
+  "jack-ginger": {
+    "file": "art/drink-17204.jpg",
+    "sourceName": "Long Island Iced Tea",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/wx7hsg1504370510.jpg",
+    "credit": "TheCocktailDB",
+    "kind": "representative"
+  },
+  "captain-coke": {
+    "file": "art/drink-11288.jpg",
+    "sourceName": "Cuba Libre",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/wmkbfj1606853905.jpg",
+    "credit": "Martin Belam (currybet)",
+    "kind": "representative"
+  },
+  "vodka-tonic": {
+    "file": "art/drink-178364.jpg",
+    "sourceName": "Vodka Tonic",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/9koz3f1643821062.jpg",
+    "credit": "TheCocktailDB",
+    "kind": "exact-name"
+  },
+  "vodka-sprite": {
+    "file": "art/drink-11403.jpg",
+    "sourceName": "Gin And Tonic",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/k0508k1668422436.jpg",
+    "credit": "pxhere.com",
+    "kind": "representative"
+  },
+  "vodka-lemonade": {
+    "file": "art/drink-178363.jpg",
+    "sourceName": "Vodka Lemon",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/mql55h1643820632.jpg",
+    "credit": "TheCocktailDB",
+    "kind": "representative"
+  },
+  "vodka-water": {
+    "file": "art/drink-11403.jpg",
+    "sourceName": "Gin And Tonic",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/k0508k1668422436.jpg",
+    "credit": "pxhere.com",
+    "kind": "representative"
+  },
+  "tequila-soda": {
+    "file": "art/drink-11403.jpg",
+    "sourceName": "Gin And Tonic",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/k0508k1668422436.jpg",
+    "credit": "pxhere.com",
+    "kind": "representative"
+  },
+  "gin-juice": {
+    "file": "art/drink-12162.jpg",
+    "sourceName": "Screwdriver",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/8xnyke1504352207.jpg",
+    "credit": "TheCocktailDB",
+    "kind": "representative"
+  },
+  "greyhound": {
+    "file": "art/drink-17252.jpg",
+    "sourceName": "Greyhound",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/g5upn41513706732.jpg",
+    "credit": "TheCocktailDB",
+    "kind": "exact-name"
+  },
+  "salty-dog": {
+    "file": "art/drink-12107.jpg",
+    "sourceName": "Salty Dog",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/4vfge01504890216.jpg",
+    "credit": "TheCocktailDB",
+    "kind": "exact-name"
+  },
+  "bay-breeze": {
+    "file": "art/drink-13377.jpg",
+    "sourceName": "Sea breeze",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/7rfuks1504371562.jpg",
+    "credit": "TheCocktailDB",
+    "kind": "representative"
+  },
+  "sea-breeze": {
+    "file": "art/drink-13377.jpg",
+    "sourceName": "Sea breeze",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/7rfuks1504371562.jpg",
+    "credit": "TheCocktailDB",
+    "kind": "exact-name"
+  },
+  "madras": {
+    "file": "art/drink-12754.jpg",
+    "sourceName": "Sex on the Beach",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/fi67641668420787.jpg",
+    "credit": "TheCocktailDB",
+    "kind": "representative"
+  },
+  "fuzzy-navel": {
+    "file": "art/drink-12162.jpg",
+    "sourceName": "Screwdriver",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/8xnyke1504352207.jpg",
+    "credit": "TheCocktailDB",
+    "kind": "representative"
+  },
+  "amaretto-coke": {
+    "file": "art/drink-11288.jpg",
+    "sourceName": "Cuba Libre",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/wmkbfj1606853905.jpg",
+    "credit": "Martin Belam (currybet)",
+    "kind": "representative"
+  },
+  "malibu-pineapple": {
+    "file": "art/drink-12162.jpg",
+    "sourceName": "Screwdriver",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/8xnyke1504352207.jpg",
+    "credit": "TheCocktailDB",
+    "kind": "representative"
+  },
+  "woo-woo": {
+    "file": "art/drink-13377.jpg",
+    "sourceName": "Sea breeze",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/7rfuks1504371562.jpg",
+    "credit": "TheCocktailDB",
+    "kind": "representative"
+  },
+  "transfusion": {
+    "file": "art/drink-13377.jpg",
+    "sourceName": "Sea breeze",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/7rfuks1504371562.jpg",
+    "credit": "TheCocktailDB",
+    "kind": "representative"
+  },
+  "michelada": {
+    "file": "art/drink-178343.jpg",
+    "sourceName": "Michelada",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/u736bd1605907086.jpg",
+    "credit": "TheCocktailDB",
+    "kind": "exact-name"
+  },
+  "rum-punch": {
+    "file": "art/drink-14978.jpg",
+    "sourceName": "Rum Punch",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/wyrsxu1441554538.jpg",
+    "credit": "TheCocktailDB",
+    "kind": "exact-name"
+  },
+  "blue-lagoon": {
+    "file": "art/drink-11117.jpg",
+    "sourceName": "Blue Lagoon",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/5wm4zo1582579154.jpg",
+    "credit": "TheCocktailDB",
+    "kind": "exact-name"
+  },
+  "electric-lemonade": {
+    "file": "art/drink-11117.jpg",
+    "sourceName": "Blue Lagoon",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/5wm4zo1582579154.jpg",
+    "credit": "TheCocktailDB",
+    "kind": "representative"
+  },
+  "amf": {
+    "file": "art/drink-11117.jpg",
+    "sourceName": "Blue Lagoon",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/5wm4zo1582579154.jpg",
+    "credit": "TheCocktailDB",
+    "kind": "representative"
+  },
+  "tokyo-tea": {
+    "file": "art/drink-11000.jpg",
+    "sourceName": "Mojito",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/metwgh1606770327.jpg",
+    "credit": "anilaha https://pixabay.com/users/anilaha-16242978/",
+    "kind": "representative"
+  },
+  "dirty-shirley": {
+    "file": "art/drink-13377.jpg",
+    "sourceName": "Sea breeze",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/7rfuks1504371562.jpg",
+    "credit": "TheCocktailDB",
+    "kind": "representative"
+  },
+  "washington-apple": {
+    "file": "art/drink-13731.jpg",
+    "sourceName": "Amaretto Sour",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/xnzc541493070211.jpg",
+    "credit": "TheCocktailDB",
+    "kind": "representative"
+  },
+  "alabama-slammer": {
+    "file": "art/drink-11012.jpg",
+    "sourceName": "Alabama Slammer",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/jntghf1606771886.jpg",
+    "credit": "pxfuel.com",
+    "kind": "exact-name"
+  },
+  "amaretto-stone-sour": {
+    "file": "art/drink-14306.jpg",
+    "sourceName": "Amaretto Stone Sour",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/xwryyx1472719921.jpg",
+    "credit": "TheCocktailDB",
+    "kind": "exact-name"
+  },
+  "bloody-maria": {
+    "file": "art/drink-11112.jpg",
+    "sourceName": "Bloody Maria",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/yz0j6z1504389461.jpg",
+    "credit": "TheCocktailDB",
+    "kind": "exact-name"
+  },
+  "chocolate-martini": {
+    "file": "art/drink-17212.jpg",
+    "sourceName": "Espresso Martini",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/n0sx531504372951.jpg",
+    "credit": "TheCocktailDB",
+    "kind": "representative"
+  },
+  "jagerbomb": {
+    "file": "art/drink-12752.jpg",
+    "sourceName": "Lemon Shot",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/mx31hv1487602979.jpg",
+    "credit": "TheCocktailDB",
+    "kind": "representative"
+  },
+  "vegas-bomb": {
+    "file": "art/drink-12752.jpg",
+    "sourceName": "Lemon Shot",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/mx31hv1487602979.jpg",
+    "credit": "TheCocktailDB",
+    "kind": "representative"
+  },
+  "green-tea-shot": {
+    "file": "art/drink-12752.jpg",
+    "sourceName": "Lemon Shot",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/mx31hv1487602979.jpg",
+    "credit": "TheCocktailDB",
+    "kind": "representative"
+  },
+  "lemon-drop-shot": {
+    "file": "art/drink-12752.jpg",
+    "sourceName": "Lemon Shot",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/mx31hv1487602979.jpg",
+    "credit": "TheCocktailDB",
+    "kind": "representative"
+  },
+  "fireball-shot": {
+    "file": "art/drink-12752.jpg",
+    "sourceName": "Lemon Shot",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/mx31hv1487602979.jpg",
+    "credit": "TheCocktailDB",
+    "kind": "representative"
+  },
+  "tequila-shot": {
+    "file": "art/drink-12752.jpg",
+    "sourceName": "Lemon Shot",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/mx31hv1487602979.jpg",
+    "credit": "TheCocktailDB",
+    "kind": "representative"
+  },
+  "pickleback": {
+    "file": "art/drink-12752.jpg",
+    "sourceName": "Lemon Shot",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/mx31hv1487602979.jpg",
+    "credit": "TheCocktailDB",
+    "kind": "representative"
+  },
+  "buttery-nipple": {
+    "file": "art/drink-14466.jpg",
+    "sourceName": "Dirty Nipple",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/vtyqrt1461866508.jpg",
+    "credit": "TheCocktailDB",
+    "kind": "representative"
+  },
+  "baby-guinness": {
+    "file": "art/drink-15853.jpg",
+    "sourceName": "B-52",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/5a3vg61504372070.jpg",
+    "credit": "TheCocktailDB",
+    "kind": "representative"
+  },
+  "surfer-on-acid": {
+    "file": "art/drink-12752.jpg",
+    "sourceName": "Lemon Shot",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/mx31hv1487602979.jpg",
+    "credit": "TheCocktailDB",
+    "kind": "representative"
+  },
+  "redheaded-slut": {
+    "file": "art/drink-13190.jpg",
+    "sourceName": "Kool-Aid Shot",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/fegm621503564966.jpg",
+    "credit": "TheCocktailDB",
+    "kind": "representative"
+  },
+  "irish-slammer": {
+    "file": "art/drink-15853.jpg",
+    "sourceName": "B-52",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/5a3vg61504372070.jpg",
+    "credit": "TheCocktailDB",
+    "kind": "representative"
+  },
+  "white-gummy-bear": {
+    "file": "art/drink-12752.jpg",
+    "sourceName": "Lemon Shot",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/mx31hv1487602979.jpg",
+    "credit": "TheCocktailDB",
+    "kind": "representative"
+  },
+  "shirley-temple": {
+    "file": "art/drink-13377.jpg",
+    "sourceName": "Sea breeze",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/7rfuks1504371562.jpg",
+    "credit": "TheCocktailDB",
+    "kind": "representative"
+  },
+  "roy-rogers": {
+    "file": "art/drink-11288.jpg",
+    "sourceName": "Cuba Libre",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/wmkbfj1606853905.jpg",
+    "credit": "Martin Belam (currybet)",
+    "kind": "representative"
+  },
+  "arnold-palmer": {
+    "file": "art/drink-17204.jpg",
+    "sourceName": "Long Island Iced Tea",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/wx7hsg1504370510.jpg",
+    "credit": "TheCocktailDB",
+    "kind": "representative"
+  },
+  "virgin-mojito": {
+    "file": "art/drink-11000.jpg",
+    "sourceName": "Mojito",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/metwgh1606770327.jpg",
+    "credit": "anilaha https://pixabay.com/users/anilaha-16242978/",
+    "kind": "representative"
+  },
+  "virgin-pina-colada": {
+    "file": "art/drink-17207.jpg",
+    "sourceName": "Pina Colada",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/upgsue1668419912.jpg",
+    "credit": "TheCocktailDB",
+    "kind": "representative"
+  },
+  "virgin-mule": {
+    "file": "art/drink-11009.jpg",
+    "sourceName": "Moscow Mule",
+    "sourceUrl": "https://www.thecocktaildb.com/images/media/drink/3pylqc1504370988.jpg",
+    "credit": "Will Shenton\r\n",
+    "kind": "representative"
+  }
+}
