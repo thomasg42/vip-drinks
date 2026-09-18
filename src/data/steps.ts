@@ -73,11 +73,11 @@ const MUDDLEABLE =
 
 /** Anything with bubbles in it: stirring it back in flattens the drink. */
 const FIZZY =
-  /soda|cola|tonic|ginger beer|ginger ale|champagne|prosecco|sparkling|red bull|beer|lager|ale\b|stout|seltzer|sprite|lemon-lime|7up/i
+  /soda|\bcola\b|tonic|ginger beer|ginger ale|champagne|prosecco|sparkling|red bull|beer|lager|\bale\b|stout|seltzer|sprite|lemon-lime|7up/i
 
 /** Things that go in last and on top, never into the tin. */
 const TOPPER =
-  /soda|cola|tonic|ginger beer|ginger ale|champagne|prosecco|sparkling|red bull|lemonade|beer|club soda|seltzer|sprite|7up|water$/i
+  /soda|\bcola\b|tonic|ginger beer|ginger ale|champagne|prosecco|sparkling|red bull|lemonade|beer|club soda|seltzer|sprite|7up|water$/i
 
 function lower(value: string): string {
   return value.toLowerCase()
@@ -204,8 +204,8 @@ export function buildSteps(drink: Drink): string[] {
   const rim = lower(drink.glass)
 
   // "Roll, never shake" is an instruction NOT to shake.
-  const shaken = /\bshake/.test(method) && !/never shake|no shake|don't shake/.test(method)
   const blended = method.includes('blend')
+  const shaken = !blended && /\bshake/.test(method) && !/never shake|no shake|don't shake/.test(method)
   const stirredOut = method.includes('stir') && method.includes('strain')
   const strained = method.includes('strain')
   const dumped = method.includes('dump')
@@ -319,7 +319,9 @@ export function buildSteps(drink: Drink): string[] {
 
   // 7. Whatever goes on top, goes on top.
   toppers.forEach((ing) => {
-    steps.push(`Top it with ${measure(ing)} and leave it there — do not stir it back in.`)
+    steps.push(mixLast && !noStir
+      ? `Top it with ${measure(ing)}.`
+      : `Top it with ${measure(ing)} and leave it there — do not stir it back in.`)
   })
   floats.forEach((ing) => {
     const item = lower(ing.item).replace(/\s*float$/, '')

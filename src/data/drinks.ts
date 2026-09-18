@@ -1,5 +1,6 @@
 import type { Category, Drink, Ingredient } from '../types'
 import { MIXED_DRINKS } from './mixedDrinks.ts'
+import { SHORTEST_VIDEO } from './shortestVideos.ts'
 
 function shorts(id: string) {
   return `https://www.youtube.com/shorts/${id}`
@@ -290,4 +291,4 @@ const RECLASSIFIED: Record<string, Category> = {
 export const DRINKS: Drink[] = [
   ...COCKTAILS.map((d) => ({ ...d, category: RECLASSIFIED[d.id] ?? ('cocktail' as Category) })),
   ...MIXED_DRINKS,
-]
+].map(d => ({ ...d, videoUrl: SHORTEST_VIDEO[d.name] ? shorts(SHORTEST_VIDEO[d.name]) : d.videoUrl }))

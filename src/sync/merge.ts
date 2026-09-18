@@ -25,7 +25,6 @@ import {
  *    newest reading wins outright and the older one is discarded.
  */
 
-const MAX_HISTORY = 40
 const MAX_TOMBSTONES = 500
 
 function newer(a: number, b: number): boolean {
@@ -97,7 +96,6 @@ export function mergeState(a: AppState, b: AppState): AppState {
 
   const history: SavedShift[] = [...unionById(a.history ?? [], b.history ?? []).values()]
     .sort((x, y) => (x.endedAt < y.endedAt ? 1 : x.endedAt > y.endedAt ? -1 : 0))
-    .slice(0, MAX_HISTORY)
 
   // Saved videos are per-drink and almost never collide. When they do, the side
   // with the newer videos clock wins the contested key -- not the whole map, so

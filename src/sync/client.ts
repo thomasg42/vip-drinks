@@ -65,10 +65,7 @@ function noteServerTime(serverTime: unknown) {
   }
 }
 
-export type SyncStatus =
-  | { kind: 'off' }
-  | { kind: 'ok'; at: number }
-  | { kind: 'error'; message: string }
+export type { SaveStatus as SyncStatus } from './engine.ts'
 
 type Envelope = { state?: unknown; serverTime?: unknown; error?: string }
 
@@ -95,6 +92,7 @@ async function exchange(
     headers: state ? { 'Content-Type': 'application/json' } : undefined,
     body: payload,
     keepalive: closing && !!payload && payload.length < KEEPALIVE_LIMIT_BYTES,
+    signal: AbortSignal.timeout(12_000),
   })
   const body = (await res.json().catch(() => ({}))) as Envelope
   if (!res.ok) throw new Error(body.error || `Sync failed (${res.status}).`)

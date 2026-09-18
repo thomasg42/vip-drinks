@@ -12,6 +12,25 @@ const byId = (id: string): Drink => {
 
 const stepsFor = (id: string) => buildSteps(byId(id))
 
+test('chocolate liqueur belongs in the shaker, never as a cola topper', () => {
+  const steps = stepsFor('chocolate-martini')
+  assert.ok(!steps.some(step => /top it with.*chocolate/i.test(step)))
+  assert.ok(steps.findIndex(step => /chocolate liqueur/i.test(step)) < steps.findIndex(step => /seal.*shake/i.test(step)))
+})
+
+test('a blended alternative consistently uses the blender', () => {
+  const steps = stepsFor('pina-colada').join(' ')
+  assert.match(steps, /blend until/i)
+  assert.doesNotMatch(steps, /seal the shaker/i)
+})
+
+test('no recipe tells the bartender both to leave a topper unstirred and then stir it', () => {
+  for (const drink of DRINKS) {
+    const text = buildSteps(drink).join(' ')
+    assert.ok(!/do not stir it back in.*(?:give it one gentle stir|stir it gently)/i.test(text), drink.name)
+  }
+})
+
 test('every drink on the sheet has a real build, not a stub', () => {
   for (const drink of DRINKS) {
     const steps = buildSteps(drink)

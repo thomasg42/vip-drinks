@@ -160,6 +160,21 @@ body { background: #05090a; }
 .ghost-btn, .made-row, .made-tally { border-radius: 9px; }
 .art-credit { color: #acb5b2; font-size: 11px; line-height: 1.5; margin: 24px 4px; }
 .art-credit a { color: #e9c984; }
+.save-panel { margin-bottom: 14px; padding: 12px 14px; border: 1px solid #62877466; border-radius: 12px; background: #152724; }
+.save-panel-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.autosave-badge { color: #d8eac8; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; }
+.autosave-badge::before { content: ''; display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: #a8d5a0; margin-right: 7px; }
+.save-now { flex-shrink: 0; min-height: 44px; padding: 8px 17px; border: 1px solid #d9c18b88; border-radius: 8px; background: linear-gradient(140deg, #eed39b, #b89555); color: #14231d; font-weight: 700; }
+.save-now:disabled { opacity: .7; }
+.save-panel p { margin: 9px 0 0; min-width: 0; overflow-wrap: anywhere; font-size: 13px; line-height: 1.4; }
+.save-panel p strong, .save-panel p span { display: block; }
+.save-panel p span { color: #bac9c1; font-size: 12px; }
+.save-panel .save-warning strong { color: #eacc8e; }
+.last-shift { border: 1px solid #cbb27c55; border-radius: 12px; padding: 13px; margin-bottom: 16px; background: linear-gradient(135deg,#243c32,#122320); }
+.last-shift > p { margin: 0 0 10px; color: #e7cd94; font-size: 12px; text-transform: uppercase; letter-spacing: .06em; }
+.last-shift-totals { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+.last-shift-totals span { font-size: 11px; color: #bccabf; }
+.last-shift-totals strong { display: block; font: 500 clamp(18px,5.2vw,23px) var(--font-display); color: #f9edcd; margin-top: 4px; }
 @media (min-width: 520px) {
   body { background: radial-gradient(ellipse at 30% 15%, #20352e, transparent 50%), radial-gradient(ellipse at 80% 90%, #28301f, transparent 50%), #060b0d; }
   #root { box-shadow: 0 0 0 1px #dab97b80, 0 0 0 7px #11201e, 0 0 0 8px #96794755, 0 35px 100px #000b; }
@@ -167,3 +182,7 @@ body { background: #05090a; }
 @media (prefers-reduced-motion: reduce) {
   .drink-box, .quick-tile, .dock button { transition: none; animation: none; }
 }
+
+.recipe-source, .recipe-unverified { font-size: 12px; line-height: 1.5; padding: 10px 12px; border: 1px solid rgba(218,187,126,.25); border-radius: 10px; overflow-wrap: anywhere; }
+.recipe-source a { color: #ead6a7; }
+.recipe-unverified { color: #d6c9ae; }

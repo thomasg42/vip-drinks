@@ -180,7 +180,7 @@ export function CheckSheet({ drinks, topMadeIds, flashing, onOpen, onMake }: Pro
       ) : null}
       <p className="art-credit">
         Drink photography: <a href="https://www.thecocktaildb.com/" target="_blank" rel="noreferrer">TheCocktailDB</a>.
-        Some images illustrate a drink family. Rail artwork includes AI imagery.
+        Some images illustrate a drink family. Shot and rail artwork includes AI imagery.
       </p>
     </div>
   )

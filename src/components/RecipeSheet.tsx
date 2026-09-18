@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import type { Drink } from '../types'
-import { buildSteps } from '../data/steps'
+import { VERIFIED_RECIPES } from '../data/verifiedRecipes'
 import { youtubeEmbed, youtubeId, youtubeSearchUrl, youtubeWatch } from '../types'
 
 type Props = {
@@ -36,7 +36,7 @@ export function RecipeSheet({ drink, savedVideoId, onClose, onMade, onSaveVideo 
   const embed = youtubeEmbed(drink, savedVideoId)
   const fromWeb = drink.source === 'web'
   const searchUrl = youtubeSearchUrl(drink.name)
-  const steps = buildSteps(drink)
+  const recipe = VERIFIED_RECIPES[drink.id]
 
   const savePasted = () => {
     const raw = paste.trim()
@@ -70,9 +70,7 @@ export function RecipeSheet({ drink, savedVideoId, onClose, onMade, onSaveVideo 
         */}
         <div className="recipe-scroll">
           <h2 id="recipe-title">{drink.name}</h2>
-          <p className="recipe-meta">
-            {drink.glass} · {drink.method}
-          </p>
+          {recipe ? <p className="recipe-meta">{recipe.glass} · {recipe.method}</p> : null}
 
           {embed ? (
             <>
@@ -133,14 +131,16 @@ export function RecipeSheet({ drink, savedVideoId, onClose, onMade, onSaveVideo 
                   </button>
                 </div>
                 {pasteError ? <p className="pin-error">{pasteError}</p> : null}
-                <p className="pin-note">Saved on this phone. It plays in the app from then on.</p>
+                <p className="pin-note">Saved with your shift and synced when connected.</p>
               </details>
             </div>
           )}
 
+          {recipe ? <>
+          <p className="recipe-source">Recipe source: <a href={recipe.sourceUrl} target="_blank" rel="noreferrer">{recipe.sourceLabel}</a>. Adapted from Wikimedia contributors; <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noreferrer">CC BY-SA</a>.</p>
           <h3>Ingredients</h3>
           <ul className="ingredients">
-            {drink.ingredients.map((ing, i) => (
+            {recipe.ingredients.map((ing, i) => (
               <li key={`${i}-${ing.item}`}>
                 <span>{ing.amount}</span>
                 <b>{ing.item}</b>
@@ -156,12 +156,12 @@ export function RecipeSheet({ drink, savedVideoId, onClose, onMade, onSaveVideo 
           <section className="how-to">
             <h3>How to make it</h3>
             <ol className="steps">
-              {steps.map((step, i) => (
+              {recipe.steps.map((step, i) => (
                 <li key={i}>{step}</li>
               ))}
             </ol>
-            {fromWeb ? <p className="how-to-meta">In TheCocktailDB’s own words</p> : null}
           </section>
+          </> : <p className="recipe-unverified" role="note">Recipe steps hidden: a .org or .gov source has not been verified for this drink.</p>}
 
           {fromWeb ? (
             <p className="web-source">From TheCocktailDB · off-menu, no house price set</p>

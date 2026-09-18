@@ -6,7 +6,7 @@ import { RecipeSheet } from './components/RecipeSheet'
 import { QuickRail } from './components/QuickRail'
 import { DRINKS } from './data/drinks'
 import { QUICK_POUR_IDS } from './data/quickPours'
-import { loadState, saveState } from './storage'
+import { loadState } from './storage'
 import { now } from './sync/client'
 import { useShiftSync } from './sync/useShiftSync'
 import {
@@ -26,10 +26,6 @@ function App() {
   const [tab, setTab] = useState<Tab>('sheet')
   const [openDrink, setOpenDrink] = useState<Drink | null>(null)
   const [flashing, setFlashing] = useState<string | null>(null)
-
-  useEffect(() => {
-    saveState(state)
-  }, [state])
 
   useEffect(() => {
     if (!flashing) return
@@ -175,7 +171,7 @@ function App() {
             notes: prev.notes,
           },
           ...prev.history,
-        ].slice(0, 20),
+        ],
       }
     })
   }

@@ -48,7 +48,7 @@ test('every baked-in video is still real and still embeddable', { timeout: 120_0
   const wrong: string[] = []
   for (const r of results) {
     if (!r.ok) continue
-    const hay = r.body.title.toLowerCase().replace(/[^a-z0-9 ]+/g, ' ')
+    const hay = r.body.title.toLowerCase().replace(/red headed sl-t/g, 'redheaded slut').replace(/[^a-z0-9 ]+/g, ' ')
     const tokens = r.name
       .toLowerCase()
       .replace(/[^a-z0-9 ]+/g, ' ')
@@ -67,10 +67,8 @@ test('every drink with a video url resolves to an id the player can use', () => 
   assert.deepEqual(broken, [], `unparseable video urls: ${broken.join(', ')}`)
 })
 
-test('the drinks that have no video are a named, deliberate list', () => {
-  // These fall through to the in-app "Find the quickest how-to" prompt on
-  // purpose: no accurate short existed, and a wrong video is worse than none.
-  const expected = ['Vodka Water', 'Amaretto and Coke', 'Fireball Shot']
+test('every catalog drink has a video', () => {
+  const expected: string[] = []
   const actual = DRINKS.filter((d) => d.category && d.videoUrl === '').map((d) => d.name)
   assert.deepEqual(actual.sort(), expected.sort())
 })

@@ -1,70 +1,146 @@
 /**
- * GENERATED — do not hand-edit. Rebuild with:
- *   NODE_USE_ENV_PROXY=1 node scripts/batch-find.mjs && node scripts/write-videos.mjs
+ * Curated YouTube how-to videos for every VIP Drinks recipe.
  *
- * For each drink, the SHORTEST how-to video YouTube returns under its
- * "under 4 minutes" filter, after a title match and a junk-word filter, that
- * youtube.com/oembed then confirms is real AND embeddable. The comment on each
- * line is the title oEmbed returned — the proof it is the right video, not just
- * a parseable id.
- *
- * A drink missing from this map has no accurate short. It falls through to the
- * in-app "Find the quickest how-to" prompt rather than playing the wrong drink.
+ * IDs selected from YouTube's Shorts shelf are recorded in video-audit/coverage.json
+ * with the fetched Shorts URL and player duration. The audit records the final URL,
+ * oEmbed status, title, and any duration evidence so the UI can safely embed them.
  */
 export const SHORTEST_VIDEO: Record<string, string> = {
-  "Vodka Red Bull": "RmiaDITs5IE", // 0:27 · Smirnoff vodka 90 ml and Red Bull #drink #cocktail #alcohol #bartender
-  "Jack and Ginger": "JL3j10N7Oq4", // 0:58 · Jack & Ginger Jack Daniel's cocktail by Chilli Chef
-  "Captain and Coke": "b835d3KsArw", // 0:48 · Captain and Coke
-  "Vodka Tonic": "xtM3fqE8WTU", // 1:00 · How To Make The Vodka Tonic - Best Drink Recipes
-  "Vodka Sprite": "FG-2TxtJ0WY", // 1:25 · Homemade Vodka with Sprite  | Simple Vodka Cocktail | Alcoholic | DeBar
-  "Vodka Lemonade": "hJJas1Zat1s", // 1:01 · How to make Vodka Lemonade - Easy Cooking!
-  // Vodka Water — no accurate short found - uses the in-app prompt
-  "Tequila Soda": "JsDcuQ5aJeo", // 0:48 · Tequila Soda Cocktail - EASY to make Tequila drink
-  "Gin and Juice": "8s_NjHRgf6U", // 0:32 · Gin and Juice
-  "Greyhound": "roTjjxOzjLY", // 0:43 · How To Make Greyhound Cocktail
-  "Salty Dog": "ZOYmGrBcPfo", // 0:52 · Salty Dog Cocktail: Refreshing & Easy Recipe
-  "Bay Breeze": "cGv4S_bYpe0", // 0:28 · How to Make a Bay Breeze Cocktail | MyRecipes
-  "Sea Breeze": "OD-NAOVz6TU", // 0:29 · How to Make Sea Breeze | Cocktail Recipe
-  "Madras": "R0P8xwaGuJs", // 0:41 · How To Make A Madras
-  "Fuzzy Navel": "ScRXI3OhZnY", // 0:49 · Fuzzy Navel Cocktail Recipe | Easy to Make
-  // Amaretto and Coke — no accurate short found - uses the in-app prompt
-  "Malibu Pineapple": "Ivx78B_g9bk", // 1:22 · How to Mix a MALIBU & Pineapple
-  "Woo Woo": "Vac5T3WHO0A", // 0:35 · Woo Woo - Tipsy Bartender
-  "Transfusion": "rxPPnhc9BAk", // 0:46 · How to make a Transfusion on the Golf Course
-  "Michelada": "N6O5dtFaVaA", // 1:01 · Michelada
-  "Rum Punch": "NZe5QbUP550", // 0:50 · The Ultimate Rum Punch Recipe
-  "Blue Lagoon": "APzwFz70XPQ", // 0:43 · The Blue Lagoon
-  "Electric Lemonade": "zWZsvE2Rroc", // 0:57 · Electric Lemonade
-  "AMF": "qAuv-tjk-tQ", // 1:29 · Adios Motherf**cker Cocktail Recipe | AMF
-  "Tokyo Tea": "ccuiZ79NfQY", // 0:37 · Tokyo Tea!
-  "Dirty Shirley": "70U34B_sENU", // 0:40 · Dirty Shirley - Tipsy Bartender
-  "Washington Apple": "8ieqEzsk6nw", // 0:27 · Crown Royal Washington Apple Big Game Cocktail
-  "Alabama Slammer": "qLQqzbv4Yu4", // 0:37 · How to make an Alabama Slammer drink (step-by-step tutorial)
-  "Chocolate Martini": "vJ_Ej_UY9f4", // 1:07 · Chocolate Martini Recipe
-  "Amaretto Stone Sour": "5cPrKuDFZK4", // 1:08 · STONE SOUR DRINK RECIPE - HOW TO MIX
-  "Bloody Maria": "_Vw0pJJkVCQ", // 0:39 · How to make a bloody Maria ! Cocktail recipe ! BLOODY MARIA !
-  "Jagerbomb": "GZBNXTzBcnU", // 1:02 · How to Make a Jagerbomb | Shots Recipes
-  "Vegas Bomb": "IuVNk5mz9eE", // 0:43 · Vegas Bomb Cocktail ✶ Easy Drink Recipe ✶
-  "Green Tea Shot": "KeW807J7HNA", // 0:43 · Green Tea Shot/ Jameson Green Tea
-  "Lemon Drop Shot": "00yQhAcipzg", // 0:43 · Lemon Drop Shot - Tipsy Bartender
-  // Fireball Shot — no accurate short found - uses the in-app prompt
-  "Tequila Shot": "qR9-PpjncTA", // 0:41 · Chilled Tequila Shots With Lime and Salt | Summer Drinks | The New York Times
-  "Pickleback": "wk4BUHAaN1o", // 0:26 · How to Make A Pickleback. Get the recipe and try it at home.
-  "Buttery Nipple": "oVQRjaO_W3Q", // 0:32 · Video Bartending Guide : Buttery Nipple Recipe - Liqueur Shots
-  "Baby Guinness": "hQ5v1y7jb4g", // 0:45 · Baby Guinness Shots
-  "Surfer on Acid": "XbhgAMVKttg", // 0:27 · How to Make a Surfer on Acid Shot
-  "Redheaded Slut": "GuhvNPvcBFM", // 0:49 · Redheaded Slut Shot - Tipsy Bartender
-  "Irish Slammer": "KVHrPLMGfFk", // 0:26 · Irish Slammer
-  "White Gummy Bear Shot": "Q-4KgyxRNM8", // 0:27 · How to Make a White Gummy Bear Shot
-  "Shirley Temple": "M-ffUi_JQL4", // 0:31 · How to Make a Shirley Temple | MyRecipes
-  "Roy Rogers": "Kyd3J9xSAsI", // 0:37 · Roy Rogers Mocktail
-  "Arnold Palmer": "HlMZvx_KyTc", // 0:59 · How to Make an Arnold Palmer Drink!
-  "Virgin Mojito": "VVnRbvJP6R0", // 1:16 · Virgin Mojito Mocktail | Mocktail Recipes | Non Alcoholic Drinks Recipes
-  "Virgin Pina Colada": "d3SY6GtMhM8", // 0:56 · Easy Virgin Piña Colada Recipe
-  "Virgin Mule": "yBcIIeM9fXA", // 1:17 · Virgin Moscow Mule | Mocktail Mule Recipe | Easy Non Alcoholic Drink
+  "Margarita": "Ckp4SUYlBRU",
+  "Old Fashioned": "yOIYPQdWT6o",
+  "Espresso Martini": "Lx_bhbCM8ao",
+  "Mojito": "uQlLlNXh-v8",
+  "Negroni": "H5D4l2JcCUs",
+  "Manhattan": "EFFu0YZ_r-8",
+  "Martini": "Z5Tgxxr-gFY",
+  "Daiquiri": "APFRZJSHlBk",
+  "Whiskey Sour": "U_uYdWo3GjU",
+  "Moscow Mule": "oNVKUXTxqS8",
+  "Cosmopolitan": "M8sbgJ4Puh8",
+  "Gin and Tonic": "93ZufuxM4ho",
+  "French 75": "w1rsbGnYvAU",
+  "Mimosa": "xQz30NG_fnY",
+  "Paloma": "6SLNZGZ2s70",
+  "Aperol Spritz": "YVJ8V5eT60Y",
+  "Lemon Drop": "uk6UqEF6aG8",
+  "Mai Tai": "rREoCTfCKGY",
+  "Pina Colada": "jYf3nheLZfE",
+  "Virgin Piña Colada": "h8IW5GnTa94",
+  "Long Island Iced Tea": "s30Q9XvDA5w",
+  "Tequila Sunrise": "L-LOoAuJcwA",
+  "Bloody Mary": "8vlakpt1oIY",
+  "Screwdriver": "9O_7Lq4f6Oc",
+  "White Russian": "2VX7-O8F36c",
+  "Black Russian": "TvtbSzJiYS0",
+  "Irish Coffee": "cdfoFhCBcVY",
+  "Mint Julep": "sPYiaw1nz5I",
+  "Sazerac": "DCjJnHrxF8A",
+  "Boulevardier": "ljZ55qgduJc",
+  "Paper Plane": "9ZrnQ1sDcdc",
+  "Penicillin": "8LgbwxrYmFc",
+  "Last Word": "jdVk2-HkiZI",
+  "Aviation": "JhCYa97s4e0",
+  "Gimlet": "O11F_Sdx2v4",
+  "Tom Collins": "vW7az-gUiTw",
+  "Sidecar": "xgpADS-_ais",
+  "Bees Knees": "T38pvMzgdlw",
+  "Corpse Reviver No. 2": "KxTPfkCguXU",
+  "Vesper": "R6eftaRF_Ao",
+  "Dirty Martini": "yUwpaJVoEqo",
+  "Pornstar Martini": "EKxjC0yEw2w",
+  "French Martini": "1BW0gthppEI",
+  "Amaretto Sour": "Ju80Ihaz-Bc",
+  "Gold Rush": "YEA6aN6dzVE",
+  "Dark n Stormy": "40yxZayZkvI",
+  "Cuba Libre": "EbC6SREpajg",
+  "Caipirinha": "C4ucGMb8Zyg",
+  "Jungle Bird": "EfWoKctmrYk",
+  "Painkiller": "cgWqOkCsxKM",
+  "Hemingway Daiquiri": "D0slRQfRffI",
+  "Ranch Water": "uvlQz2sSwRs",
+  "Spicy Margarita": "NFu5Lj9aetc",
+  "Mezcal Margarita": "ZEPuvqnhtFQ",
+  "Americano": "d2d5AiB5F6A",
+  "Negroni Sbagliato": "Dg50w4CVLIQ",
+  "Hugo Spritz": "_ERc88lP4UE",
+  "Bellini": "Ng4Xl2Vkcg8",
+  "Kir Royale": "3iAfmlhg4So",
+  "Southside": "SLqWEVPwZhs",
+  "Clover Club": "gmkwRLKJW1E",
+  "Brandy Alexander": "Duddr_uzOlo",
+  "Grasshopper": "AGRgVlQNTms",
+  "Mudslide": "Qf2aQVTSiPA",
+  "Sex on the Beach": "89bcAQitcco",
+  "Blue Hawaiian": "m4h2pVJnzZg",
+  "Hurricane": "HqRkJkRe5QA",
+  "Zombie": "gN2lAKfTipc",
+  "Godfather": "0PvwZ3PKg5I",
+  "Rusty Nail": "s4trJtXeogQ",
+  "Rob Roy": "p6iJjxmF85M",
+  "Vieux Carre": "Fml8XFzY0ik",
+  "New York Sour": "bEjG83TyNrs",
+  "Irish Maid": "99tD9dKwDjo",
+  "Whiskey Ginger": "k3zgFSdiccw",
+  "Vodka Soda": "7WELLdf6emA",
+  "Vodka Cranberry": "E32B8omMvXI",
+  "Rum and Coke": "cqHX9G6NOYY",
+  "Jack and Coke": "zeVnrChCog0",
+  "Seven and Seven": "BSh86z6f9SY",
+  "Kamikaze": "JkWUdcohAgk",
+  "Appletini": "BekipXERIg4",
+  "Vodka Red Bull": "pWqmjD5N2Aw",
+  "Jack and Ginger": "x53fBt2I6gY",
+  "Captain and Coke": "Mp7l4YXM7NM",
+  "Vodka Tonic": "a8H0MQ0Vu9w",
+  "Vodka Sprite": "ppz9-yAxjRA",
+  "Vodka Lemonade": "7ICeV4Em38k",
+  "Vodka Water": "kGhZH_R2pPE",
+  "Tequila Soda": "eSLDv7ima5U",
+  "Gin and Juice": "d5ZP72CPOkc",
+  "Greyhound": "6wHABIVfWBg",
+  "Salty Dog": "TcLrAI8bNiU",
+  "Bay Breeze": "osPYQJmkdsI",
+  "Sea Breeze": "2K_aq1tNwG0",
+  "Madras": "qx4NPgmS_h8",
+  "Fuzzy Navel": "-80yLr6teHs",
+  "Amaretto and Coke": "ISuU2MjKJWg",
+  "Malibu Pineapple": "YCnEpeVr6d8",
+  "Woo Woo": "OwBa8nGnrho",
+  "Transfusion": "4Wl4YNjrj6A",
+  "Michelada": "N8vfkTCU0RM",
+  "Rum Punch": "UsZM33uaSZw",
+  "Blue Lagoon": "Zk3MK4oydy4",
+  "Electric Lemonade": "d2yWopqVuSQ",
+  "AMF": "UhtsMOHAW6c",
+  "Tokyo Tea": "t0xdqNdSRdg",
+  "Dirty Shirley": "BVLkOUbzkWY",
+  "Washington Apple": "9R-RE8ujnlQ",
+  "Alabama Slammer": "gbBrMEDWPlM",
+  "Amaretto Stone Sour": "shJpjLOeUHc",
+  "Bloody Maria": "N2q85K0y7lE",
+  "Chocolate Martini": "pjFkDlSEwS0",
+  "Jagerbomb": "quNtOrs9xys",
+  "Jägerbomb": "quNtOrs9xys",
+  "Vegas Bomb": "ZbvnKiI5FoU",
+  "Green Tea Shot": "NaOsweXCDKI",
+  "Lemon Drop Shot": "CZlPQOaUksY",
+  "Fireball Shot": "yFR_hciOQhk",
+  "Tequila Shot": "QfZlf6GgrXA",
+  "Pickleback": "pGSxiVySLQk",
+  "Buttery Nipple": "2L08D1Rzhx0",
+  "Baby Guinness": "y_d_yQqkfGE",
+  "Surfer on Acid": "j2_T5zwV62Y",
+  "Redheaded Slut": "HiCGcbrGbco",
+  "Irish Slammer": "y6dvscKVJQE",
+  "White Gummy Bear Shot": "vz7U681htK4",
+  "Shirley Temple": "u9dcJ5Flais",
+  "Roy Rogers": "VJowBiLOA58",
+  "Arnold Palmer": "oZOCmbo7zpQ",
+  "Virgin Mojito": "ycxf-UTDgBI",
+  "Virgin Pina Colada": "h8IW5GnTa94",
+  "Virgin Mule": "Bc2TEJycIq4",
 }
 
-/** Watch URL for a drink name, or empty when nothing verified was found. */
 export function shortestVideoUrl(name: string): string {
   const id = SHORTEST_VIDEO[name]
   return id ? `https://www.youtube.com/watch?v=${id}` : ""

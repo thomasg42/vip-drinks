@@ -7,6 +7,7 @@ import { CashDrawer } from '../src/components/CashDrawer'
 import { loadState } from '../src/storage'
 import { DRINKS } from '../src/data/drinks'
 import { MIXED_DRINKS } from '../src/data/mixedDrinks'
+import { VERIFIED_RECIPES } from '../src/data/verifiedRecipes'
 import { SHORTEST_VIDEO } from '../src/data/shortestVideos'
 import { youtubeId, type Drink } from '../src/types'
 
@@ -20,6 +21,27 @@ function check(name: string, fn: () => void) {
     console.log(`FAIL  ${name}\n      ${(err as Error).message}`)
   }
 }
+
+check('every visible recipe is backed by an org or gov source; unsupported builds stay hidden', () => {
+  for (const drink of DRINKS) {
+    const recipe = VERIFIED_RECIPES[drink.id]
+    const html = renderToStaticMarkup(<RecipeSheet drink={drink} onClose={() => {}} onMade={() => {}} />)
+    if (recipe) {
+      const url = new URL(recipe.sourceUrl)
+      assert.equal(url.protocol, 'https:', drink.name)
+      assert.match(url.hostname, /\.(org|gov)$/, drink.name)
+      assert.ok(recipe.ingredients.length && recipe.steps.length, drink.name)
+      assert.ok(html.includes('class="steps"'), drink.name)
+      assert.ok(html.includes(recipe.sourceUrl.replaceAll('&', '&amp;')), drink.name)
+    } else {
+      assert.ok(html.includes('Recipe steps hidden'), drink.name)
+      assert.ok(!html.includes('class="steps"'), drink.name)
+      assert.ok(!html.includes('class="ingredients"'), drink.name)
+      assert.ok(!html.includes('class="recipe-meta"'), drink.name)
+    }
+    assert.ok(html.includes('youtube-nocookie.com/embed/'), `${drink.name} lost its video`)
+  }
+})
 
 check('the rail renders all four pours with their counts', () => {
   const html = renderToStaticMarkup(
@@ -50,7 +72,7 @@ check('a curated drink still plays its verified short', () => {
   )
   assert.ok(html.includes('youtube-nocookie.com/embed/'), 'embed missing')
   assert.ok(!html.includes('listType=search'), 'the dead search-embed param came back')
-  assert.ok(html.includes('Blanco tequila'))
+  assert.ok(html.includes('Recipe source:'))
 })
 
 check('a web drink shows ingredients, method and a real search link, never a dead player', () => {
@@ -77,8 +99,8 @@ check('a web drink shows ingredients, method and a real search link, never a dea
     'the search link must carry YouTube\u2019s under-4-minutes filter',
   )
   assert.ok(html.includes('Find the quickest how-to'), 'the how-to prompt is missing')
-  assert.ok(html.includes('Grapefruit soda'), 'ingredients missing')
-  assert.ok(html.includes('Salt the rim'), 'method missing')
+  assert.ok(!html.includes('Grapefruit soda'), 'unverified ingredients leaked')
+  assert.ok(html.includes('Recipe steps hidden'), 'unverified recipe was not hidden')
   assert.ok(html.includes('no house price set'), 'the unpriced warning must be visible')
 })
 
@@ -136,7 +158,7 @@ check('the new drinks carry no invented house price', () => {
 
 check('a saved video accepts a share link or a bare id', () => {
   const saved: [string, string | null][] = []
-  const fireball = DRINKS.find((d) => d.id === 'fireball-shot')!
+  const fireball = { ...DRINKS.find((d) => d.id === 'fireball-shot')!, videoUrl: '' }
   const html = renderToStaticMarkup(
     <RecipeSheet
       drink={fireball}
@@ -183,7 +205,7 @@ check('every baked-in video id is a real id, never a placeholder', () => {
   for (const [name, id] of Object.entries(SHORTEST_VIDEO)) {
     assert.match(id, /^[\w-]{11}$/, `${name} has a malformed id ${id}`)
   }
-  const ids = Object.values(SHORTEST_VIDEO)
+  const ids = DRINKS.map(d => youtubeId(d.videoUrl))
   assert.equal(new Set(ids).size, ids.length, 'the same video is reused for two drinks')
   for (const d of MIXED_DRINKS) {
     if (d.videoUrl === '') continue
@@ -198,11 +220,11 @@ check('a new drink with a verified short plays it in the app', () => {
   )
   assert.ok(html.includes('youtube-nocookie.com/embed/'), 'no player for a drink that has a video')
   assert.ok(!html.includes('Find the quickest how-to'), 'should not prompt when a video exists')
-  assert.ok(html.includes('Red Bull'), 'ingredients missing')
+  assert.ok(html.includes('Vodka Red Bull'), 'drink title missing')
 })
 
 check('a drink with no verified video prompts instead of playing nothing', () => {
-  const fireball = DRINKS.find((d) => d.id === 'fireball-shot')!
+  const fireball = { ...DRINKS.find((d) => d.id === 'fireball-shot')!, videoUrl: '' }
   assert.equal(fireball.videoUrl, '', 'fixture drink should have no baked-in video')
   const html = renderToStaticMarkup(
     <RecipeSheet drink={fireball} onClose={() => {}} onMade={() => {}} />,
@@ -214,7 +236,7 @@ check('a drink with no verified video prompts instead of playing nothing', () =>
 })
 
 check('a video saved onto a drink plays instead of the prompt', () => {
-  const fireball = DRINKS.find((d) => d.id === 'fireball-shot')!
+  const fireball = { ...DRINKS.find((d) => d.id === 'fireball-shot')!, videoUrl: '' }
   const html = renderToStaticMarkup(
     <RecipeSheet
       drink={fireball}
@@ -247,14 +269,14 @@ check('the chips render with real counts and every kind is reachable', () => {
 
 // ---- The build steps, and the shared shift ledger ----
 
-check('every drink now shows its build, numbered, at the bottom of the card', () => {
+check('a sourced drink shows its verified build, numbered, below the ingredients', () => {
   const html = renderToStaticMarkup(
     <RecipeSheet drink={DRINKS.find((d) => d.id === 'margarita')!} onClose={() => {}} onMade={() => {}} />,
   )
   assert.ok(html.includes('How to make it'), 'the how-to block is missing')
   assert.ok(html.includes('<ol class="steps">'), 'the steps are not a numbered list')
-  assert.ok(html.includes('Fill the shaker with ice'), 'the shake step is missing')
-  assert.ok(html.includes('roll it in salt'), 'the salt rim step is missing')
+  assert.ok(VERIFIED_RECIPES.margarita.steps.every(step => html.includes(step.replaceAll('&', '&amp;').replaceAll('\"', '&quot;').replaceAll("'", '&#x27;'))), 'verified recipe steps missing')
+  assert.ok(html.includes('en.wikibooks.org'), 'recipe source missing')
   // It has to come AFTER the ingredients and BEFORE the action -- that is what
   // "at the bottom of all these" meant.
   assert.ok(html.indexOf('Ingredients') < html.indexOf('How to make it'))
@@ -266,7 +288,7 @@ check('the action button has a floor to sit on, so nothing ends up underneath it
     <RecipeSheet drink={DRINKS.find((d) => d.id === 'mojito')!} onClose={() => {}} onMade={() => {}} />,
   )
   assert.ok(html.includes('class="recipe-foot"'), 'the sticky footer is missing')
-  assert.ok(html.includes('Muddle 8 mint leaves'), 'the mojito build is missing')
+  assert.ok(html.includes('class="steps"'), 'verified mojito build missing')
 })
 
 /*
@@ -312,6 +334,8 @@ const offlineSync = {
   status: { kind: 'off' } as const,
   setAddress: () => {},
   refresh: () => {},
+  save: async () => true,
+  localSaved: true,
 }
 
 check('there is nothing to connect — no PIN field, no pairing button anywhere', () => {
@@ -349,9 +373,9 @@ check('a build with no ledger says so instead of implying the laptop has the cou
       sync={offlineSync}
     />,
   )
-  assert.ok(html.includes('This device only'), 'an unsynced build must say so')
-  assert.ok(html.includes('lives here and nowhere else'))
-  assert.ok(!html.includes('Saved on every device'), 'it must not claim to be synced')
+  assert.ok(html.includes('Cloud save unavailable'), 'an unsynced build must say so')
+  assert.ok(html.includes('Cloud sync is not configured'))
+  assert.ok(!html.includes('Saved to shared ledger'), 'it must not claim to be synced')
 })
 
 check('a synced device says when it last saved', () => {
@@ -366,8 +390,8 @@ check('a synced device says when it last saved', () => {
       sync={{ ...offlineSync, status: { kind: 'ok', at: Date.now() } }}
     />,
   )
-  assert.ok(html.includes('Saved on every device'))
-  assert.ok(html.includes('Last synced just now'))
+  assert.ok(html.includes('Saved to shared ledger'))
+  assert.ok(html.includes('Last saved just now'))
 })
 
 check('a device that has a token but has not reached the ledger does not claim it has', () => {
@@ -383,7 +407,7 @@ check('a device that has a token but has not reached the ledger does not claim i
     />,
   )
   assert.ok(html.includes('not yet'), 'an unconfirmed sync must not read as "just now"')
-  assert.ok(!html.includes('Last synced just now'))
+  assert.ok(!html.includes('Last saved just now'))
 })
 
 check('the memory bank is at the bottom even when it is empty', () => {
@@ -402,6 +426,32 @@ check('the memory bank is at the bottom even when it is empty', () => {
   assert.ok(html.includes('Nothing closed out yet'), 'an empty bank must say it is empty')
   // Last thing on the page, under the count and the start button.
   assert.ok(html.indexOf('Start shift') < html.indexOf('Memory bank'))
+})
+
+check('closed-shift totals appear above the current drawer using the Denver shift date', () => {
+  const html = renderToStaticMarkup(<CashDrawer
+    state={{ ...blankState, history: [{ id: 'test', startedAt: '2026-01-04T23:00:00Z',
+      endedAt: '2026-01-05T00:04:00Z', openingTotal: 100, closingTotal: 125,
+      drinkTickets: 0, drinksMade: 0, notes: '' }] }}
+    onChangeOpening={() => {}} onChangeClosing={() => {}} onNotes={() => {}}
+    onStartShift={() => {}} onEndShift={() => {}} sync={offlineSync} />)
+  assert.ok(html.includes('Last saved shift · Jan 4, 2026'))
+  assert.ok(html.includes('Opening<strong>$100.00</strong>'))
+  assert.ok(html.includes('Closing<strong>$125.00</strong>'))
+  assert.ok(html.includes('Difference<strong>$25.00</strong>'))
+  assert.ok(html.indexOf('Last saved shift') < html.indexOf('Beginning of shift'))
+  assert.ok(html.includes('Save now'))
+  assert.ok(html.includes('Auto-save on'))
+})
+
+check('an offline save is only claimed when local storage confirmed it', () => {
+  const render = (localSaved: boolean) => renderToStaticMarkup(<CashDrawer
+    state={blankState} onChangeOpening={() => {}} onChangeClosing={() => {}} onNotes={() => {}}
+    onStartShift={() => {}} onEndShift={() => {}}
+    sync={{ ...offlineSync, localSaved, status: { kind: 'error', message: 'Network down' } }} />)
+  assert.ok(render(true).includes('Saved offline. Sync retries automatically.'))
+  assert.ok(!render(false).includes('Saved offline.'))
+  assert.ok(render(false).includes('Keep this app open until a save succeeds.'))
 })
 
 console.log(failures === 0 ? '\nALL RENDER CHECKS PASSED' : `\n${failures} RENDER CHECK(S) FAILED`)

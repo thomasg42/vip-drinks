@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { DRINKS } from '../data/drinks'
 import type { SyncStatus } from '../sync/client'
 import {
@@ -13,6 +12,8 @@ export type SyncControls = {
   /** Recovery only: point this device at a different Worker, no rebuild. */
   setAddress: (url: string) => void
   refresh: () => void
+  save: () => Promise<boolean>
+  localSaved: boolean
 }
 
 type Props = {
@@ -56,10 +57,21 @@ export function CashDrawer({
     return sum + (drink?.price ?? 0)
   }, 0)
   const started = Boolean(state.shiftStartedAt)
+  const latestShift = [...state.history].sort((a, b) => b.endedAt.localeCompare(a.endedAt))[0]
 
   return (
     <div className="cash">
       <SyncBanner sync={sync} />
+      {latestShift ? (
+        <section className="last-shift" aria-label="Last saved shift">
+          <p>Last saved shift · {shiftDate(latestShift.endedAt)}</p>
+          <div className="last-shift-totals">
+            <span>Opening<strong>{money(latestShift.openingTotal)}</strong></span>
+            <span>Closing<strong>{money(latestShift.closingTotal)}</strong></span>
+            <span>Difference<strong>{money(latestShift.closingTotal - latestShift.openingTotal)}</strong></span>
+          </div>
+        </section>
+      ) : null}
 
       {!started ? (
         <>
@@ -138,7 +150,7 @@ export function CashDrawer({
             {state.history.map((shift) => (
               <li key={shift.id}>
                 <div>
-                  <b>{new Date(shift.endedAt).toLocaleDateString()}</b>
+                  <b>{shiftDate(shift.endedAt)}</b>
                   <span>
                     {money(shift.openingTotal)} → {money(shift.closingTotal)}
                   </span>
@@ -171,80 +183,33 @@ function when(at: number): string {
   return new Date(at).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })
 }
 
-/**
- * Says which of the two worlds this device is in, in words, every time.
- *
- * There is nothing to connect and nothing to type -- the app syncs on its own.
- * So this is not a control, it is a status light, and the only thing it owes
- * anybody is the truth. A bartender who assumes the laptop already has
- * tonight's opening count, and is wrong, only finds out at close.
- */
-function SyncBanner({ sync }: { sync: SyncControls }) {
-  const [address, setAddress] = useState('')
-  const { status } = sync
+function shiftDate(value: string): string {
+  return new Date(value).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'America/Denver' })
+}
 
-  if (status.kind === 'ok') {
-    return (
-      <div className="sync-bar on">
-        <span>
-          <b>Saved on every device</b>
-          <em>Last synced {when(status.at)}</em>
-        </span>
-        <button type="button" className="ghost-btn slim" onClick={sync.refresh}>
-          Check now
+function SyncBanner({ sync }: { sync: SyncControls }) {
+  const { status } = sync
+  const saved = status.kind === 'ok' && status.at > 0
+  const title = saved ? 'Saved to shared ledger'
+    : status.kind === 'saving' ? 'Saving…'
+    : status.kind === 'error' ? (sync.localSaved ? 'Saved · waiting for cloud sync' : 'Save needs attention')
+    : status.kind === 'off' ? 'Cloud save unavailable' : 'Checking saved changes…'
+  return (
+    <section className="save-panel" aria-label="Cash saving">
+      <div className="save-panel-head">
+        <span className="autosave-badge">Auto-save on</span>
+        <button type="button" className="save-now" onClick={() => { void sync.save() }} disabled={status.kind === 'saving'}>
+          {status.kind === 'saving' ? 'Saving…' : 'Save now'}
         </button>
       </div>
-    )
-  }
-
-  return (
-    <div className={`sync-bar ${status.kind === 'error' ? 'bad' : ''}`}>
-      <div className="sync-head">
-        <span>
-          <b>{status.kind === 'error' ? 'Not reaching the other devices' : 'This device only'}</b>
-          <em>
-            {status.kind === 'error'
-              ? `${status.message} The count is safe on this device and will send itself when it can.`
-              : 'This build has no shared ledger, so the count lives here and nowhere else.'}
-          </em>
-        </span>
-        {status.kind === 'error' ? (
-          <button type="button" className="ghost-btn slim" onClick={sync.refresh}>
-            Retry
-          </button>
-        ) : null}
-      </div>
-
-      {status.kind === 'off' ? (
-        <details className="sync-form">
-          <summary>Have a ledger address?</summary>
-          <label>
-            Sync address
-            <input
-              type="url"
-              inputMode="url"
-              value={address}
-              placeholder="https://…workers.dev"
-              onChange={(e) => setAddress(e.target.value)}
-              autoCapitalize="off"
-              autoCorrect="off"
-              spellCheck={false}
-            />
-          </label>
-          <button
-            type="button"
-            className="made-btn slim"
-            onClick={() => sync.setAddress(address)}
-            disabled={address.trim().length === 0}
-          >
-            Use this address
-          </button>
-          <p className="sync-note">
-            Only needed if this build shipped without one. Normally it is already set.
-          </p>
-        </details>
-      ) : null}
-    </div>
+      <p role="status" aria-live="polite" className={status.kind === 'error' || status.kind === 'off' ? 'save-warning' : ''}>
+        <strong>{title}</strong>
+        <span>{saved ? 'Last saved ' + when(status.at)
+          : status.kind === 'off' ? 'Cloud sync is not configured in this build.'
+          : status.kind === 'error' ? (sync.localSaved ? 'Saved offline. Sync retries automatically.' : 'Keep this app open until a save succeeds.')
+          : 'Checking the shared ledger; not yet confirmed.'}</span>
+      </p>
+    </section>
   )
 }
 

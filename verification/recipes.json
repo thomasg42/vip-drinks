@@ -1,0 +1,3195 @@
+{
+  "checkedAt": "2026-09-18T06:53:54.497Z",
+  "catalogCount": 131,
+  "actualShorts": 131,
+  "embeddableVideos": 131,
+  "sourceBackedRecipes": 76,
+  "hiddenRecipes": [
+    {
+      "id": "gold-rush",
+      "name": "Gold Rush"
+    },
+    {
+      "id": "ranch-water",
+      "name": "Ranch Water"
+    },
+    {
+      "id": "spicy-margarita",
+      "name": "Spicy Margarita"
+    },
+    {
+      "id": "mezcal-margarita",
+      "name": "Mezcal Margarita"
+    },
+    {
+      "id": "negroni-sbagliato",
+      "name": "Negroni Sbagliato"
+    },
+    {
+      "id": "mudslide",
+      "name": "Mudslide"
+    },
+    {
+      "id": "hurricane",
+      "name": "Hurricane"
+    },
+    {
+      "id": "irish-maid",
+      "name": "Irish Maid"
+    },
+    {
+      "id": "whiskey-ginger",
+      "name": "Whiskey Ginger"
+    },
+    {
+      "id": "vodka-soda",
+      "name": "Vodka Soda"
+    },
+    {
+      "id": "vodka-cranberry",
+      "name": "Vodka Cranberry"
+    },
+    {
+      "id": "rum-and-coke",
+      "name": "Rum and Coke"
+    },
+    {
+      "id": "jack-and-coke",
+      "name": "Jack and Coke"
+    },
+    {
+      "id": "appletini",
+      "name": "Appletini"
+    },
+    {
+      "id": "vodka-redbull",
+      "name": "Vodka Red Bull"
+    },
+    {
+      "id": "jack-ginger",
+      "name": "Jack and Ginger"
+    },
+    {
+      "id": "captain-coke",
+      "name": "Captain and Coke"
+    },
+    {
+      "id": "vodka-tonic",
+      "name": "Vodka Tonic"
+    },
+    {
+      "id": "vodka-sprite",
+      "name": "Vodka Sprite"
+    },
+    {
+      "id": "vodka-lemonade",
+      "name": "Vodka Lemonade"
+    },
+    {
+      "id": "vodka-water",
+      "name": "Vodka Water"
+    },
+    {
+      "id": "tequila-soda",
+      "name": "Tequila Soda"
+    },
+    {
+      "id": "gin-juice",
+      "name": "Gin and Juice"
+    },
+    {
+      "id": "madras",
+      "name": "Madras"
+    },
+    {
+      "id": "fuzzy-navel",
+      "name": "Fuzzy Navel"
+    },
+    {
+      "id": "amaretto-coke",
+      "name": "Amaretto and Coke"
+    },
+    {
+      "id": "malibu-pineapple",
+      "name": "Malibu Pineapple"
+    },
+    {
+      "id": "woo-woo",
+      "name": "Woo Woo"
+    },
+    {
+      "id": "transfusion",
+      "name": "Transfusion"
+    },
+    {
+      "id": "michelada",
+      "name": "Michelada"
+    },
+    {
+      "id": "rum-punch",
+      "name": "Rum Punch"
+    },
+    {
+      "id": "electric-lemonade",
+      "name": "Electric Lemonade"
+    },
+    {
+      "id": "tokyo-tea",
+      "name": "Tokyo Tea"
+    },
+    {
+      "id": "dirty-shirley",
+      "name": "Dirty Shirley"
+    },
+    {
+      "id": "washington-apple",
+      "name": "Washington Apple"
+    },
+    {
+      "id": "amaretto-stone-sour",
+      "name": "Amaretto Stone Sour"
+    },
+    {
+      "id": "bloody-maria",
+      "name": "Bloody Maria"
+    },
+    {
+      "id": "chocolate-martini",
+      "name": "Chocolate Martini"
+    },
+    {
+      "id": "vegas-bomb",
+      "name": "Vegas Bomb"
+    },
+    {
+      "id": "green-tea-shot",
+      "name": "Green Tea Shot"
+    },
+    {
+      "id": "lemon-drop-shot",
+      "name": "Lemon Drop Shot"
+    },
+    {
+      "id": "fireball-shot",
+      "name": "Fireball Shot"
+    },
+    {
+      "id": "tequila-shot",
+      "name": "Tequila Shot"
+    },
+    {
+      "id": "pickleback",
+      "name": "Pickleback"
+    },
+    {
+      "id": "buttery-nipple",
+      "name": "Buttery Nipple"
+    },
+    {
+      "id": "baby-guinness",
+      "name": "Baby Guinness"
+    },
+    {
+      "id": "surfer-on-acid",
+      "name": "Surfer on Acid"
+    },
+    {
+      "id": "redheaded-slut",
+      "name": "Redheaded Slut"
+    },
+    {
+      "id": "irish-slammer",
+      "name": "Irish Slammer"
+    },
+    {
+      "id": "white-gummy-bear",
+      "name": "White Gummy Bear Shot"
+    },
+    {
+      "id": "shirley-temple",
+      "name": "Shirley Temple"
+    },
+    {
+      "id": "roy-rogers",
+      "name": "Roy Rogers"
+    },
+    {
+      "id": "virgin-mojito",
+      "name": "Virgin Mojito"
+    },
+    {
+      "id": "virgin-pina-colada",
+      "name": "Virgin Piña Colada"
+    },
+    {
+      "id": "virgin-mule",
+      "name": "Virgin Mule"
+    }
+  ],
+  "sources": [
+    {
+      "id": "margarita",
+      "name": "Margarita",
+      "sourceUrl": "https://en.wikibooks.org/wiki/Bartending/Cocktails/Margarita",
+      "sourceLabel": "Wikibooks Bartending (community-edited)",
+      "sourceLicense": "CC BY-SA (Wikimedia)",
+      "ingredients": [
+        {
+          "amount": "3 parts",
+          "item": "Tequila"
+        },
+        {
+          "amount": "2 parts",
+          "item": "Triple sec"
+        },
+        {
+          "amount": "1 part",
+          "item": "Lime juice"
+        }
+      ],
+      "method": "Shake with ice and strain over ice or serve straight up.",
+      "glass": "Cocktail glass or rocks glass, optional salt rim",
+      "garnish": "Lime wedge",
+      "steps": [
+        "If desired, prepare the salt rim before filling the glass.",
+        "Shake tequila, triple sec, and lime juice with ice.",
+        "Strain into a cocktail glass or over ice in a rocks glass.",
+        "Garnish with a lime wedge if desired."
+      ],
+      "checked": [
+        "ingredients",
+        "amounts",
+        "sequence",
+        "glass",
+        "ice",
+        "garnish"
+      ]
+    },
+    {
+      "id": "old-fashioned",
+      "name": "Old Fashioned",
+      "sourceUrl": "https://en.wikibooks.org/wiki/Bartending/Cocktails/Old_Fashioned",
+      "sourceLabel": "Wikibooks Bartending (community-edited)",
+      "sourceLicense": "CC BY-SA (Wikimedia)",
+      "ingredients": [
+        {
+          "amount": "1 shot",
+          "item": "Rye whiskey"
+        },
+        {
+          "amount": "1 tsp",
+          "item": "Sugar or simple syrup"
+        },
+        {
+          "amount": "2 dashes",
+          "item": "Angostura bitters"
+        },
+        {
+          "amount": "½",
+          "item": "Orange slice"
+        }
+      ],
+      "method": "Muddle sugar, bitters, and orange; add ice and whiskey.",
+      "glass": "Old-fashioned glass",
+      "garnish": "Maraschino cherry and orange slice",
+      "steps": [
+        "Put sugar, bitters, and orange slice in the glass and muddle.",
+        "Add ice and rye whiskey.",
+        "Finish with a maraschino cherry and orange slice."
+      ],
+      "checked": [
+        "ingredients",
+        "amounts",
+        "sequence",
+        "glass",
+        "ice",
+        "garnish"
+      ]
+    },
+    {
+      "id": "espresso-martini",
+      "name": "Espresso Martini",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Espresso_martini",
+      "sourceLabel": "Wikipedia (community-edited)",
+      "sourceLicense": "CC BY-SA 4.0",
+      "ingredients": [
+        {
+          "amount": "50 ml",
+          "item": "Vodka"
+        },
+        {
+          "amount": "30 ml",
+          "item": "Coffee liqueur"
+        },
+        {
+          "amount": "1 strong",
+          "item": "Espresso"
+        }
+      ],
+      "method": "Shake all ingredients with ice and strain.",
+      "glass": "Cocktail glass",
+      "garnish": "3 coffee beans",
+      "steps": [
+        "Pour vodka, coffee liqueur, and espresso into a shaker.",
+        "Shake well with ice.",
+        "Strain into a chilled cocktail glass and garnish with 3 coffee beans."
+      ],
+      "checked": [
+        "ingredients",
+        "amounts",
+        "sequence",
+        "glass",
+        "ice",
+        "garnish"
+      ]
+    },
+    {
+      "id": "mojito",
+      "name": "Mojito",
+      "sourceUrl": "https://en.wikibooks.org/wiki/Bartending/Cocktails/Mojito",
+      "sourceLabel": "Wikibooks Bartending (community-edited)",
+      "sourceLicense": "CC BY-SA (Wikimedia)",
+      "ingredients": [
+        {
+          "amount": "2 oz",
+          "item": "White Cuban rum"
+        },
+        {
+          "amount": "1",
+          "item": "Lime"
+        },
+        {
+          "amount": "1 tsp",
+          "item": "Powdered sugar"
+        },
+        {
+          "amount": "4",
+          "item": "Mint leaves"
+        },
+        {
+          "amount": "top",
+          "item": "Club soda"
+        }
+      ],
+      "method": "Muddle, add ice and rum, stir, then top with soda.",
+      "glass": "Collins glass",
+      "garnish": "Mint sprig",
+      "steps": [
+        "Muddle lime, sugar, and mint in the glass.",
+        "Add ice and rum and stir.",
+        "Top with club soda and garnish with a mint sprig."
+      ],
+      "checked": [
+        "ingredients",
+        "amounts",
+        "sequence",
+        "glass",
+        "ice",
+        "garnish"
+      ]
+    },
+    {
+      "id": "negroni",
+      "name": "Negroni",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Negroni",
+      "sourceLabel": "Wikipedia (community-edited)",
+      "sourceLicense": "CC BY-SA 4.0",
+      "ingredients": [
+        {
+          "amount": "30 ml",
+          "item": "Gin"
+        },
+        {
+          "amount": "30 ml",
+          "item": "Campari"
+        },
+        {
+          "amount": "30 ml",
+          "item": "Sweet red vermouth"
+        }
+      ],
+      "method": "Build in the glass over ice.",
+      "glass": "Old-fashioned glass",
+      "garnish": "Orange slice",
+      "steps": [
+        "Add ice to an old-fashioned glass.",
+        "Pour gin, Campari, and sweet red vermouth into the glass.",
+        "Garnish with an orange slice and serve."
+      ],
+      "checked": [
+        "ingredients",
+        "amounts",
+        "sequence",
+        "glass",
+        "ice",
+        "garnish"
+      ]
+    },
+    {
+      "id": "manhattan",
+      "name": "Manhattan",
+      "sourceUrl": "https://en.wikibooks.org/wiki/Bartending/Cocktails/Manhattan",
+      "sourceLabel": "Wikibooks Bartending (community-edited)",
+      "sourceLicense": "CC BY-SA (Wikimedia)",
+      "ingredients": [
+        {
+          "amount": "1 shot",
+          "item": "Rye or Canadian whiskey"
+        },
+        {
+          "amount": "½ shot",
+          "item": "Sweet vermouth"
+        },
+        {
+          "amount": "2 dashes",
+          "item": "Angostura bitters"
+        }
+      ],
+      "method": "Stir with ice and strain.",
+      "glass": "Cocktail glass",
+      "garnish": "Cherry",
+      "steps": [
+        "Combine whiskey, vermouth, and bitters with ice.",
+        "Stir and strain into a cocktail glass.",
+        "Garnish with a cherry."
+      ],
+      "checked": [
+        "ingredients",
+        "amounts",
+        "sequence",
+        "glass",
+        "ice",
+        "garnish"
+      ]
+    },
+    {
+      "id": "martini",
+      "name": "Martini",
+      "sourceUrl": "https://en.wikibooks.org/wiki/Bartending/Cocktails/Martini",
+      "sourceLabel": "Wikibooks Bartending (community-edited)",
+      "sourceLicense": "CC BY-SA (Wikimedia)",
+      "ingredients": [
+        {
+          "amount": "3 oz",
+          "item": "Gin"
+        },
+        {
+          "amount": "½ oz",
+          "item": "Dry vermouth"
+        }
+      ],
+      "method": "Stir with ice and strain.",
+      "glass": "Cocktail glass",
+      "garnish": "Olive or lemon peel",
+      "steps": [
+        "Chill the glass.",
+        "Stir gin and dry vermouth with ice.",
+        "Strain into the chilled cocktail glass and garnish with an olive or lemon peel."
+      ],
+      "checked": [
+        "ingredients",
+        "amounts",
+        "sequence",
+        "glass",
+        "ice",
+        "garnish"
+      ]
+    },
+    {
+      "id": "daiquiri",
+      "name": "Daiquiri",
+      "sourceUrl": "https://en.wikibooks.org/wiki/Bartending/Cocktails/Daiquiri",
+      "sourceLabel": "Wikibooks Bartending (community-edited)",
+      "sourceLicense": "CC BY-SA (Wikimedia)",
+      "ingredients": [
+        {
+          "amount": "45 ml",
+          "item": "White rum"
+        },
+        {
+          "amount": "20 ml",
+          "item": "Lime juice"
+        },
+        {
+          "amount": "5 ml",
+          "item": "Gomme syrup"
+        }
+      ],
+      "method": "Shake with ice and serve chilled.",
+      "glass": "Cocktail glass",
+      "garnish": "",
+      "steps": [
+        "Combine white rum, lime juice, and gomme syrup with ice.",
+        "Shake and serve chilled in a cocktail glass."
+      ],
+      "checked": [
+        "ingredients",
+        "amounts",
+        "sequence",
+        "glass",
+        "ice"
+      ]
+    },
+    {
+      "id": "whiskey-sour",
+      "name": "Whiskey Sour",
+      "sourceUrl": "https://en.wikibooks.org/wiki/Bartending/Cocktails/Glossary",
+      "sourceLabel": "Wikibooks Bartending (community-edited)",
+      "sourceLicense": "CC BY-SA (Wikimedia)",
+      "ingredients": [
+        {
+          "amount": "50 ml",
+          "item": "Whiskey"
+        },
+        {
+          "amount": "30 ml",
+          "item": "Lemon juice"
+        },
+        {
+          "amount": "20 ml",
+          "item": "Gomme syrup"
+        },
+        {
+          "amount": "2 dashes",
+          "item": "Angostura bitters"
+        },
+        {
+          "amount": "optional",
+          "item": "Egg white"
+        }
+      ],
+      "method": "Shake and strain over cubed ice.",
+      "glass": "Rocks (old-fashioned) glass",
+      "garnish": "Lemon twist",
+      "steps": [
+        "Shake whiskey, lemon, gomme syrup, bitters, and optional egg white.",
+        "Strain into a rocks glass over cubed ice.",
+        "Garnish with a lemon twist."
+      ],
+      "checked": [
+        "ingredients",
+        "amounts",
+        "sequence",
+        "glass",
+        "ice",
+        "garnish"
+      ]
+    },
+    {
+      "id": "moscow-mule",
+      "name": "Moscow Mule",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Moscow_mule",
+      "sourceLabel": "Wikipedia (community-edited)",
+      "sourceLicense": "CC BY-SA 4.0",
+      "ingredients": [
+        {
+          "amount": "45 ml",
+          "item": "Vodka"
+        },
+        {
+          "amount": "10 ml",
+          "item": "Lime juice"
+        },
+        {
+          "amount": "120 ml",
+          "item": "Ginger beer"
+        }
+      ],
+      "method": "Build over ice and stir gently.",
+      "glass": "Mule mug or rocks glass",
+      "garnish": "Lime slice",
+      "steps": [
+        "Add ice to a rocks glass or lined mule mug.",
+        "Combine vodka and ginger beer, then add lime juice.",
+        "Stir gently and garnish with a lime slice."
+      ],
+      "checked": [
+        "ingredients",
+        "amounts",
+        "sequence",
+        "glass",
+        "ice",
+        "garnish"
+      ]
+    },
+    {
+      "id": "cosmo",
+      "name": "Cosmopolitan",
+      "sourceUrl": "https://en.wikibooks.org/wiki/Bartending/Cocktails/Cosmopolitan",
+      "sourceLabel": "Wikibooks Bartending (community-edited)",
+      "sourceLicense": "CC BY-SA (Wikimedia)",
+      "ingredients": [
+        {
+          "amount": "2 oz",
+          "item": "Vodka"
+        },
+        {
+          "amount": "1 oz",
+          "item": "Triple sec liqueur"
+        },
+        {
+          "amount": "1 oz",
+          "item": "Cranberry juice"
+        },
+        {
+          "amount": "dash",
+          "item": "Rose's lime cordial or ¼ fresh lime"
+        }
+      ],
+      "method": "Combine, shake over ice, and strain.",
+      "glass": "Cocktail glass",
+      "garnish": "Flamed orange zest",
+      "steps": [
+        "Combine vodka, triple sec, cranberry, and lime.",
+        "Shake over ice.",
+        "Strain into a cocktail glass and garnish with flamed orange zest."
+      ],
+      "checked": [
+        "ingredients",
+        "amounts",
+        "sequence",
+        "glass",
+        "ice",
+        "garnish"
+      ]
+    },
+    {
+      "id": "gin-tonic",
+      "name": "Gin and Tonic",
+      "sourceUrl": "https://en.wikibooks.org/wiki/Bartending/Cocktails/Gin_and_Tonic",
+      "sourceLabel": "Wikibooks Bartending (community-edited)",
+      "sourceLicense": "CC BY-SA (Wikimedia)",
+      "ingredients": [
+        {
+          "amount": "1½ oz",
+          "item": "Gin"
+        },
+        {
+          "amount": "top",
+          "item": "Tonic water"
+        },
+        {
+          "amount": "1",
+          "item": "Lime or lemon wedge"
+        }
+      ],
+      "method": "Build over plenty of ice; add gin first and fill with tonic without stirring.",
+      "glass": "Highball",
+      "garnish": "Lime or lemon wedge",
+      "steps": [
+        "Fill a glass about two-thirds with ice.",
+        "Add gin, then fill with tonic water.",
+        "Do not stir; add a lime or lemon wedge."
+      ],
+      "checked": [
+        "ingredients",
+        "amounts",
+        "sequence",
+        "glass",
+        "ice",
+        "garnish"
+      ]
+    },
+    {
+      "id": "french-75",
+      "name": "French 75",
+      "sourceUrl": "https://en.wikibooks.org/wiki/Bartending/Cocktails/French_75",
+      "sourceLabel": "Wikibooks Bartending (community-edited)",
+      "sourceLicense": "CC BY-SA (Wikimedia)",
+      "ingredients": [
+        {
+          "amount": "1½ oz",
+          "item": "Gin"
+        },
+        {
+          "amount": "2 tsp",
+          "item": "Sugar"
+        },
+        {
+          "amount": "1 tbsp",
+          "item": "Lemon juice"
+        },
+        {
+          "amount": "top",
+          "item": "Champagne"
+        }
+      ],
+      "method": "Build in a flute: combine gin, sugar, and lemon, then top with Champagne.",
+      "glass": "Flute",
+      "garnish": "Cherry or orange slice",
+      "steps": [
+        "Add gin, sugar, and lemon juice to a flute.",
+        "Fill halfway with Champagne, stir to dissolve sugar, then top with Champagne.",
+        "Garnish with a cherry or orange slice."
+      ],
+      "checked": [
+        "ingredients",
+        "amounts",
+        "sequence",
+        "glass",
+        "garnish"
+      ]
+    },
+    {
+      "id": "mimosa",
+      "name": "Mimosa",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Mimosa_(cocktail)",
+      "sourceLabel": "Wikipedia (community-edited)",
+      "sourceLicense": "CC BY-SA 4.0",
+      "ingredients": [
+        {
+          "amount": "75 ml",
+          "item": "Champagne"
+        },
+        {
+          "amount": "75 ml",
+          "item": "Orange juice"
+        }
+      ],
+      "method": "Mix both chilled ingredients in the glass and serve cold.",
+      "glass": "Champagne flute",
+      "garnish": "Orange twist",
+      "steps": [
+        "Ensure the Champagne and orange juice are well chilled.",
+        "Mix them directly in the flute.",
+        "Serve cold with an orange twist."
+      ],
+      "checked": [
+        "ingredients",
+        "amounts",
+        "sequence",
+        "glass",
+        "garnish"
+      ]
+    },
+    {
+      "id": "paloma",
+      "name": "Paloma",
+      "sourceUrl": "https://en.wikibooks.org/wiki/Bartending/Cocktails/Glossary",
+      "sourceLabel": "Wikibooks Bartending (community-edited)",
+      "sourceLicense": "CC BY-SA (Wikimedia)",
+      "ingredients": [
+        {
+          "amount": "120 ml",
+          "item": "Silver tequila"
+        },
+        {
+          "amount": "240 ml",
+          "item": "Grapefruit soda"
+        },
+        {
+          "amount": "rim",
+          "item": "Salt"
+        }
+      ],
+      "method": "Salt the rim, add ice and tequila, then grapefruit soda; stir as needed.",
+      "glass": "High glass",
+      "garnish": "Lemon twist",
+      "steps": [
+        "Chill a high glass and salt its rim.",
+        "Fill with ice and add tequila first.",
+        "Fill with grapefruit soda, stir as needed, and add a lemon twist."
+      ],
+      "checked": [
+        "ingredients",
+        "amounts",
+        "sequence",
+        "glass",
+        "ice",
+        "garnish"
+      ]
+    },
+    {
+      "id": "aperol-spritz",
+      "name": "Aperol Spritz",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Aperol_spritz",
+      "sourceLabel": "Wikipedia (community-edited)",
+      "sourceLicense": "CC BY-SA 4.0",
+      "ingredients": [
+        {
+          "amount": "9 cl",
+          "item": "Prosecco"
+        },
+        {
+          "amount": "6 cl",
+          "item": "Aperol"
+        },
+        {
+          "amount": "splash",
+          "item": "Soda water"
+        }
+      ],
+      "method": "Build over ice in a wine glass and stir gently.",
+      "glass": "White wine glass",
+      "garnish": "Orange slice",
+      "steps": [
+        "Fill a wine glass with ice.",
+        "Build Prosecco, Aperol, and soda water in the glass.",
+        "Stir gently and garnish with an orange slice."
+      ],
+      "checked": [
+        "ingredients",
+        "amounts",
+        "sequence",
+        "glass",
+        "ice",
+        "garnish"
+      ]
+    },
+    {
+      "id": "lemon-drop",
+      "name": "Lemon Drop",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Lemon_drop_(cocktail)",
+      "sourceLabel": "Wikipedia (community-edited)",
+      "sourceLicense": "CC BY-SA 4.0",
+      "ingredients": [
+        {
+          "amount": "30 ml",
+          "item": "Vodka citron"
+        },
+        {
+          "amount": "20 ml",
+          "item": "Triple sec"
+        },
+        {
+          "amount": "15 ml",
+          "item": "Fresh lemon juice"
+        }
+      ],
+      "method": "Shake with ice and strain into a chilled glass.",
+      "glass": "Cocktail glass",
+      "garnish": "Sugar rim",
+      "steps": [
+        "Prepare a sugar rim on a chilled cocktail glass.",
+        "Add the ingredients to a shaker with ice and shake well.",
+        "Strain into the prepared glass."
+      ],
+      "checked": [
+        "ingredients",
+        "amounts",
+        "sequence",
+        "glass",
+        "ice",
+        "garnish"
+      ]
+    },
+    {
+      "id": "mai-tai",
+      "name": "Mai Tai",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Mai_Tai",
+      "sourceLabel": "Wikipedia (community-edited)",
+      "sourceLicense": "CC BY-SA 4.0",
+      "ingredients": [
+        {
+          "amount": "30 ml",
+          "item": "Amber Jamaican rum"
+        },
+        {
+          "amount": "30 ml",
+          "item": "Martinique molasses rhum"
+        },
+        {
+          "amount": "15 ml",
+          "item": "Orange curaçao"
+        },
+        {
+          "amount": "15 ml",
+          "item": "Orgeat syrup"
+        },
+        {
+          "amount": "30 ml",
+          "item": "Fresh lime juice"
+        },
+        {
+          "amount": "7.5 ml",
+          "item": "Simple syrup"
+        }
+      ],
+      "method": "Shake all ingredients with ice and pour into the glass.",
+      "glass": "Double old-fashioned glass or highball",
+      "garnish": "Pineapple spear, mint leaves, and lime peel",
+      "steps": [
+        "Add all ingredients to a shaker with ice.",
+        "Shake and pour into a double rocks or highball glass over shaved or crushed ice.",
+        "Garnish with pineapple, mint, and lime peel."
+      ],
+      "checked": [
+        "ingredients",
+        "amounts",
+        "sequence",
+        "glass",
+        "ice",
+        "garnish"
+      ]
+    },
+    {
+      "id": "pina-colada",
+      "name": "Pina Colada",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Pi%C3%B1a_colada",
+      "sourceLabel": "Wikipedia (community-edited)",
+      "sourceLicense": "CC BY-SA 4.0",
+      "ingredients": [
+        {
+          "amount": "50 ml",
+          "item": "White rum"
+        },
+        {
+          "amount": "30 ml",
+          "item": "Cream of coconut"
+        },
+        {
+          "amount": "50 ml",
+          "item": "Fresh pineapple juice"
+        }
+      ],
+      "method": "Blend all ingredients with ice in an electric blender.",
+      "glass": "Hurricane glass",
+      "garnish": "Maraschino cherry or pineapple wedge",
+      "steps": [
+        "Blend rum, cream of coconut, pineapple juice, and ice in an electric blender.",
+        "Pour into a large hurricane glass.",
+        "Serve with straws and garnish with a cherry or pineapple wedge."
+      ],
+      "checked": [
+        "ingredients",
+        "amounts",
+        "sequence",
+        "glass",
+        "ice",
+        "garnish"
+      ]
+    },
+    {
+      "id": "long-island",
+      "name": "Long Island Iced Tea",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Long_Island_iced_tea",
+      "sourceLabel": "Wikipedia (community-edited)",
+      "sourceLicense": "CC BY-SA 4.0",
+      "ingredients": [
+        {
+          "amount": "15 ml",
+          "item": "Tequila"
+        },
+        {
+          "amount": "15 ml",
+          "item": "Vodka"
+        },
+        {
+          "amount": "15 ml",
+          "item": "White rum"
+        },
+        {
+          "amount": "15 ml",
+          "item": "Cointreau"
+        },
+        {
+          "amount": "15 ml",
+          "item": "Gin"
+        },
+        {
+          "amount": "25 ml",
+          "item": "Lemon juice"
+        },
+        {
+          "amount": "30 ml",
+          "item": "Simple syrup"
+        },
+        {
+          "amount": "top",
+          "item": "Cola"
+        }
+      ],
+      "method": "Build in an ice-filled highball, top with cola, and stir gently.",
+      "glass": "Highball glass",
+      "garnish": "Optional lemon slice",
+      "steps": [
+        "Fill a highball with ice.",
+        "Add all ingredients, finishing with cola.",
+        "Stir gently and optionally garnish with lemon."
+      ],
+      "checked": [
+        "ingredients",
+        "amounts",
+        "sequence",
+        "glass",
+        "ice",
+        "garnish"
+      ]
+    },
+    {
+      "id": "tequila-sunrise",
+      "name": "Tequila Sunrise",
+      "sourceUrl": "https://en.wikibooks.org/wiki/Bartending/Cocktails/Glossary",
+      "sourceLabel": "Wikibooks Bartending (community-edited)",
+      "sourceLicense": "CC BY-SA (Wikimedia)",
+      "ingredients": [
+        {
+          "amount": "2 oz",
+          "item": "Tequila"
+        },
+        {
+          "amount": "4 oz",
+          "item": "Orange juice"
+        },
+        {
+          "amount": "1 oz",
+          "item": "Grenadine"
+        }
+      ],
+      "method": "Build tequila and orange over crushed ice, then add grenadine without stirring.",
+      "glass": "Highball",
+      "garnish": "",
+      "steps": [
+        "Mix tequila and orange juice with ice.",
+        "Pour into a highball filled with crushed ice.",
+        "Add grenadine so it sinks; do not stir."
+      ],
+      "checked": [
+        "ingredients",
+        "amounts",
+        "sequence",
+        "glass",
+        "ice"
+      ]
+    },
+    {
+      "id": "bloody-mary",
+      "name": "Bloody Mary",
+      "sourceUrl": "https://en.wikibooks.org/wiki/Bartending/Cocktails/Glossary",
+      "sourceLabel": "Wikibooks Bartending (community-edited)",
+      "sourceLicense": "CC BY-SA (Wikimedia)",
+      "ingredients": [
+        {
+          "amount": "1½ oz",
+          "item": "Vodka"
+        },
+        {
+          "amount": "3 oz",
+          "item": "Tomato juice"
+        },
+        {
+          "amount": "½ oz",
+          "item": "Lemon juice"
+        },
+        {
+          "amount": "7 drops",
+          "item": "Worcestershire sauce"
+        },
+        {
+          "amount": "3 drops",
+          "item": "Tabasco"
+        },
+        {
+          "amount": "pinch",
+          "item": "Pepper"
+        },
+        {
+          "amount": "pinch",
+          "item": "Celery salt"
+        },
+        {
+          "amount": "¼ tsp",
+          "item": "Fresh horseradish"
+        }
+      ],
+      "method": "Shake with ice and strain over ice.",
+      "glass": "Old-fashioned glass",
+      "garnish": "Pickled asparagus or celery",
+      "steps": [
+        "Combine all ingredients with ice.",
+        "Shake and strain into an old-fashioned glass filled with ice.",
+        "Garnish with pickled asparagus or celery."
+      ],
+      "checked": [
+        "ingredients",
+        "amounts",
+        "sequence",
+        "glass",
+        "ice",
+        "garnish"
+      ]
+    },
+    {
+      "id": "screwdriver",
+      "name": "Screwdriver",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Screwdriver_(cocktail)",
+      "sourceLabel": "Wikipedia (community-edited)",
+      "sourceLicense": "CC BY-SA 4.0",
+      "ingredients": [
+        {
+          "amount": "5 cl",
+          "item": "Vodka"
+        },
+        {
+          "amount": "10 cl",
+          "item": "Orange juice"
+        }
+      ],
+      "method": "Mix in a highball glass with ice.",
+      "glass": "Highball glass",
+      "garnish": "Orange slice",
+      "steps": [
+        "Fill a highball with ice.",
+        "Add vodka and orange juice and mix in the glass.",
+        "Garnish with an orange slice."
+      ],
+      "checked": [
+        "ingredients",
+        "amounts",
+        "sequence",
+        "glass",
+        "ice",
+        "garnish"
+      ]
+    },
+    {
+      "id": "white-russian",
+      "name": "White Russian",
+      "sourceUrl": "https://en.wikipedia.org/wiki/White_Russian_(cocktail)",
+      "sourceLabel": "Wikipedia (community-edited)",
+      "sourceLicense": "CC BY-SA 4.0",
+      "ingredients": [
+        {
+          "amount": "5 cl",
+          "item": "Vodka"
+        },
+        {
+          "amount": "2 cl",
+          "item": "Coffee liqueur"
+        },
+        {
+          "amount": "3 cl",
+          "item": "Fresh cream"
+        }
+      ],
+      "method": "Build over ice, float cream, and stir slowly.",
+      "glass": "Old-fashioned glass",
+      "garnish": "",
+      "steps": [
+        "Fill an old-fashioned glass with ice.",
+        "Add coffee liqueur and vodka.",
+        "Float fresh cream on top and stir slowly."
+      ],
+      "checked": [
+        "ingredients",
+        "amounts",
+        "sequence",
+        "glass",
+        "ice"
+      ]
+    },
+    {
+      "id": "black-russian",
+      "name": "Black Russian",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Black_Russian_(cocktail)",
+      "sourceLabel": "Wikipedia (community-edited)",
+      "sourceLicense": "CC BY-SA 4.0",
+      "ingredients": [
+        {
+          "amount": "50 ml",
+          "item": "Vodka"
+        },
+        {
+          "amount": "20 ml",
+          "item": "Coffee liqueur"
+        }
+      ],
+      "method": "Build over ice and stir gently.",
+      "glass": "Old-fashioned glass",
+      "garnish": "Not specified in the standard preparation",
+      "steps": [
+        "Fill an old-fashioned glass with ice cubes.",
+        "Pour in vodka and coffee liqueur.",
+        "Stir gently."
+      ],
+      "checked": [
+        "ingredients",
+        "amounts",
+        "sequence",
+        "glass",
+        "ice"
+      ]
+    },
+    {
+      "id": "irish-coffee",
+      "name": "Irish Coffee",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Irish_coffee",
+      "sourceLabel": "Wikipedia (community-edited)",
+      "sourceLicense": "CC BY-SA 4.0",
+      "ingredients": [
+        {
+          "amount": "50 ml",
+          "item": "Irish whiskey"
+        },
+        {
+          "amount": "120 ml",
+          "item": "Hot coffee"
+        },
+        {
+          "amount": "50 ml",
+          "item": "Fresh chilled cream"
+        },
+        {
+          "amount": "1 tsp",
+          "item": "Sugar"
+        }
+      ],
+      "method": "Stir whiskey and sugar into hot coffee, then float cream as a distinct layer.",
+      "glass": "Irish coffee mug",
+      "garnish": "",
+      "steps": [
+        "Pour coffee into a preheated mug.",
+        "Add whiskey and sugar and stir until dissolved.",
+        "Pour chilled cream slowly to form a distinct layer."
+      ],
+      "checked": [
+        "ingredients",
+        "amounts",
+        "sequence",
+        "glass"
+      ]
+    },
+    {
+      "id": "mint-julep",
+      "name": "Mint Julep",
+      "sourceUrl": "https://en.wikibooks.org/wiki/Bartending/Cocktails/Mint_Julep",
+      "sourceLabel": "Wikibooks Bartending (community-edited)",
+      "sourceLicense": "CC BY-SA (Wikimedia)",
+      "ingredients": [
+        {
+          "amount": "4 oz",
+          "item": "Bourbon whiskey"
+        },
+        {
+          "amount": "4–6 sprigs",
+          "item": "Mint"
+        },
+        {
+          "amount": "1 tsp",
+          "item": "Sugar"
+        }
+      ],
+      "method": "Crush sugar with mint, fill with crushed ice, then add bourbon.",
+      "glass": "Tall glass or julep cup",
+      "garnish": "Remaining mint leaves",
+      "steps": [
+        "Crush sugar and mint in the bottom of the glass.",
+        "Fill with crushed ice and add bourbon.",
+        "Garnish with remaining mint."
+      ],
+      "checked": [
+        "ingredients",
+        "amounts",
+        "sequence",
+        "glass",
+        "ice",
+        "garnish"
+      ]
+    },
+    {
+      "id": "sazerac",
+      "name": "Sazerac",
+      "sourceUrl": "https://en.wikibooks.org/wiki/Bartending/Cocktails/Sazerac",
+      "sourceLabel": "Wikibooks Bartending (community-edited)",
+      "sourceLicense": "CC BY-SA (Wikimedia)",
+      "ingredients": [
+        {
+          "amount": "2 parts",
+          "item": "Brandy or rye whiskey"
+        },
+        {
+          "amount": "1 dash",
+          "item": "Peychaud bitters"
+        },
+        {
+          "amount": "1 tsp",
+          "item": "Simple syrup"
+        },
+        {
+          "amount": "1 tsp",
+          "item": "Absinthe"
+        }
+      ],
+      "method": "Coat the glass with absinthe; stir the remaining ingredients with ice and strain.",
+      "glass": "Old-fashioned glass",
+      "garnish": "Lemon peel",
+      "steps": [
+        "Coat the inside of the glass with absinthe and chill it.",
+        "Stir brandy or rye, bitters, and syrup with ice.",
+        "Strain into the coated glass and garnish with lemon peel."
+      ],
+      "checked": [
+        "ingredients",
+        "amounts",
+        "sequence",
+        "glass",
+        "ice",
+        "garnish"
+      ]
+    },
+    {
+      "id": "boulevardier",
+      "name": "Boulevardier",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Boulevardier_(cocktail)",
+      "sourceLabel": "Wikipedia (community-edited)",
+      "sourceLicense": "CC BY-SA 4.0",
+      "ingredients": [
+        {
+          "amount": "45 ml",
+          "item": "Bourbon or rye whiskey"
+        },
+        {
+          "amount": "30 ml",
+          "item": "Campari"
+        },
+        {
+          "amount": "30 ml",
+          "item": "Sweet red vermouth"
+        }
+      ],
+      "method": "Stir with ice and strain into a chilled glass.",
+      "glass": "Cocktail glass",
+      "garnish": "Orange zest, optionally lemon zest",
+      "steps": [
+        "Pour all ingredients into a mixing glass with ice.",
+        "Stir well.",
+        "Strain into a chilled cocktail glass and garnish with orange zest."
+      ],
+      "checked": [
+        "ingredients",
+        "amounts",
+        "sequence",
+        "glass",
+        "ice",
+        "garnish"
+      ]
+    },
+    {
+      "id": "paper-plane",
+      "name": "Paper Plane",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Paper_Plane_(cocktail)",
+      "sourceLabel": "Wikipedia (community-edited)",
+      "sourceLicense": "CC BY-SA 4.0",
+      "ingredients": [
+        {
+          "amount": "30 ml",
+          "item": "Bourbon whiskey"
+        },
+        {
+          "amount": "30 ml",
+          "item": "Amaro Nonino"
+        },
+        {
+          "amount": "30 ml",
+          "item": "Aperol"
+        },
+        {
+          "amount": "30 ml",
+          "item": "Fresh lemon juice"
+        }
+      ],
+      "method": "Shake with ice and strain into a chilled glass.",
+      "glass": "Cocktail glass",
+      "garnish": "None specified in the IBA preparation",
+      "steps": [
+        "Pour equal ingredients into a shaker.",
+        "Shake well with ice.",
+        "Strain into a chilled cocktail glass."
+      ],
+      "checked": [
+        "ingredients",
+        "amounts",
+        "sequence",
+        "glass",
+        "ice"
+      ]
+    },
+    {
+      "id": "penicillin",
+      "name": "Penicillin",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Penicillin_(cocktail)",
+      "sourceLabel": "Wikipedia (community-edited)",
+      "sourceLicense": "CC BY-SA 4.0",
+      "ingredients": [
+        {
+          "amount": "60 ml",
+          "item": "Blended Scotch whisky"
+        },
+        {
+          "amount": "7.5 ml",
+          "item": "Islay single malt whisky"
+        },
+        {
+          "amount": "22.5 ml",
+          "item": "Fresh lemon juice"
+        },
+        {
+          "amount": "22.5 ml",
+          "item": "Honey syrup"
+        },
+        {
+          "amount": "2–3 slices",
+          "item": "Fresh ginger"
+        }
+      ],
+      "method": "Muddle ginger, shake the remaining base with ice, double-strain, and float Islay whisky.",
+      "glass": "Old-fashioned glass",
+      "garnish": "Candied ginger",
+      "steps": [
+        "Muddle ginger in a shaker.",
+        "Add blended Scotch, lemon, and honey syrup; shake with ice.",
+        "Double-strain into an ice-filled old-fashioned glass.",
+        "Float the Islay whisky on top and garnish with candied ginger."
+      ],
+      "checked": [
+        "ingredients",
+        "amounts",
+        "sequence",
+        "glass",
+        "ice",
+        "garnish"
+      ]
+    },
+    {
+      "id": "last-word",
+      "name": "Last Word",
+      "sourceUrl": "https://en.wikipedia.org/wiki/The_Last_Word_(cocktail)",
+      "sourceLabel": "Wikipedia (community-edited)",
+      "sourceLicense": "CC BY-SA 4.0",
+      "ingredients": [
+        {
+          "amount": "22.5 ml",
+          "item": "Gin"
+        },
+        {
+          "amount": "22.5 ml",
+          "item": "Green Chartreuse"
+        },
+        {
+          "amount": "22.5 ml",
+          "item": "Maraschino liqueur"
+        },
+        {
+          "amount": "22.5 ml",
+          "item": "Fresh lime juice"
+        }
+      ],
+      "method": "Shake with ice and strain into a chilled glass.",
+      "glass": "Cocktail glass",
+      "garnish": "",
+      "steps": [
+        "Add equal ingredients to a shaker.",
+        "Shake with ice.",
+        "Strain into a chilled cocktail glass."
+      ],
+      "checked": [
+        "ingredients",
+        "amounts",
+        "sequence",
+        "glass",
+        "ice"
+      ]
+    },
+    {
+      "id": "aviation",
+      "name": "Aviation",
+      "sourceUrl": "https://en.wikibooks.org/wiki/Bartending/Cocktails/Glossary",
+      "sourceLabel": "Wikibooks Bartending (community-edited)",
+      "sourceLicense": "CC BY-SA (Wikimedia)",
+      "ingredients": [
+        {
+          "amount": "2 oz",
+          "item": "Gin"
+        },
+        {
+          "amount": "1 oz",
+          "item": "Lemon juice"
+        },
+        {
+          "amount": "1 oz",
+          "item": "Maraschino liqueur"
+        }
+      ],
+      "method": "Shake or stir with ice and strain.",
+      "glass": "Cocktail glass",
+      "garnish": "Cherry",
+      "steps": [
+        "Combine the ingredients with ice.",
+        "Shake or stir, then strain into a cocktail glass.",
+        "Garnish with a cherry."
+      ],
+      "checked": [
+        "ingredients",
+        "amounts",
+        "sequence",
+        "glass",
+        "ice",
+        "garnish"
+      ]
+    },
+    {
+      "id": "gimlet",
+      "name": "Gimlet",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Gimlet_(cocktail)",
+      "sourceLabel": "Wikipedia (community-edited)",
+      "sourceLicense": "CC BY-SA 4.0",
+      "ingredients": [
+        {
+          "amount": "2–4 parts",
+          "item": "Gin"
+        },
+        {
+          "amount": "1 part",
+          "item": "Sweetened lime juice"
+        }
+      ],
+      "method": "Mix and serve chilled.",
+      "glass": "Cocktail glass",
+      "garnish": "Lime slice",
+      "steps": [
+        "Mix gin and sweetened lime juice.",
+        "Serve chilled in a cocktail glass.",
+        "Garnish with a lime slice."
+      ],
+      "checked": [
+        "ingredients",
+        "amounts",
+        "sequence",
+        "glass",
+        "garnish"
+      ]
+    },
+    {
+      "id": "tom-collins",
+      "name": "Tom Collins",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Tom_Collins",
+      "sourceLabel": "Wikipedia (community-edited)",
+      "sourceLicense": "CC BY-SA 4.0",
+      "ingredients": [
+        {
+          "amount": "60 ml",
+          "item": "Old Tom gin"
+        },
+        {
+          "amount": "25 ml",
+          "item": "Lemon juice"
+        },
+        {
+          "amount": "15 ml",
+          "item": "Simple syrup"
+        },
+        {
+          "amount": "50 ml",
+          "item": "Club soda"
+        }
+      ],
+      "method": "Build gin, lemon, and syrup over ice, top with soda, and garnish.",
+      "glass": "Collins glass",
+      "garnish": "Lemon slice and maraschino cherry",
+      "steps": [
+        "Add gin, lemon juice, and simple syrup to an ice-filled Collins glass.",
+        "Top with soda water.",
+        "Garnish with lemon and cherry."
+      ],
+      "checked": [
+        "ingredients",
+        "amounts",
+        "sequence",
+        "glass",
+        "ice",
+        "garnish"
+      ]
+    },
+    {
+      "id": "sidecar",
+      "name": "Sidecar",
+      "sourceUrl": "https://en.wikibooks.org/wiki/Bartending/Cocktails/Sidecar",
+      "sourceLabel": "Wikibooks Bartending (community-edited)",
+      "sourceLicense": "CC BY-SA (Wikimedia)",
+      "ingredients": [
+        {
+          "amount": "50 ml",
+          "item": "Cognac"
+        },
+        {
+          "amount": "20 ml",
+          "item": "Triple sec"
+        },
+        {
+          "amount": "20 ml",
+          "item": "Lemon juice"
+        }
+      ],
+      "method": "Shake with ice and strain into a sugar-rimmed glass.",
+      "glass": "Cocktail glass",
+      "garnish": "Sugar rim and lemon twist",
+      "steps": [
+        "Prepare a sugar rim on the cocktail glass.",
+        "Shake cognac, triple sec, and lemon juice with ice.",
+        "Strain into the glass and garnish with a lemon twist."
+      ],
+      "checked": [
+        "ingredients",
+        "amounts",
+        "sequence",
+        "glass",
+        "ice",
+        "garnish"
+      ]
+    },
+    {
+      "id": "bee-knees",
+      "name": "Bees Knees",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Bee%27s_knees",
+      "sourceLabel": "Wikipedia (community-edited)",
+      "sourceLicense": "CC BY-SA 4.0",
+      "ingredients": [
+        {
+          "amount": "2 oz",
+          "item": "Gin"
+        },
+        {
+          "amount": "1 oz",
+          "item": "Honey syrup"
+        },
+        {
+          "amount": "1 oz",
+          "item": "Lemon juice"
+        },
+        {
+          "amount": "1 oz",
+          "item": "Orange juice"
+        }
+      ],
+      "method": "Combine in a mixing tin, shake, strain into a chilled glass, and garnish.",
+      "glass": "Cocktail glass",
+      "garnish": "Lemon peel",
+      "steps": [
+        "Add gin, honey syrup, lemon juice, and orange juice to a mixing tin.",
+        "Shake.",
+        "Strain into a chilled cocktail glass and garnish with lemon peel."
+      ],
+      "checked": [
+        "ingredients",
+        "amounts",
+        "sequence",
+        "glass",
+        "garnish"
+      ]
+    },
+    {
+      "id": "corpse-reviver",
+      "name": "Corpse Reviver No. 2",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Corpse_Reviver",
+      "sourceLabel": "Wikipedia (community-edited)",
+      "sourceLicense": "CC BY-SA 4.0",
+      "ingredients": [
+        {
+          "amount": "30 ml",
+          "item": "Gin"
+        },
+        {
+          "amount": "30 ml",
+          "item": "Lemon juice"
+        },
+        {
+          "amount": "30 ml",
+          "item": "Cointreau"
+        },
+        {
+          "amount": "30 ml",
+          "item": "Lillet Blanc"
+        },
+        {
+          "amount": "1 dash",
+          "item": "Absinthe"
+        }
+      ],
+      "method": "Shake with ice and strain into a chilled glass.",
+      "glass": "Cocktail glass",
+      "garnish": "Orange zest",
+      "steps": [
+        "Add gin, lemon, Cointreau, Lillet Blanc, and absinthe to a mixer with ice.",
+        "Shake and strain into a chilled cocktail glass.",
+        "Garnish with orange zest."
+      ],
+      "checked": [
+        "ingredients",
+        "amounts",
+        "sequence",
+        "glass",
+        "ice",
+        "garnish"
+      ]
+    },
+    {
+      "id": "vesper",
+      "name": "Vesper",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Vesper_(cocktail)",
+      "sourceLabel": "Wikipedia (community-edited)",
+      "sourceLicense": "CC BY-SA 4.0",
+      "ingredients": [
+        {
+          "amount": "45 ml",
+          "item": "Gin"
+        },
+        {
+          "amount": "15 ml",
+          "item": "Vodka"
+        },
+        {
+          "amount": "7.5 ml",
+          "item": "Lillet Blanc"
+        }
+      ],
+      "method": "Shake with ice and strain into a chilled glass.",
+      "glass": "Cocktail glass",
+      "garnish": "Lemon zest",
+      "steps": [
+        "Add gin, vodka, and Lillet Blanc to a shaker filled with ice.",
+        "Shake and strain into a chilled cocktail glass.",
+        "Garnish with lemon zest."
+      ],
+      "checked": [
+        "ingredients",
+        "amounts",
+        "sequence",
+        "glass",
+        "ice",
+        "garnish"
+      ]
+    },
+    {
+      "id": "dirty-martini",
+      "name": "Dirty Martini",
+      "sourceUrl": "https://en.wikibooks.org/wiki/Bartending/Cocktails/Glossary",
+      "sourceLabel": "Wikibooks Bartending (community-edited)",
+      "sourceLicense": "CC BY-SA (Wikimedia)",
+      "ingredients": [
+        {
+          "amount": "3 oz",
+          "item": "Gin or vodka"
+        },
+        {
+          "amount": "splash",
+          "item": "Dry vermouth"
+        },
+        {
+          "amount": "splash",
+          "item": "Olive juice"
+        }
+      ],
+      "method": "Stir with ice and strain.",
+      "glass": "Martini glass",
+      "garnish": "Green olive",
+      "steps": [
+        "Stir gin or vodka, vermouth, and olive juice with ice in a Boston shaker.",
+        "Strain into a chilled martini glass.",
+        "Garnish with a green olive."
+      ],
+      "checked": [
+        "ingredients",
+        "amounts",
+        "sequence",
+        "glass",
+        "ice",
+        "garnish"
+      ]
+    },
+    {
+      "id": "pornstar-martini",
+      "name": "Pornstar Martini",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Pornstar_martini",
+      "sourceLabel": "Wikipedia (community-edited)",
+      "sourceLicense": "CC BY-SA 4.0",
+      "ingredients": [
+        {
+          "amount": "4 cl",
+          "item": "Vanilla vodka"
+        },
+        {
+          "amount": "1 cl",
+          "item": "Passoã"
+        },
+        {
+          "amount": "2 cl",
+          "item": "Passion fruit purée"
+        },
+        {
+          "amount": "2 bar spoons",
+          "item": "Homemade vanilla sugar"
+        },
+        {
+          "amount": "side",
+          "item": "Champagne"
+        }
+      ],
+      "method": "Shake the cocktail ingredients with ice and strain; serve Champagne alongside.",
+      "glass": "Cocktail glass",
+      "garnish": "Passion fruit half dusted with vanilla sugar; Champagne sidecar",
+      "steps": [
+        "Add vodka, Passoã, passion fruit purée, and vanilla sugar to a mixing glass with ice.",
+        "Shake well and strain into a chilled martini glass.",
+        "Garnish with a vanilla-sugar-dusted passion fruit half and serve Champagne in a chilled shot glass alongside."
+      ],
+      "checked": [
+        "ingredients",
+        "amounts",
+        "sequence",
+        "glass",
+        "ice",
+        "garnish"
+      ]
+    },
+    {
+      "id": "french-martini",
+      "name": "French Martini",
+      "sourceUrl": "https://en.wikibooks.org/wiki/Bartending/Cocktails/Glossary",
+      "sourceLabel": "Wikibooks Bartending (community-edited)",
+      "sourceLicense": "CC BY-SA (Wikimedia)",
+      "ingredients": [
+        {
+          "amount": "1½ oz",
+          "item": "Vodka"
+        },
+        {
+          "amount": "¼ oz",
+          "item": "Chambord"
+        },
+        {
+          "amount": "¼ oz",
+          "item": "Fresh pineapple juice"
+        }
+      ],
+      "method": "Shake with ice, chill, and strain.",
+      "glass": "Martini or cocktail glass",
+      "garnish": "Lemon twist",
+      "steps": [
+        "Combine vodka, Chambord, and pineapple juice with ice in a shaker.",
+        "Shake until chilled and strain into a martini or cocktail glass.",
+        "Garnish with a lemon twist."
+      ],
+      "checked": [
+        "ingredients",
+        "amounts",
+        "sequence",
+        "glass",
+        "ice",
+        "garnish"
+      ]
+    },
+    {
+      "id": "amaretto-sour",
+      "name": "Amaretto Sour",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Amaretto_sour",
+      "sourceLabel": "Wikipedia (community-edited)",
+      "sourceLicense": "CC BY-SA 4.0",
+      "ingredients": [
+        {
+          "amount": "45 ml",
+          "item": "Amaretto"
+        },
+        {
+          "amount": "90 ml",
+          "item": "Sour mix"
+        }
+      ],
+      "method": "Mix and serve over ice.",
+      "glass": "Old-fashioned glass",
+      "garnish": "Cherry and orange or lemon wedge",
+      "steps": [
+        "Mix amaretto and sour mix.",
+        "Serve over ice in an old-fashioned glass.",
+        "Garnish with a cherry and orange or lemon wedge."
+      ],
+      "checked": [
+        "ingredients",
+        "amounts",
+        "sequence",
+        "glass",
+        "ice",
+        "garnish"
+      ]
+    },
+    {
+      "id": "dark-n-stormy",
+      "name": "Dark n Stormy",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Dark_%27n%27_stormy",
+      "sourceLabel": "Wikipedia (community-edited)",
+      "sourceLicense": "CC BY-SA 4.0",
+      "ingredients": [
+        {
+          "amount": "60 ml",
+          "item": "Goslings rum"
+        },
+        {
+          "amount": "100 ml",
+          "item": "Ginger beer"
+        }
+      ],
+      "method": "Pour ginger beer into an ice-filled highball glass and float the rum on top.",
+      "glass": "Highball glass",
+      "garnish": "Lime wedge",
+      "steps": [
+        "Fill a highball glass with ice.",
+        "Pour in the ginger beer.",
+        "Float the rum on top and garnish with a lime wedge."
+      ],
+      "checked": [
+        "ingredients",
+        "amounts",
+        "sequence",
+        "glass",
+        "ice",
+        "garnish"
+      ]
+    },
+    {
+      "id": "cuba-libre",
+      "name": "Cuba Libre",
+      "sourceUrl": "https://en.wikibooks.org/wiki/Bartending/Cocktails/Glossary",
+      "sourceLabel": "Wikibooks Bartending (community-edited)",
+      "sourceLicense": "CC BY-SA (Wikimedia)",
+      "ingredients": [
+        {
+          "amount": "1 oz",
+          "item": "Rum"
+        },
+        {
+          "amount": "3 oz",
+          "item": "Coca-Cola"
+        },
+        {
+          "amount": "1",
+          "item": "Lime wedge"
+        }
+      ],
+      "method": "Build over ice, rum first, then cola; squeeze and drop in lime.",
+      "glass": "Highball",
+      "garnish": "Lime wedge",
+      "steps": [
+        "Rub the lime around the rim and fill the highball with ice.",
+        "Add rum, then fill with Coca-Cola.",
+        "Squeeze the lime into the drink and drop it in."
+      ],
+      "checked": [
+        "ingredients",
+        "amounts",
+        "sequence",
+        "glass",
+        "ice",
+        "garnish"
+      ]
+    },
+    {
+      "id": "caipirinha",
+      "name": "Caipirinha",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Caipirinha",
+      "sourceLabel": "Wikipedia (community-edited)",
+      "sourceLicense": "CC BY-SA 4.0",
+      "ingredients": [
+        {
+          "amount": "60 ml",
+          "item": "Cachaça"
+        },
+        {
+          "amount": "1",
+          "item": "Persian lime, cut into wedges"
+        },
+        {
+          "amount": "4 tsp",
+          "item": "White cane sugar"
+        }
+      ],
+      "method": "Muddle lime and sugar, add cracked ice and cachaça, then stir gently.",
+      "glass": "Double old-fashioned glass",
+      "garnish": "Sugarcane and lime (ingredient)",
+      "steps": [
+        "Place lime and sugar in the glass and muddle gently.",
+        "Fill with cracked ice and add cachaça.",
+        "Stir gently to combine."
+      ],
+      "checked": [
+        "ingredients",
+        "amounts",
+        "sequence",
+        "glass",
+        "ice",
+        "garnish"
+      ]
+    },
+    {
+      "id": "jungle-bird",
+      "name": "Jungle Bird",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Jungle_Bird",
+      "sourceLabel": "Wikipedia (community-edited)",
+      "sourceLicense": "CC BY-SA 4.0",
+      "ingredients": [
+        {
+          "amount": "45 ml",
+          "item": "Blackstrap rum"
+        },
+        {
+          "amount": "22.5 ml",
+          "item": "Campari"
+        },
+        {
+          "amount": "45 ml",
+          "item": "Pineapple juice"
+        },
+        {
+          "amount": "15 ml",
+          "item": "Lime juice"
+        },
+        {
+          "amount": "15 ml",
+          "item": "Demerara syrup"
+        }
+      ],
+      "method": "Shake with ice and strain into a rocks glass filled with ice.",
+      "glass": "Rocks glass",
+      "garnish": "Pineapple wedge",
+      "steps": [
+        "Add rum, Campari, pineapple juice, lime juice, and demerara syrup to a shaker with ice.",
+        "Shake.",
+        "Strain into an ice-filled rocks glass and garnish with a pineapple wedge."
+      ],
+      "checked": [
+        "ingredients",
+        "amounts",
+        "sequence",
+        "glass",
+        "ice",
+        "garnish"
+      ]
+    },
+    {
+      "id": "painkiller",
+      "name": "Painkiller",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Painkiller_(cocktail)",
+      "sourceLabel": "Wikipedia (community-edited)",
+      "sourceLicense": "CC BY-SA 4.0",
+      "ingredients": [
+        {
+          "amount": "2–4 parts",
+          "item": "Rum"
+        },
+        {
+          "amount": "4 parts",
+          "item": "Pineapple juice"
+        },
+        {
+          "amount": "1 part",
+          "item": "Cream of coconut"
+        },
+        {
+          "amount": "1 part",
+          "item": "Orange juice"
+        },
+        {
+          "amount": "sprinkle",
+          "item": "Nutmeg"
+        }
+      ],
+      "method": "Shake and serve on the rocks.",
+      "glass": "Not specified in the source",
+      "garnish": "Nutmeg",
+      "steps": [
+        "Shake rum, pineapple juice, cream of coconut, and orange juice.",
+        "Serve over ice.",
+        "Sprinkle generously with fresh nutmeg."
+      ],
+      "checked": [
+        "ingredients",
+        "amounts",
+        "sequence",
+        "ice",
+        "garnish"
+      ]
+    },
+    {
+      "id": "hemingway",
+      "name": "Hemingway Daiquiri",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Hemingway_special",
+      "sourceLabel": "Wikipedia (community-edited)",
+      "sourceLicense": "CC BY-SA 4.0",
+      "ingredients": [
+        {
+          "amount": "6 cl",
+          "item": "Rum"
+        },
+        {
+          "amount": "4 cl",
+          "item": "Grapefruit juice"
+        },
+        {
+          "amount": "1.5 cl",
+          "item": "Maraschino liqueur"
+        },
+        {
+          "amount": "1.5 cl",
+          "item": "Fresh lime juice"
+        }
+      ],
+      "method": "Shake all ingredients with ice.",
+      "glass": "Cocktail glass",
+      "garnish": "",
+      "steps": [
+        "Pour all ingredients into a shaker with ice.",
+        "Shake and serve straight up in a cocktail glass."
+      ],
+      "checked": [
+        "ingredients",
+        "amounts",
+        "sequence",
+        "glass",
+        "ice"
+      ]
+    },
+    {
+      "id": "americano",
+      "name": "Americano",
+      "sourceUrl": "https://en.wikibooks.org/wiki/Bartending/Cocktails/Glossary",
+      "sourceLabel": "Wikibooks Bartending (community-edited)",
+      "sourceLicense": "CC BY-SA (Wikimedia)",
+      "ingredients": [
+        {
+          "amount": "1 oz",
+          "item": "Campari"
+        },
+        {
+          "amount": "1 oz",
+          "item": "Red vermouth"
+        },
+        {
+          "amount": "splash",
+          "item": "Soda water"
+        }
+      ],
+      "method": "Build directly over ice and add soda.",
+      "glass": "Old-fashioned glass",
+      "garnish": "Half orange slice",
+      "steps": [
+        "Fill an old-fashioned glass with ice.",
+        "Add Campari and red vermouth.",
+        "Add soda and garnish with half an orange slice."
+      ],
+      "checked": [
+        "ingredients",
+        "amounts",
+        "sequence",
+        "glass",
+        "ice",
+        "garnish"
+      ]
+    },
+    {
+      "id": "hugo-spritz",
+      "name": "Hugo Spritz",
+      "sourceUrl": "https://en.wikibooks.org/wiki/Bartending/Cocktails/Glossary",
+      "sourceLabel": "Wikibooks Bartending (community-edited)",
+      "sourceLicense": "CC BY-SA (Wikimedia)",
+      "ingredients": [
+        {
+          "amount": "4–5",
+          "item": "Mint leaves"
+        },
+        {
+          "amount": "1",
+          "item": "Lime wedge or slices"
+        },
+        {
+          "amount": "1–1½ oz",
+          "item": "Elderflower liqueur"
+        },
+        {
+          "amount": "3–4 oz",
+          "item": "Chilled Prosecco"
+        },
+        {
+          "amount": "1–2 oz",
+          "item": "Sparkling water or club soda"
+        }
+      ],
+      "method": "Gently muddle mint and lime, then build over ice and stir gently.",
+      "glass": "Large wine glass",
+      "garnish": "Mint sprig and lime slice or wheel",
+      "steps": [
+        "Gently muddle mint and lime in a large wine glass.",
+        "Fill with ice and add elderflower liqueur.",
+        "Add Prosecco followed by sparkling water.",
+        "Stir gently and garnish with mint and lime."
+      ],
+      "checked": [
+        "ingredients",
+        "amounts",
+        "sequence",
+        "glass",
+        "ice",
+        "garnish"
+      ]
+    },
+    {
+      "id": "bellini",
+      "name": "Bellini",
+      "sourceUrl": "https://en.wikibooks.org/wiki/Bartending/Cocktails/Glossary",
+      "sourceLabel": "Wikibooks Bartending (community-edited)",
+      "sourceLicense": "CC BY-SA (Wikimedia)",
+      "ingredients": [
+        {
+          "amount": "2 oz",
+          "item": "White peach purée"
+        },
+        {
+          "amount": "5 oz",
+          "item": "Prosecco"
+        }
+      ],
+      "method": "Gently roll with ice, then strain.",
+      "glass": "Champagne glass",
+      "garnish": "",
+      "steps": [
+        "Put peach purée and Prosecco in a mixing glass with ice.",
+        "Gently roll rather than shake.",
+        "Strain into a champagne glass."
+      ],
+      "checked": [
+        "ingredients",
+        "amounts",
+        "sequence",
+        "glass",
+        "ice"
+      ]
+    },
+    {
+      "id": "kir-royale",
+      "name": "Kir Royale",
+      "sourceUrl": "https://en.wikibooks.org/wiki/Bartending/Cocktails/Glossary",
+      "sourceLabel": "Wikibooks Bartending (community-edited)",
+      "sourceLicense": "CC BY-SA (Wikimedia)",
+      "ingredients": [
+        {
+          "amount": "100 ml",
+          "item": "Champagne"
+        },
+        {
+          "amount": "20 ml",
+          "item": "Crème de cassis"
+        }
+      ],
+      "method": "Add cassis first, pour Champagne, and stir until pale.",
+      "glass": "Champagne glass",
+      "garnish": "",
+      "steps": [
+        "Pour crème de cassis into a champagne glass.",
+        "Add Champagne.",
+        "Stir until the drink is pale and serve cold."
+      ],
+      "checked": [
+        "ingredients",
+        "amounts",
+        "sequence",
+        "glass"
+      ]
+    },
+    {
+      "id": "southside",
+      "name": "Southside",
+      "sourceUrl": "https://en.wikipedia.org/wiki/South_Side_(cocktail)",
+      "sourceLabel": "Wikipedia (community-edited)",
+      "sourceLicense": "CC BY-SA 4.0",
+      "ingredients": [
+        {
+          "amount": "60 ml",
+          "item": "London dry gin"
+        },
+        {
+          "amount": "30 ml",
+          "item": "Lemon juice"
+        },
+        {
+          "amount": "15 ml",
+          "item": "Simple syrup"
+        },
+        {
+          "amount": "5–6 leaves",
+          "item": "Mint"
+        },
+        {
+          "amount": "few drops (optional)",
+          "item": "Egg white"
+        }
+      ],
+      "method": "Shake well with ice and double-strain into a chilled glass.",
+      "glass": "Cocktail glass",
+      "garnish": "Mint sprigs",
+      "steps": [
+        "Add gin, lemon juice, simple syrup, mint, and optional egg white to a shaker.",
+        "Shake well with ice.",
+        "Double-strain into a chilled cocktail glass and garnish with mint sprigs."
+      ],
+      "checked": [
+        "ingredients",
+        "amounts",
+        "sequence",
+        "glass",
+        "ice",
+        "garnish"
+      ]
+    },
+    {
+      "id": "clover-club",
+      "name": "Clover Club",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Clover_Club_cocktail",
+      "sourceLabel": "Wikipedia (community-edited)",
+      "sourceLicense": "CC BY-SA 4.0",
+      "ingredients": [
+        {
+          "amount": "4.5 cl",
+          "item": "Gin"
+        },
+        {
+          "amount": "1.5 cl",
+          "item": "Lemon juice"
+        },
+        {
+          "amount": "1.5 cl",
+          "item": "Raspberry syrup"
+        },
+        {
+          "amount": "1",
+          "item": "Egg white (or 20 ml aquafaba or 4 drops cocktail foamer)"
+        }
+      ],
+      "method": "Dry-shake to emulsify, add ice, shake, and serve straight up.",
+      "glass": "Cocktail glass",
+      "garnish": "",
+      "steps": [
+        "Add gin, lemon juice, raspberry syrup, and egg white to a shaker.",
+        "Dry-shake to emulsify.",
+        "Add ice, shake, and strain into a chilled cocktail glass."
+      ],
+      "checked": [
+        "ingredients",
+        "amounts",
+        "sequence",
+        "glass",
+        "ice"
+      ]
+    },
+    {
+      "id": "brandy-alexander",
+      "name": "Brandy Alexander",
+      "sourceUrl": "https://en.wikibooks.org/wiki/Bartending/Cocktails/Glossary",
+      "sourceLabel": "Wikibooks Bartending (community-edited)",
+      "sourceLicense": "CC BY-SA (Wikimedia)",
+      "ingredients": [
+        {
+          "amount": "1 oz",
+          "item": "Cognac"
+        },
+        {
+          "amount": "1 oz",
+          "item": "Crème de cacao"
+        },
+        {
+          "amount": "1 oz",
+          "item": "Double cream"
+        }
+      ],
+      "method": "Shake with ice and strain.",
+      "glass": "Cocktail glass",
+      "garnish": "",
+      "steps": [
+        "Combine cognac, crème de cacao, and cream with ice.",
+        "Shake and strain into a cocktail glass."
+      ],
+      "checked": [
+        "ingredients",
+        "amounts",
+        "sequence",
+        "glass",
+        "ice"
+      ]
+    },
+    {
+      "id": "grasshopper",
+      "name": "Grasshopper",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Grasshopper_(cocktail)",
+      "sourceLabel": "Wikipedia (community-edited)",
+      "sourceLicense": "CC BY-SA 4.0",
+      "ingredients": [
+        {
+          "amount": "3 cl",
+          "item": "Green crème de menthe"
+        },
+        {
+          "amount": "3 cl",
+          "item": "White crème de cacao"
+        },
+        {
+          "amount": "3 cl",
+          "item": "Cream"
+        }
+      ],
+      "method": "Shake briskly with ice and strain into a chilled glass.",
+      "glass": "Cocktail glass",
+      "garnish": "",
+      "steps": [
+        "Add crème de menthe, crème de cacao, and cream to a shaker.",
+        "Shake briskly with ice.",
+        "Strain into a chilled cocktail glass."
+      ],
+      "checked": [
+        "ingredients",
+        "amounts",
+        "sequence",
+        "glass",
+        "ice"
+      ]
+    },
+    {
+      "id": "sex-on-the-beach",
+      "name": "Sex on the Beach",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Sex_on_the_Beach",
+      "sourceLabel": "Wikipedia (community-edited)",
+      "sourceLicense": "CC BY-SA 4.0",
+      "ingredients": [
+        {
+          "amount": "4 cl",
+          "item": "Vodka"
+        },
+        {
+          "amount": "2 cl",
+          "item": "Peach schnapps"
+        },
+        {
+          "amount": "4 cl",
+          "item": "Orange juice"
+        },
+        {
+          "amount": "4 cl",
+          "item": "Cranberry juice"
+        }
+      ],
+      "method": "Build all ingredients in an ice-filled highball glass.",
+      "glass": "Highball glass",
+      "garnish": "Orange slice",
+      "steps": [
+        "Fill a highball glass with ice.",
+        "Add vodka, peach schnapps, orange juice, and cranberry juice.",
+        "Garnish with an orange slice."
+      ],
+      "checked": [
+        "ingredients",
+        "amounts",
+        "sequence",
+        "glass",
+        "ice",
+        "garnish"
+      ]
+    },
+    {
+      "id": "blue-hawaiian",
+      "name": "Blue Hawaiian",
+      "sourceUrl": "https://en.wikibooks.org/wiki/Bartending/Cocktails/Glossary",
+      "sourceLabel": "Wikibooks Bartending (community-edited)",
+      "sourceLicense": "CC BY-SA (Wikimedia)",
+      "ingredients": [
+        {
+          "amount": "1 part",
+          "item": "Light rum"
+        },
+        {
+          "amount": "1 part",
+          "item": "Blue curaçao"
+        },
+        {
+          "amount": "2 parts",
+          "item": "Pineapple juice"
+        },
+        {
+          "amount": "1 part",
+          "item": "Cream of coconut"
+        },
+        {
+          "amount": "1 cup",
+          "item": "Ice"
+        }
+      ],
+      "method": "Shake with ice and strain.",
+      "glass": "Highball",
+      "garnish": "Cherry and pineapple",
+      "steps": [
+        "Combine the ingredients with ice.",
+        "Shake and strain into a highball.",
+        "Garnish with a cherry and pineapple."
+      ],
+      "checked": [
+        "ingredients",
+        "amounts",
+        "sequence",
+        "glass",
+        "ice",
+        "garnish"
+      ]
+    },
+    {
+      "id": "zombie",
+      "name": "Zombie",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Zombie_(cocktail)",
+      "sourceLabel": "Wikipedia (community-edited)",
+      "sourceLicense": "CC BY-SA 4.0",
+      "ingredients": [
+        {
+          "amount": "45 ml",
+          "item": "Jamaican dark rum"
+        },
+        {
+          "amount": "45 ml",
+          "item": "Puerto Rican gold rum"
+        },
+        {
+          "amount": "30 ml",
+          "item": "Demerara rum"
+        },
+        {
+          "amount": "20 ml",
+          "item": "Fresh lime juice"
+        },
+        {
+          "amount": "15 ml",
+          "item": "Falernum"
+        },
+        {
+          "amount": "15 ml",
+          "item": "Don's Mix"
+        },
+        {
+          "amount": "1 tsp",
+          "item": "Grenadine syrup"
+        },
+        {
+          "amount": "1 dash",
+          "item": "Angostura bitters"
+        },
+        {
+          "amount": "6 drops",
+          "item": "Pernod"
+        },
+        {
+          "amount": "170 g",
+          "item": "Cracked ice"
+        }
+      ],
+      "method": "Pulse-blend all ingredients with cracked ice for a few seconds.",
+      "glass": "Tall tumbler (beverage glass)",
+      "garnish": "Mint leaves",
+      "steps": [
+        "Add all ingredients and 170 g cracked ice to an electric blender.",
+        "Pulse-blend for a few seconds.",
+        "Serve in a tall tumbler over ice and garnish with mint leaves."
+      ],
+      "checked": [
+        "ingredients",
+        "amounts",
+        "sequence",
+        "glass",
+        "ice",
+        "garnish"
+      ]
+    },
+    {
+      "id": "godfather",
+      "name": "Godfather",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Godfather_(cocktail)",
+      "sourceLabel": "Wikipedia (community-edited)",
+      "sourceLicense": "CC BY-SA 4.0",
+      "ingredients": [
+        {
+          "amount": "3.5 cl (1 oz)",
+          "item": "Scotch whisky"
+        },
+        {
+          "amount": "3.5 cl (1 oz)",
+          "item": "Amaretto"
+        }
+      ],
+      "method": "Pour directly into an ice-filled glass and stir gently.",
+      "glass": "Old-fashioned glass",
+      "garnish": "",
+      "steps": [
+        "Fill an old-fashioned glass with ice.",
+        "Pour in the Scotch whisky and amaretto.",
+        "Stir gently."
+      ],
+      "checked": [
+        "ingredients",
+        "amounts",
+        "sequence",
+        "glass",
+        "ice"
+      ]
+    },
+    {
+      "id": "rusty-nail",
+      "name": "Rusty Nail",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Rusty_Nail_(cocktail)",
+      "sourceLabel": "Wikipedia (community-edited)",
+      "sourceLicense": "CC BY-SA 4.0",
+      "ingredients": [
+        {
+          "amount": "45 ml",
+          "item": "Scotch whisky"
+        },
+        {
+          "amount": "25 ml",
+          "item": "Drambuie"
+        }
+      ],
+      "method": "Pour directly into an ice-filled glass and stir gently.",
+      "glass": "Old-fashioned glass",
+      "garnish": "Orange peel (optional)",
+      "steps": [
+        "Fill an old-fashioned glass with ice.",
+        "Pour in the Scotch whisky and Drambuie.",
+        "Stir gently and optionally garnish with orange peel."
+      ],
+      "checked": [
+        "ingredients",
+        "amounts",
+        "sequence",
+        "glass",
+        "ice",
+        "garnish"
+      ]
+    },
+    {
+      "id": "rob-roy",
+      "name": "Rob Roy",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Rob_Roy_(cocktail)",
+      "sourceLabel": "Wikipedia (community-edited)",
+      "sourceLicense": "CC BY-SA 4.0",
+      "ingredients": [
+        {
+          "amount": "4.5 cl",
+          "item": "Scotch whisky"
+        },
+        {
+          "amount": "2.5 cl",
+          "item": "Sweet vermouth"
+        },
+        {
+          "amount": "dash",
+          "item": "Angostura bitters"
+        }
+      ],
+      "method": "Stir with ice and strain into a chilled glass; it may also be served on the rocks.",
+      "glass": "Cocktail glass",
+      "garnish": "Two maraschino cherries on a skewer or a lemon twist",
+      "steps": [
+        "Add Scotch, sweet vermouth, and bitters to a mixing glass with ice.",
+        "Stir and strain into a chilled cocktail glass.",
+        "Garnish with cherries or a lemon twist."
+      ],
+      "checked": [
+        "ingredients",
+        "amounts",
+        "sequence",
+        "glass",
+        "ice",
+        "garnish"
+      ]
+    },
+    {
+      "id": "vieux-carre",
+      "name": "Vieux Carre",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Vieux_Carr%C3%A9_(cocktail)",
+      "sourceLabel": "Wikipedia (community-edited)",
+      "sourceLicense": "CC BY-SA 4.0",
+      "ingredients": [
+        {
+          "amount": "30 ml",
+          "item": "Rye whiskey"
+        },
+        {
+          "amount": "30 ml",
+          "item": "Cognac"
+        },
+        {
+          "amount": "30 ml",
+          "item": "Sweet vermouth"
+        },
+        {
+          "amount": "1 bar spoon",
+          "item": "Bénédictine"
+        },
+        {
+          "amount": "2 dashes",
+          "item": "Peychaud's bitters"
+        }
+      ],
+      "method": "Stir with ice and strain into a chilled glass.",
+      "glass": "Cocktail glass",
+      "garnish": "Orange zest and a maraschino cherry",
+      "steps": [
+        "Add rye, cognac, sweet vermouth, Bénédictine, and bitters to a mixing glass with ice.",
+        "Stir and strain into a chilled cocktail glass.",
+        "Garnish with orange zest and a maraschino cherry."
+      ],
+      "checked": [
+        "ingredients",
+        "amounts",
+        "sequence",
+        "glass",
+        "ice",
+        "garnish"
+      ]
+    },
+    {
+      "id": "new-york-sour",
+      "name": "New York Sour",
+      "sourceUrl": "https://en.wikipedia.org/wiki/New_York_Sour",
+      "sourceLabel": "Wikipedia (community-edited)",
+      "sourceLicense": "CC BY-SA 4.0",
+      "ingredients": [
+        {
+          "amount": "6 cl",
+          "item": "Rye or bourbon whiskey"
+        },
+        {
+          "amount": "2.25 cl",
+          "item": "Simple syrup"
+        },
+        {
+          "amount": "3 cl",
+          "item": "Fresh lemon juice"
+        },
+        {
+          "amount": "few drops",
+          "item": "Egg white"
+        },
+        {
+          "amount": "1.5 cl",
+          "item": "Red wine"
+        }
+      ],
+      "method": "Shake the base with ice, strain over ice, and float red wine on top.",
+      "glass": "Old-fashioned glass",
+      "garnish": "Lemon or orange zest and cherry",
+      "steps": [
+        "Shake whiskey, syrup, lemon juice, and egg white vigorously with ice.",
+        "Strain into a chilled rocks glass filled with ice.",
+        "Float red wine on top and garnish with zest and cherry."
+      ],
+      "checked": [
+        "ingredients",
+        "amounts",
+        "sequence",
+        "glass",
+        "ice",
+        "garnish"
+      ]
+    },
+    {
+      "id": "seven-and-seven",
+      "name": "Seven and Seven",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Seven_and_Seven",
+      "sourceLabel": "Wikipedia (community-edited)",
+      "sourceLicense": "CC BY-SA 4.0",
+      "ingredients": [
+        {
+          "amount": "1 shot (about 45 ml)",
+          "item": "Seagram's Seven Crown whiskey"
+        },
+        {
+          "amount": "4–6 oz (about 150 ml)",
+          "item": "7 Up"
+        }
+      ],
+      "method": "Pour whiskey into an ice-filled glass, fill with 7 Up, and stir lightly.",
+      "glass": "Collins glass",
+      "garnish": "Lemon or lime wedge (optional)",
+      "steps": [
+        "Fill a Collins glass with ice.",
+        "Pour in Seagram's Seven Crown whiskey.",
+        "Fill with 7 Up and stir lightly.",
+        "Optionally garnish with a lemon or lime wedge."
+      ],
+      "checked": [
+        "ingredients",
+        "amounts",
+        "sequence",
+        "glass",
+        "ice",
+        "garnish"
+      ]
+    },
+    {
+      "id": "kamikaze",
+      "name": "Kamikaze",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Kamikaze_(cocktail)",
+      "sourceLabel": "Wikipedia (community-edited)",
+      "sourceLicense": "CC BY-SA 4.0",
+      "ingredients": [
+        {
+          "amount": "3 cl",
+          "item": "Vodka"
+        },
+        {
+          "amount": "3 cl",
+          "item": "Triple sec"
+        },
+        {
+          "amount": "3 cl",
+          "item": "Lime juice"
+        }
+      ],
+      "method": "Shake all ingredients with ice, strain, and garnish.",
+      "glass": "Cocktail glass",
+      "garnish": "Lime slice",
+      "steps": [
+        "Add vodka, triple sec, and lime juice to a shaker with ice.",
+        "Shake and strain into a cocktail glass.",
+        "Garnish with a lime slice."
+      ],
+      "checked": [
+        "ingredients",
+        "amounts",
+        "sequence",
+        "glass",
+        "ice",
+        "garnish"
+      ]
+    },
+    {
+      "id": "greyhound",
+      "name": "Greyhound",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Greyhound_(cocktail)",
+      "sourceLabel": "Wikipedia (community-edited)",
+      "sourceLicense": "CC BY-SA 4.0",
+      "ingredients": [
+        {
+          "amount": "5 cl (1 part)",
+          "item": "Gin or vodka"
+        },
+        {
+          "amount": "20 cl (4 parts)",
+          "item": "Grapefruit juice"
+        }
+      ],
+      "method": "Shake in a cocktail shaker and strain into a highball glass.",
+      "glass": "Highball glass",
+      "garnish": "Lime or lemon twist",
+      "steps": [
+        "Add gin or vodka and grapefruit juice to a shaker with ice.",
+        "Shake and strain into a highball glass.",
+        "Garnish with a lime or lemon twist."
+      ],
+      "checked": [
+        "ingredients",
+        "amounts",
+        "sequence",
+        "glass",
+        "ice",
+        "garnish"
+      ]
+    },
+    {
+      "id": "salty-dog",
+      "name": "Salty Dog",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Salty_Dog_(cocktail)",
+      "sourceLabel": "Wikipedia (community-edited)",
+      "sourceLicense": "CC BY-SA 4.0",
+      "ingredients": [
+        {
+          "amount": "2 oz",
+          "item": "Gin or vodka"
+        },
+        {
+          "amount": "4 oz",
+          "item": "Grapefruit juice"
+        }
+      ],
+      "method": "Combine and serve in a salt-rimmed glass.",
+      "glass": "Highball glass",
+      "garnish": "Salted glass rim",
+      "steps": [
+        "Salt the rim of a highball glass.",
+        "Combine gin or vodka with grapefruit juice.",
+        "Serve in the salt-rimmed glass."
+      ],
+      "checked": [
+        "ingredients",
+        "amounts",
+        "sequence",
+        "glass",
+        "garnish"
+      ]
+    },
+    {
+      "id": "bay-breeze",
+      "name": "Bay Breeze",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Bay_breeze_%28cocktail%29",
+      "sourceLabel": "Wikipedia (community-edited)",
+      "sourceLicense": "CC BY-SA 4.0",
+      "ingredients": [
+        {
+          "amount": "2 parts",
+          "item": "Vodka"
+        },
+        {
+          "amount": "6 parts",
+          "item": "Cranberry juice"
+        },
+        {
+          "amount": "1.5 parts",
+          "item": "Pineapple juice"
+        }
+      ],
+      "method": "Build all ingredients in an ice-filled highball glass.",
+      "glass": "Highball glass",
+      "garnish": "Lime wedge",
+      "steps": [
+        "Fill a highball glass with ice.",
+        "Build in the vodka, cranberry juice, and pineapple juice.",
+        "Garnish with a lime wedge."
+      ],
+      "checked": [
+        "ingredients",
+        "amounts",
+        "sequence",
+        "glass",
+        "ice",
+        "garnish"
+      ]
+    },
+    {
+      "id": "sea-breeze",
+      "name": "Sea Breeze",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Sea_Breeze_(cocktail)",
+      "sourceLabel": "Wikipedia (community-edited)",
+      "sourceLicense": "CC BY-SA 4.0",
+      "ingredients": [
+        {
+          "amount": "4 cl",
+          "item": "Vodka"
+        },
+        {
+          "amount": "12 cl",
+          "item": "Cranberry juice"
+        },
+        {
+          "amount": "3 cl",
+          "item": "Grapefruit juice"
+        }
+      ],
+      "method": "Build all ingredients in an ice-filled highball glass.",
+      "glass": "Highball glass",
+      "garnish": "Lime wedge",
+      "steps": [
+        "Fill a highball glass with ice.",
+        "Add vodka, cranberry juice, and grapefruit juice.",
+        "Garnish with a lime wedge."
+      ],
+      "checked": [
+        "ingredients",
+        "amounts",
+        "sequence",
+        "glass",
+        "ice",
+        "garnish"
+      ]
+    },
+    {
+      "id": "blue-lagoon",
+      "name": "Blue Lagoon",
+      "sourceUrl": "https://en.wikibooks.org/wiki/Bartending/Cocktails/Glossary",
+      "sourceLabel": "Wikibooks Bartending (community-edited)",
+      "sourceLicense": "CC BY-SA (Wikimedia)",
+      "ingredients": [
+        {
+          "amount": "1 oz",
+          "item": "Vodka"
+        },
+        {
+          "amount": "1 oz",
+          "item": "Malibu rum"
+        },
+        {
+          "amount": "1 oz",
+          "item": "Blue curaçao"
+        },
+        {
+          "amount": "7 oz",
+          "item": "Lemonade"
+        }
+      ],
+      "method": "Shake vodka and rum with crushed ice in a shaker, then build the drink and pour curaçao through it.",
+      "glass": "Highball",
+      "garnish": "Optional sugar rim",
+      "steps": [
+        "Shake vodka and Malibu with crushed ice in a shaker.",
+        "Pour into the glass and add lemonade.",
+        "Pour blue curaçao down the inside of the glass for the layered effect."
+      ],
+      "checked": [
+        "ingredients",
+        "amounts",
+        "sequence",
+        "glass",
+        "ice",
+        "garnish"
+      ]
+    },
+    {
+      "id": "amf",
+      "name": "AMF",
+      "sourceUrl": "https://en.wikibooks.org/wiki/Bartending/Cocktails/Glossary",
+      "sourceLabel": "Wikibooks Bartending (community-edited)",
+      "sourceLicense": "CC BY-SA (Wikimedia)",
+      "ingredients": [
+        {
+          "amount": "1 oz",
+          "item": "Vodka"
+        },
+        {
+          "amount": "1 oz",
+          "item": "Rum"
+        },
+        {
+          "amount": "1 oz",
+          "item": "Tequila"
+        },
+        {
+          "amount": "1 oz",
+          "item": "Gin"
+        },
+        {
+          "amount": "1 oz",
+          "item": "Blue curaçao"
+        },
+        {
+          "amount": "splash",
+          "item": "Sour mix"
+        },
+        {
+          "amount": "top",
+          "item": "7-Up or citrus soda"
+        }
+      ],
+      "method": "Build on ice and top with soda.",
+      "glass": "Highball, on the rocks",
+      "garnish": "",
+      "steps": [
+        "Fill a highball with ice.",
+        "Pour the equal spirit measures and sour mix over the ice.",
+        "Top with 7-Up or citrus soda."
+      ],
+      "checked": [
+        "ingredients",
+        "amounts",
+        "sequence",
+        "glass",
+        "ice"
+      ]
+    },
+    {
+      "id": "alabama-slammer",
+      "name": "Alabama Slammer",
+      "sourceUrl": "https://en.wikibooks.org/wiki/Bartending/Cocktails/Glossary",
+      "sourceLabel": "Wikibooks Bartending (community-edited)",
+      "sourceLicense": "CC BY-SA (Wikimedia)",
+      "ingredients": [
+        {
+          "amount": "1 part",
+          "item": "Southern Comfort"
+        },
+        {
+          "amount": "1 part",
+          "item": "Amaretto liqueur"
+        },
+        {
+          "amount": "1 part",
+          "item": "Sloe gin"
+        },
+        {
+          "amount": "top",
+          "item": "Orange juice"
+        }
+      ],
+      "method": "Pour all ingredients, then shake with ice and strain.",
+      "glass": "Shot glass or cordial",
+      "garnish": "",
+      "steps": [
+        "Pour the spirits and orange juice into a shaker.",
+        "Shake with ice, then strain into a shot glass or cordial."
+      ],
+      "checked": [
+        "ingredients",
+        "amounts",
+        "sequence",
+        "glass",
+        "ice"
+      ]
+    },
+    {
+      "id": "jagerbomb",
+      "name": "Jägerbomb",
+      "sourceUrl": "https://en.wikibooks.org/wiki/Bartending/Cocktails/Glossary",
+      "sourceLabel": "Wikibooks Bartending (community-edited)",
+      "sourceLicense": "CC BY-SA (Wikimedia)",
+      "ingredients": [
+        {
+          "amount": "4 oz",
+          "item": "Energy drink"
+        },
+        {
+          "amount": "1 oz",
+          "item": "Jägermeister"
+        }
+      ],
+      "method": "Drop the Jägermeister into the energy drink and drink quickly.",
+      "glass": "Glass and shot glass",
+      "garnish": "",
+      "steps": [
+        "Fill a glass with energy drink.",
+        "Pour Jägermeister into a shot glass, drop it into the energy drink, and drink quickly."
+      ],
+      "checked": [
+        "ingredients",
+        "amounts",
+        "sequence",
+        "glass"
+      ]
+    },
+    {
+      "id": "arnold-palmer",
+      "name": "Arnold Palmer",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Arnold_Palmer_%28drink%29",
+      "sourceLabel": "Wikipedia (community-edited)",
+      "sourceLicense": "CC BY-SA 4.0",
+      "ingredients": [
+        {
+          "amount": "3 parts (Palmer preference)",
+          "item": "Unsweetened iced tea"
+        },
+        {
+          "amount": "1 part",
+          "item": "Lemonade"
+        }
+      ],
+      "method": "Combine the iced tea and lemonade.",
+      "glass": "Not specified in the source",
+      "garnish": "Not specified in the source",
+      "steps": [
+        "Combine three parts unsweetened iced tea with one part lemonade."
+      ],
+      "checked": [
+        "ingredients",
+        "amounts",
+        "sequence"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,149 @@
+# VIP Drinks verification
+
+Checked 2026-09-18T06:53:54.497Z.
+
+- 131 catalog drinks, 131 actual YouTube Shorts, 131 embeddable videos.
+- 76 recipes with amounts and preparation aligned to returned .org source text. These Wikimedia sources are community edited, not government certifications.
+- 55 unsupported recipes keep their drink cards and videos, but ingredients, method, and numbered instructions are hidden.
+- Eight distinct generated shot images; prompts and provenance: public/art/shot-provenance.json.
+- Cash edits save locally immediately and can be sent with Save now; reconnection retries the existing shared ledger. The production shell is cached after a successful online load. Videos still need internet.
+- Local closeout/history truncation removed. The matching server history-cap removal requires separately deploying the existing Worker; publishing GitHub Pages alone does not update it. Local browser storage can be cleared by browser settings.
+
+## Sources shown in the app
+
+- Margarita: https://en.wikibooks.org/wiki/Bartending/Cocktails/Margarita
+- Old Fashioned: https://en.wikibooks.org/wiki/Bartending/Cocktails/Old_Fashioned
+- Espresso Martini: https://en.wikipedia.org/wiki/Espresso_martini
+- Mojito: https://en.wikibooks.org/wiki/Bartending/Cocktails/Mojito
+- Negroni: https://en.wikipedia.org/wiki/Negroni
+- Manhattan: https://en.wikibooks.org/wiki/Bartending/Cocktails/Manhattan
+- Martini: https://en.wikibooks.org/wiki/Bartending/Cocktails/Martini
+- Daiquiri: https://en.wikibooks.org/wiki/Bartending/Cocktails/Daiquiri
+- Whiskey Sour: https://en.wikibooks.org/wiki/Bartending/Cocktails/Glossary
+- Moscow Mule: https://en.wikipedia.org/wiki/Moscow_mule
+- Cosmopolitan: https://en.wikibooks.org/wiki/Bartending/Cocktails/Cosmopolitan
+- Gin and Tonic: https://en.wikibooks.org/wiki/Bartending/Cocktails/Gin_and_Tonic
+- French 75: https://en.wikibooks.org/wiki/Bartending/Cocktails/French_75
+- Mimosa: https://en.wikipedia.org/wiki/Mimosa_(cocktail)
+- Paloma: https://en.wikibooks.org/wiki/Bartending/Cocktails/Glossary
+- Aperol Spritz: https://en.wikipedia.org/wiki/Aperol_spritz
+- Lemon Drop: https://en.wikipedia.org/wiki/Lemon_drop_(cocktail)
+- Mai Tai: https://en.wikipedia.org/wiki/Mai_Tai
+- Pina Colada: https://en.wikipedia.org/wiki/Pi%C3%B1a_colada
+- Long Island Iced Tea: https://en.wikipedia.org/wiki/Long_Island_iced_tea
+- Tequila Sunrise: https://en.wikibooks.org/wiki/Bartending/Cocktails/Glossary
+- Bloody Mary: https://en.wikibooks.org/wiki/Bartending/Cocktails/Glossary
+- Screwdriver: https://en.wikipedia.org/wiki/Screwdriver_(cocktail)
+- White Russian: https://en.wikipedia.org/wiki/White_Russian_(cocktail)
+- Black Russian: https://en.wikipedia.org/wiki/Black_Russian_(cocktail)
+- Irish Coffee: https://en.wikipedia.org/wiki/Irish_coffee
+- Mint Julep: https://en.wikibooks.org/wiki/Bartending/Cocktails/Mint_Julep
+- Sazerac: https://en.wikibooks.org/wiki/Bartending/Cocktails/Sazerac
+- Boulevardier: https://en.wikipedia.org/wiki/Boulevardier_(cocktail)
+- Paper Plane: https://en.wikipedia.org/wiki/Paper_Plane_(cocktail)
+- Penicillin: https://en.wikipedia.org/wiki/Penicillin_(cocktail)
+- Last Word: https://en.wikipedia.org/wiki/The_Last_Word_(cocktail)
+- Aviation: https://en.wikibooks.org/wiki/Bartending/Cocktails/Glossary
+- Gimlet: https://en.wikipedia.org/wiki/Gimlet_(cocktail)
+- Tom Collins: https://en.wikipedia.org/wiki/Tom_Collins
+- Sidecar: https://en.wikibooks.org/wiki/Bartending/Cocktails/Sidecar
+- Bees Knees: https://en.wikipedia.org/wiki/Bee%27s_knees
+- Corpse Reviver No. 2: https://en.wikipedia.org/wiki/Corpse_Reviver
+- Vesper: https://en.wikipedia.org/wiki/Vesper_(cocktail)
+- Dirty Martini: https://en.wikibooks.org/wiki/Bartending/Cocktails/Glossary
+- Pornstar Martini: https://en.wikipedia.org/wiki/Pornstar_martini
+- French Martini: https://en.wikibooks.org/wiki/Bartending/Cocktails/Glossary
+- Amaretto Sour: https://en.wikipedia.org/wiki/Amaretto_sour
+- Dark n Stormy: https://en.wikipedia.org/wiki/Dark_%27n%27_stormy
+- Cuba Libre: https://en.wikibooks.org/wiki/Bartending/Cocktails/Glossary
+- Caipirinha: https://en.wikipedia.org/wiki/Caipirinha
+- Jungle Bird: https://en.wikipedia.org/wiki/Jungle_Bird
+- Painkiller: https://en.wikipedia.org/wiki/Painkiller_(cocktail)
+- Hemingway Daiquiri: https://en.wikipedia.org/wiki/Hemingway_special
+- Americano: https://en.wikibooks.org/wiki/Bartending/Cocktails/Glossary
+- Hugo Spritz: https://en.wikibooks.org/wiki/Bartending/Cocktails/Glossary
+- Bellini: https://en.wikibooks.org/wiki/Bartending/Cocktails/Glossary
+- Kir Royale: https://en.wikibooks.org/wiki/Bartending/Cocktails/Glossary
+- Southside: https://en.wikipedia.org/wiki/South_Side_(cocktail)
+- Clover Club: https://en.wikipedia.org/wiki/Clover_Club_cocktail
+- Brandy Alexander: https://en.wikibooks.org/wiki/Bartending/Cocktails/Glossary
+- Grasshopper: https://en.wikipedia.org/wiki/Grasshopper_(cocktail)
+- Sex on the Beach: https://en.wikipedia.org/wiki/Sex_on_the_Beach
+- Blue Hawaiian: https://en.wikibooks.org/wiki/Bartending/Cocktails/Glossary
+- Zombie: https://en.wikipedia.org/wiki/Zombie_(cocktail)
+- Godfather: https://en.wikipedia.org/wiki/Godfather_(cocktail)
+- Rusty Nail: https://en.wikipedia.org/wiki/Rusty_Nail_(cocktail)
+- Rob Roy: https://en.wikipedia.org/wiki/Rob_Roy_(cocktail)
+- Vieux Carre: https://en.wikipedia.org/wiki/Vieux_Carr%C3%A9_(cocktail)
+- New York Sour: https://en.wikipedia.org/wiki/New_York_Sour
+- Seven and Seven: https://en.wikipedia.org/wiki/Seven_and_Seven
+- Kamikaze: https://en.wikipedia.org/wiki/Kamikaze_(cocktail)
+- Greyhound: https://en.wikipedia.org/wiki/Greyhound_(cocktail)
+- Salty Dog: https://en.wikipedia.org/wiki/Salty_Dog_(cocktail)
+- Bay Breeze: https://en.wikipedia.org/wiki/Bay_breeze_%28cocktail%29
+- Sea Breeze: https://en.wikipedia.org/wiki/Sea_Breeze_(cocktail)
+- Blue Lagoon: https://en.wikibooks.org/wiki/Bartending/Cocktails/Glossary
+- AMF: https://en.wikibooks.org/wiki/Bartending/Cocktails/Glossary
+- Alabama Slammer: https://en.wikibooks.org/wiki/Bartending/Cocktails/Glossary
+- Jägerbomb: https://en.wikibooks.org/wiki/Bartending/Cocktails/Glossary
+- Arnold Palmer: https://en.wikipedia.org/wiki/Arnold_Palmer_%28drink%29
+
+## Recipe details hidden
+
+- Gold Rush
+- Ranch Water
+- Spicy Margarita
+- Mezcal Margarita
+- Negroni Sbagliato
+- Mudslide
+- Hurricane
+- Irish Maid
+- Whiskey Ginger
+- Vodka Soda
+- Vodka Cranberry
+- Rum and Coke
+- Jack and Coke
+- Appletini
+- Vodka Red Bull
+- Jack and Ginger
+- Captain and Coke
+- Vodka Tonic
+- Vodka Sprite
+- Vodka Lemonade
+- Vodka Water
+- Tequila Soda
+- Gin and Juice
+- Madras
+- Fuzzy Navel
+- Amaretto and Coke
+- Malibu Pineapple
+- Woo Woo
+- Transfusion
+- Michelada
+- Rum Punch
+- Electric Lemonade
+- Tokyo Tea
+- Dirty Shirley
+- Washington Apple
+- Amaretto Stone Sour
+- Bloody Maria
+- Chocolate Martini
+- Vegas Bomb
+- Green Tea Shot
+- Lemon Drop Shot
+- Fireball Shot
+- Tequila Shot
+- Pickleback
+- Buttery Nipple
+- Baby Guinness
+- Surfer on Acid
+- Redheaded Slut
+- Irish Slammer
+- White Gummy Bear Shot
+- Shirley Temple
+- Roy Rogers
+- Virgin Mojito
+- Virgin Piña Colada
+- Virgin Mule
+
+Recipe adaptations credit the linked Wikimedia page contributors under CC BY-SA; see each page history for author attribution. Video evidence is retained in verification/shorts.json and recipe evidence in verification/recipes.json. No production cash data is included.

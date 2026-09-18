@@ -41,15 +41,17 @@ export function loadState(): AppState {
  */
 const MAX_TOMBSTONES = 500
 
-export function saveState(state: AppState) {
+export function saveState(state: AppState): boolean {
   try {
     const trimmed =
       state.removed.length > MAX_TOMBSTONES
         ? { ...state, removed: state.removed.slice(-MAX_TOMBSTONES) }
         : state
     localStorage.setItem(KEY, JSON.stringify(trimmed))
+    return true
   } catch {
     /* A full or blocked store must not take the shift down with it. */
+    return false
   }
 }
 
