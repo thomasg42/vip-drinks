@@ -1,6 +1,6 @@
 // Generated for this build; ledger responses are never cached here.
-const CACHE = 'vip-drinks-5bbadc39b5b797ed';
-const CORE = ["./","./index.html","./assets/index-BJ11wFxd.css","./assets/index-BqLR_CE9.js"];
+const CACHE = 'vip-drinks-6a6d5cb250ef1083';
+const CORE = ["./","./index.html","./assets/index-BJ11wFxd.css","./assets/index-DyhcaU_1.js"];
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(CORE)).then(() => self.skipWaiting()));
 });
