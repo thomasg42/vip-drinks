@@ -5,6 +5,23 @@ import { mergeState, normalizeState } from '../src/sync/merge.ts'
 
 const state = (notes = '', clock = 0) => normalizeState({ notes, clocks: { notes: clock } })
 
+test('server normalization and JSON property order do not cause endless saving', async () => {
+  let local = state('new note', 5), remote = state()
+  let writes = 0
+  let status: SaveStatus = { kind: 'pending' }
+  const engine = createSyncEngine({
+    read: () => local, apply: x => { local = x }, enabled: () => true,
+    pull: async () => normalizeState(remote),
+    push: async x => { writes++; remote = normalizeState(mergeState(remote, x)); return remote },
+    status: x => { status = x },
+  })
+  assert.equal(await engine.save(), true)
+  assert.equal(writes, 1)
+  assert.equal((status as SaveStatus).kind, 'ok')
+  assert.equal(await engine.save(), true)
+  assert.equal(writes, 1, 'an unchanged refresh must not write again')
+})
+
 test('a refresh uploads unsent edits before claiming saved', async () => {
   let local = state('unsent', 2), remote = state()
   const statuses: SaveStatus[] = []

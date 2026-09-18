@@ -16,7 +16,15 @@ type Options = {
   enabled: () => boolean
   status: (status: SaveStatus) => void
 }
-const same = (a: AppState, b: AppState) => JSON.stringify(a) === JSON.stringify(b)
+function canonical(value: unknown): unknown {
+  if (Array.isArray(value)) return value.map(canonical)
+  if (value !== null && typeof value === 'object') {
+    const record = value as Record<string, unknown>
+    return Object.fromEntries(Object.keys(record).sort().map(key => [key, canonical(record[key])]))
+  }
+  return value
+}
+const same = (a: AppState, b: AppState) => JSON.stringify(canonical(a)) === JSON.stringify(canonical(b))
 
 /** Responses merge with current edits; a read never marks unsent edits as saved. */
 export function createSyncEngine(options: Options) {
