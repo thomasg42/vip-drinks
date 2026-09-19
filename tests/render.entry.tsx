@@ -8,6 +8,7 @@ import { loadState } from '../src/storage'
 import { DRINKS } from '../src/data/drinks'
 import { MIXED_DRINKS } from '../src/data/mixedDrinks'
 import { VERIFIED_RECIPES } from '../src/data/verifiedRecipes'
+import { buildSteps } from '../src/data/steps'
 import { SHORTEST_VIDEO } from '../src/data/shortestVideos'
 import { youtubeId, type Drink } from '../src/types'
 
@@ -22,25 +23,49 @@ function check(name: string, fn: () => void) {
   }
 }
 
-check('every visible recipe is backed by an org or gov source; unsupported builds stay hidden', () => {
+check('EVERY drink on the sheet shows the house pour and a numbered build -- none are blank', () => {
   for (const drink of DRINKS) {
-    const recipe = VERIFIED_RECIPES[drink.id]
     const html = renderToStaticMarkup(<RecipeSheet drink={drink} onClose={() => {}} onMade={() => {}} />)
+    // The regression this pins: 55 of the 131 used to render "Recipe steps
+    // hidden" and nothing else, because no Wikimedia page had been matched.
+    assert.ok(!html.includes('Recipe steps hidden'), `${drink.name} is still hiding its recipe`)
+    assert.ok(html.includes('class="steps"'), `${drink.name} has no build`)
+    assert.ok(html.includes('class="ingredients"'), `${drink.name} has no ingredients`)
+    assert.ok(html.includes('class="recipe-meta"'), `${drink.name} has no glass/method line`)
+    // The pour on the card is the HOUSE pour, not a reference one.
+    for (const ing of drink.ingredients) {
+      assert.ok(
+        html.includes(ing.item.replaceAll('&', '&amp;').replaceAll("'", '&#x27;')),
+        `${drink.name} does not show its house ingredient "${ing.item}"`,
+      )
+    }
+    const recipe = VERIFIED_RECIPES[drink.id]
     if (recipe) {
+      // Provenance is kept, just demoted to a cross-check.
       const url = new URL(recipe.sourceUrl)
       assert.equal(url.protocol, 'https:', drink.name)
       assert.match(url.hostname, /\.(org|gov)$/, drink.name)
-      assert.ok(recipe.ingredients.length && recipe.steps.length, drink.name)
-      assert.ok(html.includes('class="steps"'), drink.name)
       assert.ok(html.includes(recipe.sourceUrl.replaceAll('&', '&amp;')), drink.name)
-    } else {
-      assert.ok(html.includes('Recipe steps hidden'), drink.name)
-      assert.ok(!html.includes('class="steps"'), drink.name)
-      assert.ok(!html.includes('class="ingredients"'), drink.name)
-      assert.ok(!html.includes('class="recipe-meta"'), drink.name)
+      assert.ok(html.includes('recipe-crosscheck'), `${drink.name} lost its source cross-check`)
     }
     assert.ok(html.includes('youtube-nocookie.com/embed/'), `${drink.name} lost its video`)
   }
+})
+
+check('the house Margarita is Thomas\u2019s pour, asked-for rim and all', () => {
+  const margarita = DRINKS.find((d) => d.id === 'margarita')!
+  const html = renderToStaticMarkup(<RecipeSheet drink={margarita} onClose={() => {}} onMade={() => {}} />)
+  for (const line of ['2 oz', 'Blanco tequila', '1 oz', 'Triple sec', 'Lime or lemon juice', 'splash', 'Simple syrup']) {
+    assert.ok(html.includes(line), `house Margarita is missing "${line}"`)
+  }
+  // The rim is a QUESTION, not an action -- salting a rim nobody asked for
+  // cannot be undone once the drink is poured.
+  const steps = buildSteps(margarita)
+  assert.match(steps[0], /^Ask first: do they want salt on the rim\?/, 'the rim question is not the first step')
+  // Strained into an empty glass. "Strain it into the rocks glass over fresh
+  // ice" would be the wrong drink.
+  assert.ok(steps.some((s) => /Strain it into the rocks glass\.$/.test(s)), 'the serve is not ice-free')
+  assert.ok(!steps.some((s) => /over fresh ice/.test(s)), 'ice leaked into the house Margarita serve')
 })
 
 check('the rail renders all four pours with their counts', () => {
@@ -72,7 +97,7 @@ check('a curated drink still plays its verified short', () => {
   )
   assert.ok(html.includes('youtube-nocookie.com/embed/'), 'embed missing')
   assert.ok(!html.includes('listType=search'), 'the dead search-embed param came back')
-  assert.ok(html.includes('Recipe source:'))
+  assert.ok(html.includes('Cross-check against a published recipe'), 'the source cross-check is missing')
 })
 
 check('a web drink shows ingredients, method and a real search link, never a dead player', () => {
@@ -99,8 +124,8 @@ check('a web drink shows ingredients, method and a real search link, never a dea
     'the search link must carry YouTube\u2019s under-4-minutes filter',
   )
   assert.ok(html.includes('Find the quickest how-to'), 'the how-to prompt is missing')
-  assert.ok(!html.includes('Grapefruit soda'), 'unverified ingredients leaked')
-  assert.ok(html.includes('Recipe steps hidden'), 'unverified recipe was not hidden')
+  assert.ok(html.includes('Grapefruit soda'), 'a web drink must still show what goes in it')
+  assert.ok(!html.includes('Recipe steps hidden'), 'no drink hides its recipe any more')
   assert.ok(html.includes('no house price set'), 'the unpriced warning must be visible')
 })
 
@@ -269,14 +294,15 @@ check('the chips render with real counts and every kind is reachable', () => {
 
 // ---- The build steps, and the shared shift ledger ----
 
-check('a sourced drink shows its verified build, numbered, below the ingredients', () => {
+check('a drink shows its HOUSE build, numbered, below the ingredients', () => {
   const html = renderToStaticMarkup(
     <RecipeSheet drink={DRINKS.find((d) => d.id === 'margarita')!} onClose={() => {}} onMade={() => {}} />,
   )
   assert.ok(html.includes('How to make it'), 'the how-to block is missing')
   assert.ok(html.includes('<ol class="steps">'), 'the steps are not a numbered list')
-  assert.ok(VERIFIED_RECIPES.margarita.steps.every(step => html.includes(step.replaceAll('&', '&amp;').replaceAll('\"', '&quot;').replaceAll("'", '&#x27;'))), 'verified recipe steps missing')
-  assert.ok(html.includes('en.wikibooks.org'), 'recipe source missing')
+  const house = buildSteps(DRINKS.find((d) => d.id === 'margarita')!)
+  assert.ok(house.every(step => html.includes(step.replaceAll('&', '&amp;').replaceAll('\"', '&quot;').replaceAll("'", '&#x27;'))), 'house build steps missing')
+  assert.ok(html.includes('en.wikibooks.org'), 'source cross-check missing')
   // It has to come AFTER the ingredients and BEFORE the action -- that is what
   // "at the bottom of all these" meant.
   assert.ok(html.indexOf('Ingredients') < html.indexOf('How to make it'))

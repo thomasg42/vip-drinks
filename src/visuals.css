@@ -186,3 +186,10 @@ body { background: #05090a; }
 .recipe-source, .recipe-unverified { font-size: 12px; line-height: 1.5; padding: 10px 12px; border: 1px solid rgba(218,187,126,.25); border-radius: 10px; overflow-wrap: anywhere; }
 .recipe-source a { color: #ead6a7; }
 .recipe-unverified { color: #d6c9ae; }
+/* The published-recipe cross-check: folded shut so it is never in the way
+   mid-rush, and set back so it never reads as the pour to make. */
+.recipe-crosscheck { margin-top: 14px; border-top: 1px solid rgba(218,187,126,.18); padding-top: 10px; }
+.recipe-crosscheck > summary { font-size: 13px; color: #c9bb9c; cursor: pointer; padding: 6px 0; list-style: revert; }
+.recipe-crosscheck > summary:hover { color: #ead6a7; }
+.recipe-crosscheck .ingredients { opacity: .72; margin-top: 8px; }
+.recipe-crosscheck .recipe-source { margin-top: 8px; }

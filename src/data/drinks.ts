@@ -22,8 +22,13 @@ function drink(
 const I = (amount: string, item: string): Ingredient => ({ amount, item })
 
 const COCKTAILS: Drink[] = [
-  drink('margarita', 'Margarita', 'Rocks, salt rim', 'Shake, strain over ice', 'Lime wheel', shorts('Ckp4SUYlBRU'), [
-    I('2 oz', 'Blanco tequila'), I('1 oz', 'Lime juice'), I('¾ oz', 'Cointreau'),
+  // HOUSE SPEC -- Thomas, 2026-09-19. This is the pour VIP has actually been
+  // using, not the classic and not the Wikibooks 3:2:1. Three things make it
+  // the house version: the rim is ASKED FOR rather than assumed, there is a
+  // splash of simple syrup in it, and it is strained into an EMPTY glass --
+  // no ice in the serve. Do not "correct" it back to a reference recipe.
+  drink('margarita', 'Margarita', 'Rocks, salt rim optional', 'Shake, strain', 'Lime wheel', shorts('Ckp4SUYlBRU'), [
+    I('2 oz', 'Blanco tequila'), I('1 oz', 'Triple sec'), I('1 oz', 'Lime or lemon juice'), I('splash', 'Simple syrup'),
   ]),
   drink('old-fashioned', 'Old Fashioned', 'Rocks', 'Stir in glass', 'Orange peel', shorts('yOIYPQdWT6o'), [
     I('2 oz', 'Bourbon or rye'), I('1 tsp', 'Demerara syrup'), I('2 dashes', 'Angostura bitters'), I('1 dash', 'Orange bitters'),

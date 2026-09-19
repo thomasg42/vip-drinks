@@ -223,10 +223,20 @@ export function buildSteps(drink: Drink): string[] {
   const steps: string[] = []
 
   // 1. The glass, before anything goes in it.
+  // A rim written as OPTIONAL is a question you ask the guest, not a step you
+  // perform -- salting a rim the guest did not want cannot be undone once the
+  // drink is poured, and it is the first thing said at the bar, before the tin
+  // is even picked up. A rim written without "optional" is house standard and
+  // stays an instruction.
+  const optionalRim = /optional/.test(rim)
   if (/salt rim/.test(rim)) {
-    steps.push(`Run a lime wedge round the rim of the ${glass} and roll it in salt.`)
+    steps.push(optionalRim
+      ? `Ask first: do they want salt on the rim? If yes, run a lime wedge round the rim of the ${glass} and roll it in salt. If no, leave it clean.`
+      : `Run a lime wedge round the rim of the ${glass} and roll it in salt.`)
   } else if (/sugar rim/.test(rim)) {
-    steps.push(`Wet the rim of the ${glass} with lemon and roll it in sugar.`)
+    steps.push(optionalRim
+      ? `Ask first: do they want a sugar rim? If yes, wet the rim of the ${glass} with lemon and roll it in sugar. If no, leave it clean.`
+      : `Wet the rim of the ${glass} with lemon and roll it in sugar.`)
   }
   if (method.includes('rinse')) {
     // The rinse is whichever ingredient SAYS it is a rinse -- taking the first

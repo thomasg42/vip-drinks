@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import type { Drink } from '../types'
 import { VERIFIED_RECIPES } from '../data/verifiedRecipes'
+import { buildSteps } from '../data/steps'
 import { youtubeEmbed, youtubeId, youtubeSearchUrl, youtubeWatch } from '../types'
 
 type Props = {
@@ -37,6 +38,7 @@ export function RecipeSheet({ drink, savedVideoId, onClose, onMade, onSaveVideo 
   const fromWeb = drink.source === 'web'
   const searchUrl = youtubeSearchUrl(drink.name)
   const recipe = VERIFIED_RECIPES[drink.id]
+  const steps = buildSteps(drink)
 
   const savePasted = () => {
     const raw = paste.trim()
@@ -70,7 +72,7 @@ export function RecipeSheet({ drink, savedVideoId, onClose, onMade, onSaveVideo 
         */}
         <div className="recipe-scroll">
           <h2 id="recipe-title">{drink.name}</h2>
-          {recipe ? <p className="recipe-meta">{recipe.glass} · {recipe.method}</p> : null}
+          <p className="recipe-meta">{drink.glass} · {drink.method}</p>
 
           {embed ? (
             <>
@@ -136,11 +138,18 @@ export function RecipeSheet({ drink, savedVideoId, onClose, onMade, onSaveVideo 
             </div>
           )}
 
-          {recipe ? <>
-          <p className="recipe-source">Recipe source: <a href={recipe.sourceUrl} target="_blank" rel="noreferrer">{recipe.sourceLabel}</a>. Adapted from Wikimedia contributors; <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noreferrer">CC BY-SA</a>.</p>
+          {/*
+            THE HOUSE POUR IS THE RECIPE. This card used to render the .org
+            source instead, which had two costs: the Margarita showed a 3:2:1
+            reference spec rather than what VIP actually pours, and 55 of the
+            131 drinks showed no recipe at all because no Wikimedia page had
+            been matched to them. Behind the bar, a card with nothing on it is
+            worse than a card with the house pour on it. The source still gets
+            shown -- underneath, as a cross-check -- but it no longer overrides.
+          */}
           <h3>Ingredients</h3>
           <ul className="ingredients">
-            {recipe.ingredients.map((ing, i) => (
+            {drink.ingredients.map((ing, i) => (
               <li key={`${i}-${ing.item}`}>
                 <span>{ing.amount}</span>
                 <b>{ing.item}</b>
@@ -156,12 +165,35 @@ export function RecipeSheet({ drink, savedVideoId, onClose, onMade, onSaveVideo 
           <section className="how-to">
             <h3>How to make it</h3>
             <ol className="steps">
-              {recipe.steps.map((step, i) => (
+              {steps.map((step, i) => (
                 <li key={i}>{step}</li>
               ))}
             </ol>
           </section>
-          </> : <p className="recipe-unverified" role="note">Recipe steps hidden: a .org or .gov source has not been verified for this drink.</p>}
+
+          {/*
+            Provenance kept, precedence removed. Folded shut so it is never in
+            the way mid-rush, and open to anyone who wants to check the house
+            pour against a published one.
+          */}
+          {recipe ? (
+            <details className="recipe-crosscheck">
+              <summary>Cross-check against a published recipe</summary>
+              <ul className="ingredients">
+                {recipe.ingredients.map((ing, i) => (
+                  <li key={`${i}-${ing.item}`}>
+                    <span>{ing.amount}</span>
+                    <b>{ing.item}</b>
+                  </li>
+                ))}
+              </ul>
+              <p className="recipe-source">
+                Source: <a href={recipe.sourceUrl} target="_blank" rel="noreferrer">{recipe.sourceLabel}</a>.
+                Adapted from Wikimedia contributors; <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noreferrer">CC BY-SA</a>.
+                Community-edited reference, not a bar standard &mdash; where it differs from the house pour above, the house pour is what VIP serves.
+              </p>
+            </details>
+          ) : null}
 
           {fromWeb ? (
             <p className="web-source">From TheCocktailDB · off-menu, no house price set</p>
